@@ -59,8 +59,22 @@ class Services_Ebay_Call_AddItem extends Services_Ebay_Call
         if (!$item instanceof Services_Ebay_Model_Item) {
             throw new Services_Ebay_Exception( 'No item passed.' );
         }
+        
+        $this->setItem($item);
+    }
+
+   /**
+    * set the item that should be added
+    *
+    * @param    Services_Ebay_Model_Item
+    * @return   boolean
+    */
+    public function setItem(Services_Ebay_Model_Item $item)
+    {
         $this->item = $item;
         $this->args = array_merge( $this->args, $item->toArray() );
+        
+        return true;
     }
     
    /**

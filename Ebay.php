@@ -298,7 +298,7 @@ class Services_Ebay
             include_once $filename;
         }
         if (!class_exists($classname)) {
-            throw new Services_Ebay_Exception('API-Call \''.$method.'\' could not be found, please check the spelling');   
+            throw new Services_Ebay_API_Exception('API-Call \''.$method.'\' could not be found, please check the spelling, remember that method calls are case-sensitive.');
         }
         $call = new $classname($args);
         return $call;

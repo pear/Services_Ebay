@@ -38,12 +38,9 @@ created as simple wrappers:
 
 Refine these methods:
 
-- GetAccount
+- GetAccount()
 
 Methods on Models:
 
 Transaction:
  - AddDispute()
- 
-Item:
- - Add()

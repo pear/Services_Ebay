@@ -23,9 +23,9 @@ $item->Title = 'Supergirl\'s bra';
 $ebay->ReviseItem($item);
 
 /*
-You may also use the ReviseItem() method
+You may also use the Revise() method
 directly on the Item object
 
-$item->ReviseItem();
+$item->Revise();
 */ 
 ?>

@@ -62,4 +62,16 @@ class Services_Ebay_Auth_Exception extends Services_Ebay_Exception
 class Services_Ebay_Transport_Exception extends Services_Ebay_Exception
 {
 }
+
+/**
+ * Services_Ebay_API_Exception
+ *
+ * API Failure
+ *
+ * @package  Services_Ebay
+ * @author   Stephan Schmidt <schst@php.net>
+ */
+class Services_Ebay_API_Exception extends Services_Ebay_Exception
+{
+}
 ?>

@@ -109,7 +109,7 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
     * @return   boolean
     * @see      Services_Ebay_Call_AddToItemDescription
     */
-    public function AddToItemDescription($Description)
+    public function AddToDescription($Description)
     {
         $args = array(
                         'ItemId'          => $this->properties['Id'],
@@ -128,7 +128,7 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
     * @return   array
     * @see      Services_Ebay_Call_EndItem
     */
-    public function EndItem($EndCode)
+    public function End($EndCode)
     {
         $args = array(
                         'ItemId'  => $this->properties['Id'],
@@ -141,6 +141,23 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
     }
 
    /**
+    * Add the item to eBay
+    *
+    * This starts a new auction
+    *
+    * @see      Services_Ebay_Call_RelistItem
+    */
+    public function Add()
+    {
+        if (isset($this->properties['ItemId']) && !is_null($this->properties['ItemId'])) {
+        	throw new Services_Ebay_Exception('This item already has an ItemId and thus cannot be added.');
+        }
+        $call = Services_Ebay::loadAPICall('AddItem', array($this));
+        
+        return $call->call($this->session);
+    }
+
+   /**
     * Re-list the item
     *
     * This adds a new auction with exactly the same item data
@@ -148,7 +165,7 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
     * @todo     check return value
     * @see      Services_Ebay_Call_RelistItem
     */
-    public function RelistItem()
+    public function Relist()
     {
         $args = array(
                         'ItemId'  => $this->properties['Id']
@@ -165,7 +182,7 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
     * @return   boolean
     * @see      Services_Ebay_Call_ReviseItem
     */
-    public function ReviseItem()
+    public function Revise()
     {
         $call = Services_Ebay::loadAPICall('ReviseItem', array($this));
         return $call->call($this->session);

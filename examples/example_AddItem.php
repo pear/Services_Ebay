@@ -27,6 +27,10 @@ $item->VisaMaster = 1;
 
 $result = $ebay->AddItem($item);
 
+// You could as well call the Add() method on the item directly
+//$result = $item->Add();
+
+
 if ($result === true) {
     echo 'Item has been added with ItemId: '.$item->Id.' and ends on '.$item->EndTime.'<br />';
 } else {

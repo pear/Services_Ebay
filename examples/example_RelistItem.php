@@ -19,7 +19,7 @@ $session->setToken($token);
 $ebay = new Services_Ebay($session);
 
 $item = $ebay->GetItem(4501333179);
-$relist = $item->RelistItem();
+$relist = $item->Relist();
 
 echo	"<pre>";
 print_r($relist);
