@@ -72,7 +72,7 @@ if (PEAR::isError($result)) {
 }
 
 $package->addMaintainer('schst', 'lead', 'Stephan Schmidt', 'schst@schst.net');
-$package->addMaintainer('amt', 'contributor', 'Adam Trachtenberg', 'amt@php.net');
+$package->addMaintainer('amt', 'contributor', 'Adam Maccabee Trachtenberg', 'amt@php.net');
 
 $package->addDependency('PEAR', '1.3.2', 'ge', 'pkg', false);
 $package->addDependency('XML_Serializer', '0.14.0', 'ge', 'pkg', false);
