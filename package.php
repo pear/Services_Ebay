@@ -18,23 +18,24 @@ require_once 'PEAR/PackageFileManager.php';
 /**
  * current version
  */
-$version = '0.7.0';
+$version = '0.8.0alpha';
 
 /**
  * current state
  */
-$state = 'devel';
+$state = 'alpha';
 
 /**
  * release notes
  */
 $notes = <<<EOT
-BC BREAK: changed some method names on Services_Ebay_Model_Item
-Other changes:
-- Services_Ebay_Model_Item now supports ShipToLocations and ShippingServiceOptions
-- fixed error handling, when more than one error is returned
-- added Services_Ebay_API_Exception,
-- added Services_Ebay_Model_Item::Add()
+- added method to change SiteId
+- added some debugging facilities
+- added custom model classes
+- added introspection by using getAvailableCalls()
+- added constants for SiteIds
+- renamed some examples to have a clean separation between API call examples and features of Services_Ebay
+- changed state to alpha
 EOT;
 
 /**
