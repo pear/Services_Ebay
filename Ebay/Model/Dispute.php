@@ -8,7 +8,18 @@
  */
 class Services_Ebay_Model_Dispute extends Services_Ebay_Model implements IteratorAggregate
 {
+   /**
+    * dispute messages
+    *
+    * @var  array
+    */
     private $messages = array();
+    
+   /**
+    * constructor
+    *
+    * @param    array
+    */
     public function __construct($props, $session = null)
     {
         if (isset($props['Messages'])) {
@@ -23,6 +34,11 @@ class Services_Ebay_Model_Dispute extends Services_Ebay_Model implements Iterato
         parent::__construct($props, $session);
     }
     
+   /**
+    * iterate through the messages in the dispute
+    *
+    * @return   object
+    */
     public function getIterator()
     {
         $it = new ArrayObject($this->messages);
