@@ -18,7 +18,7 @@ require_once 'PEAR/PackageFileManager.php';
 /**
  * current version
  */
-$version = '0.8.0alpha';
+$version = '0.9.0alpha';
 
 /**
  * current state
@@ -29,13 +29,7 @@ $state = 'alpha';
  * release notes
  */
 $notes = <<<EOT
-- added method to change SiteId
-- added some debugging facilities
-- added custom model classes
-- added introspection by using getAvailableCalls()
-- added constants for SiteIds
-- renamed some examples to have a clean separation between API call examples and features of Services_Ebay
-- changed state to alpha
+- added Services_Ebay_Session::setErrorLanguage()
 EOT;
 
 /**
