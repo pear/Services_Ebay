@@ -38,7 +38,7 @@ require_once 'PEAR/Exception.php';
 define('SERVICES_EBAY_BASEDIR', dirname(__FILE__));
  
 /**
- * API Call base class
+ * Services_Ebay exception classes
  */
 require_once SERVICES_EBAY_BASEDIR . '/Ebay/Exception.php';
 
@@ -67,16 +67,6 @@ require_once SERVICES_EBAY_BASEDIR . '/Ebay/Model.php';
  */
  require_once 'XML/Unserializer.php';
   
-/**
- * error happened 
- */
-define( 'SERVICES_EBAY_ERROR_TRANSPORT', 20000 );
-
-/**
- * error happened 
- */
-define( 'SERVICES_EBAY_ERROR_NO_RETURN_VALUE', 20001 );
-
 /**
  * Services/Ebay.php
  *

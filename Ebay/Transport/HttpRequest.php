@@ -66,7 +66,7 @@ class Services_Ebay_Transport_HttpRequest
 
         $result = $request->sendRequest();
         if (PEAR::isError($result)) {
-            return PEAR::raiseError( 'Could not send request.', SERVICES_EBAY_ERROR_TRANSPORT );
+            throw new Services_Ebay_Transport_Exception('Could not send request.');
         }
         
         $response = $request->getResponseBody();

@@ -59,7 +59,7 @@ class Services_Ebay_Transport_Curl
         $result = curl_exec($curl);
         
         if ($result === false) {
-            return PEAR::raiseError( curl_error( $curl ), SERVICES_EBAY_ERROR_TRANSPORT );
+            throw new Services_Ebay_Transport_Exception(curl_error( $curl ));
         }
         return $result;
     }
