@@ -20,7 +20,6 @@ Methods to implement:
 - GetProductSearchPage
 - GetProductSearchResults
 - GetProductSellingPages
-- GetPromotionRules
 - GetRecommendations
 - GetSellerEvents
 - ReviseCheckoutTransactionDetails
