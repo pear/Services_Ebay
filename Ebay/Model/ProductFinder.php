@@ -24,8 +24,15 @@ class Services_Ebay_Model_ProductFinder extends Services_Ebay_Model
     public function __construct($node, $session = null)
     {
         $this->dom = new DOMDocument();
+
+        $ebay = new DOMElement('eBay');
+        $ebay = $this->dom->appendChild($ebay);
+
+        $pf = new DOMElement('ProductFinders');
+        $pf = $ebay->appendChild($pf);
+
         $newNode = $this->dom->importNode($node, true);
-        $this->dom->appendChild($newNode);
+        $pf->appendChild($newNode);
     }
 
    /**
@@ -43,7 +50,7 @@ class Services_Ebay_Model_ProductFinder extends Services_Ebay_Model
 
         $proc = new xsltprocessor;
         $proc->importStyleSheet($xsl);
-        
+
         return $proc->transformToXML($this->dom);
     }
 }
