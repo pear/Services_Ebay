@@ -1,9 +1,9 @@
 <?PHP
 /**
- * Get high bidders for a dutch auction
+ * Get high bidders for a dutch auction.
  * 
- * Be careful, this API call has not yet been tested!
- * 
+ * Make sure to call this only on dutch auctions!
+ * Otherwise you will get an error.
  *
  * $Id$
  *
@@ -37,8 +37,8 @@ class Services_Ebay_Call_GetHighbidders extends Services_Ebay_Call
     public function call(Services_Ebay_Session $session)
     {
         $return = parent::call($session);
-
-        return $return['Bids'];
+        $result = Services_Ebay::loadModel('BidList', $return, $session);
+        return $result;
     }
 }
 ?>
