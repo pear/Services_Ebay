@@ -424,7 +424,26 @@ class Services_Ebay
         
         return $model;
     }
-    
+
+   /**
+    * load a model
+    *
+    * @param    string  type of the model
+    * @param    array   properties
+    */
+    public static function loadCache($type, $options)
+    {
+        $classname = 'Services_Ebay_Cache_'.$type;
+        include_once SERVICES_EBAY_BASEDIR . '/Ebay/Cache/'.$type.'.php';
+
+        if (!class_exists($classname)) {
+            throw new Services_Ebay_Exception('Class \''.$type.'\' could not be found, please check the spelling');   
+        }
+        $cache = new $classname($options);
+        
+        return $cache;
+    }
+
    /**
     * get list of all available API calls
     *

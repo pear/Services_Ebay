@@ -9,6 +9,13 @@
 class Services_Ebay_Model_User extends Services_Ebay_Model
 {
    /**
+    * model type
+    *
+    * @var  string
+    */
+    protected $type = 'User';
+
+   /**
     * property that stores the unique identifier (=pk) of the model
     *
     * @var string
@@ -98,6 +105,36 @@ class Services_Ebay_Model_User extends Services_Ebay_Model
         $call->setArgs($args);
         
         return $call->call($this->session);
+    }
+
+   /**
+    * get the user from eBay
+    *
+    * Use this to query by a previously set user id
+    *
+    * <code>
+    * $user = Services_Ebay::loadModel('User', 'superman-74', $session);
+    * $user->Get();
+    * </code>
+    *
+    * @param    string    ItemId
+    * @see      Services_Ebay_Call_GetUser
+    */
+    public function Get($ItemId = null)
+    {
+        $args = array(
+                        'UserId' => $this->properties['UserId'],
+                        'ItemId' => $ItemId
+                    );
+
+        $call = Services_Ebay::loadAPICall('GetUser');
+        $call->setArgs($args);
+        
+        $tmp = $call->call($this->session);
+        $this->properties     = $tmp->toArray();
+        $this->eBayProperties = $this->properties;
+        unset($tmp);
+        return true;
     }
 }
 ?>

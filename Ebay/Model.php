@@ -9,9 +9,19 @@
  *
  * @package Services_Ebay
  * @author  Stephan Schmidt <schst@php.net>
+ *
+ * @todo    different caches for different detail levels
+ * @todo    add the possibility to disable the cache for single models
  */
 class Services_Ebay_Model implements ArrayAccess
 {
+   /**
+    * model type
+    *
+    * @var  string
+    */
+    protected $type = null;
+    
    /**
     * properties of the model
     *
@@ -42,23 +52,62 @@ class Services_Ebay_Model implements ArrayAccess
     * @var string
     */
     protected $primaryKey = null;
+
+   /**
+    * store the static cache for all models of this type
+    *
+    * @var  object Services_Ebay_Cache
+    */
+    protected static $cache = null;
+
+   /**
+    * indicates, whether the model has been cached
+    *
+    */
+    protected $cached = false;
     
     /**
     * create new model
     *
     * @param    array   properties
     */
-    public function __construct($props, $session = null)
+    public function __construct($props, $session = null, $DetailLevel = 0)
     {
+        $this->cached = false;
         if (is_array($props)) {
             $this->properties = $props;
         } elseif ($this->primaryKey !== null) {
             $this->properties[$this->primaryKey] = $props;
+            
+            // try loading the data from the cache
+            if (self::$cache instanceof Services_Ebay_Cache) {
+            	$cacheProps = self::$cache->load($this->type, $this->getPrimaryKey(), $DetailLevel);
+            	if (is_array($cacheProps)) {
+            		$this->properties = $cacheProps;
+            		$this->cached = true;
+            	}
+            }
         }
+        
+        // store the session
         if( $session instanceof Services_Ebay_Session) {
             $this->session = $session;
         }
         $this->eBayProperties = $this->properties;
+        
+        if (!$this->isCached() && self::$cache instanceof Services_Ebay_Cache) {
+        	self::$cache->store($this->type, $this->getPrimaryKey(), $DetailLevel, $this->properties);
+        }
+    }
+    
+   /**
+    * check, whether the model has been cached
+    *
+    * @return   boolean
+    */
+    public function isCached()
+    {
+    	return $this->cached;
     }
     
    /**
@@ -69,6 +118,16 @@ class Services_Ebay_Model implements ArrayAccess
     public function setSession(Services_Ebay_Session $session)
     {
         $this->session = $session;
+    }
+
+   /**
+    * set the cache
+    *
+    * @param    object Services_Ebay_Cache
+    */
+    static public function setCache(Services_Ebay_Cache $cache)
+    {
+        self::$cache = $cache;
     }
     
    /**
@@ -180,6 +239,22 @@ class Services_Ebay_Model implements ArrayAccess
 	public function offsetUnset($offset)
 	{
 		unset($this->properties[$offset]);
+	}
+
+   /**
+    * get the primary key of the model
+    *
+    * @return   string
+    */
+	public function getPrimaryKey()
+	{
+		if ($this->primaryKey === null) {
+			return false;
+		}
+		if (!isset($this->properties[$this->primaryKey])) {
+			return false;
+		}
+		return $this->properties[$this->primaryKey];
 	}
 }
 ?>

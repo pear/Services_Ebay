@@ -36,7 +36,7 @@ class Services_Ebay_Call_GetUser extends Services_Ebay_Call
     {
         $return = parent::call($session);
         $user   = Services_Ebay::loadModel('User', $return['User'], $session);
-        
+
         return $user;
     }
 }
