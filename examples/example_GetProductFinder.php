@@ -18,11 +18,8 @@ $session->setToken($token);
 
 $ebay = new Services_Ebay($session);
 
-// get one file, including XSL
-$xslFiles = $ebay->GetProductFinderXSL('product_finder.xsl', 2);
-$xsl = $xslFiles[0]['Xsl'];
-
-echo $xsl;
+// load the product finder XSL
+$xsl = file_get_contents('product_finder.xsl');
 
 // get product finder
 $productFinders = $ebay->GetProductFinder(1909);
