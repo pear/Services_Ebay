@@ -24,6 +24,14 @@ class Services_Ebay_Call_AddItem extends Services_Ebay_Call
     protected $paramMap = array();
 
    /**
+    * options that will be passed to the serializer
+    *
+    * @var  array
+    */
+    protected $serializerOptions = array(
+                                            'mode' => 'simplexml'
+                                        );
+   /**
     * default parameters that will be used when
     * adding an item
     *

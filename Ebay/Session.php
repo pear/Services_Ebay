@@ -127,7 +127,7 @@ class Services_Ebay_Session
     *
     * @var       integer
     */
-    public $compatLevel = 369;
+    public $compatLevel = 379;
 
    /**
     * general detail Level
@@ -169,7 +169,9 @@ class Services_Ebay_Session
                     );
         $this->ser = new XML_Serializer( $opts );
 
-        $opts = array();
+        $opts = array(
+                    'forceEnum' => array('Error')
+                    );
         $this->us  = new XML_Unserializer( $opts );
 	}
 	
@@ -325,11 +327,15 @@ class Services_Ebay_Session
         
         if (isset($result['Errors'])) {
             if (isset($result['Errors']['Error'])) {
-                $error = $result['Errors']['Error'];
+                $message = '';
+                foreach ($result['Errors']['Error'] as $error) {
+                	$message = $message . ' ' . $error['LongMessage'];
+                }
+                throw new Services_Ebay_Exception( $message );
             } else {
-                $error = $result['Errors'][0];
+                throw new Services_Ebay_API_Exception('Unknown error occured.');
             }
-            throw new Services_Ebay_Exception( $error['LongMessage'], $error['Code'] );
+            
         }
 
         return $result;

@@ -21,9 +21,18 @@ $item->Category = 57882;
 $item->Title = 'Supergirls\'s cape';
 $item->Description = 'Another test item';
 $item->Location = 'At my home';
-$item->MinimumBid = '1000.0';
+$item->MinimumBid = '532.0';
 
 $item->VisaMaster = 1;
+
+$item->ShippingType = 1;
+$item->CheckoutDetailsSpecified = 1;
+
+$item->Country = 'US';
+
+$item->SetShipToLocations(array('US', 'DE', 'GB'));
+
+$item->addShippingServiceOption(1, 1, 3, 1, array('US'));
 
 $result = $ebay->AddItem($item);
 

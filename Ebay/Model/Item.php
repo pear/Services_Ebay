@@ -32,6 +32,47 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
     }
 
    /**
+    * set the locations you will ship the item to
+    *
+    * @param    array
+    */
+    public function setShipToLocations($ShipToLocations)
+    {
+        $this->properties['ShipToLocations'] = array(
+        	                                          'ShipToLocation' => $ShipToLocations
+        	                                        );
+        return true;
+    }
+
+   /**
+    * add a shipping service option
+    *
+    * @param    integer     shipping service, {@link http://developer.ebay.com/DevZone/docs/API_Doc/Appendixes/AppendixN.htm#shippingservices}
+    * @param    float
+    * @param    float
+    * @param    array
+    */
+    public function addShippingServiceOption($ShippingService, $ShippingServicePriority, $ShippingServiceCost, $ShippingServiceAdditionalCost, $ShipToLocations)
+    {
+        $option = array(
+                        'ShippingService'               => $ShippingService,
+                        'ShippingServicePriority'       => $ShippingServicePriority,
+                        'ShippingServiceCost'           => $ShippingServiceCost,
+                        'ShippingServiceAdditionalCost' => $ShippingServiceAdditionalCost,
+                        'ShipToLocations'               => array(
+                                                                'ShipToLocation' => $ShipToLocations
+                                                                )
+                    );
+        if (!isset($this->properties['ShippingServiceOptions'])) {
+        	$this->properties['ShippingServiceOptions'] = array(
+        	                                                      'ShippingServiceOption' => array()
+        	                                                   );
+        }
+        array_push($this->properties['ShippingServiceOptions']['ShippingServiceOption'], $option);
+        return true;
+    }
+    
+   /**
     * create a string representation of the item
     *
     * @return   string
