@@ -34,4 +34,7 @@ $item = $ebay->GetItem(4501333179, 2);
 
 echo 'Get description of the item:<br />';
 echo $item->Description;
+
+echo 'You may also access properties using the array syntax:<br />';
+echo $item['Description'];
 ?>

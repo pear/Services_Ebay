@@ -10,7 +10,7 @@
  * @package Services_Ebay
  * @author  Stephan Schmidt <schst@php.net>
  */
-class Services_Ebay_Model
+class Services_Ebay_Model implements ArrayAccess
 {
    /**
     * properties of the model
@@ -129,5 +129,57 @@ class Services_Ebay_Model
         }
         return $modified;
     }
+
+   /**
+	* check, whether a property exists
+	*
+	* This is needed to implement the ArrayAccess interface
+	*
+	* @param	string	property
+	*/
+	public function offsetExists($offset)
+	{
+	    if (isset($this->properties[$offset])) {
+	    	return true;
+	    }
+	    return false;
+	}
+
+   /**
+	* get a property
+	*
+	* This is needed to implement the ArrayAccess interface
+	*
+	* @param	string	property
+	*/
+	public function offsetGet($offset)
+	{
+		return $this->properties[$offset];
+	}
+
+   /**
+	* set a property
+	*
+	* This is needed to implement the ArrayAccess interface
+	*
+	* @param	string	property
+	* @param	mixed	value
+	*/
+	public function offsetSet($offset, $value)
+	{
+		$this->properties[$offset] = $value;
+	}
+
+   /**
+	* unset a property
+	*
+	* This is needed to implement the ArrayAccess interface
+	*
+	* @param	string	property
+	*/
+	public function offsetUnset($offset)
+	{
+		unset($this->properties[$offset]);
+	}
 }
 ?>

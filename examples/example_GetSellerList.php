@@ -21,7 +21,15 @@ $ebay = new Services_Ebay($session);
 /**
  * get the user information
  */
-$list = $ebay->GetSellerList('agebook');
+$list = $ebay->GetSellerList(array('UserId'=>'superman-74', 'DetailLevel' => 96, 'ItemsPerPage' => 10, 'PageNumber' => 1, 'StartTimeFrom' => '2003-11-01 00:00:00', 'StartTimeTo' => '2004-12-01 00:00:00'));
+
+$items = array();
+foreach ($list as $item) {
+	echo '<pre>';
+	print_r($item->toArray());
+	echo '</pre>';
+}
+
 
 echo	'<pre>';
 print_r($list->toArray());
