@@ -1,4 +1,14 @@
 <?PHP
+/**
+ * example that shows how to use various models
+ *
+ * $Id$
+ *
+ * @package     Services_Ebay
+ * @subpackage  Examples
+ * @author      Stephan Schmidt
+ */
+
 require_once '../Ebay.php';
 require_once 'config.php';
 
