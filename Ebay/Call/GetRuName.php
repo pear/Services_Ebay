@@ -6,6 +6,7 @@
  *
  * @package Services_Ebay
  * @author  Stephan Schmidt <schst@php.net>
+ * @link    http://developer.ebay.com/DevZone/docs/API_Doc/Functions/GetRuName/GetRuNameLogic.htm
  */
 class Services_Ebay_Call_GetRuName extends Services_Ebay_Call 
 {

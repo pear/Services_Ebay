@@ -6,6 +6,7 @@
  *
  * @package Services_Ebay
  * @author  Stephan Schmidt <schst@php.net>
+ * @link    http://developer.ebay.com/DevZone/docs/API_Doc/Functions/GetRuName/GetRuNameLogic.htm
  * @todo    test paginating
  * @todo    build item list model
  */

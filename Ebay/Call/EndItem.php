@@ -6,6 +6,8 @@
  *
  * @package Services_Ebay
  * @author  Stephan Schmidt <schst@php.net>
+ * @link    http://developer.ebay.com/DevZone/docs/API_Doc/Functions/EndItem/EndItemLogic.htm
+ * @see     Services_Model_Item::End()
  */
 class Services_Ebay_Call_EndItem extends Services_Ebay_Call 
 {

@@ -12,6 +12,8 @@
  *
  * @package Services_Ebay
  * @author  Stephan Schmidt <schst@php.net>
+ * @link    http://developer.ebay.com/DevZone/docs/API_Doc/Functions/ReviseItem/ReviseItemLogic.htm
+ * @see     Services_Ebay_Model_Item::Revise()
  */
 class Services_Ebay_Call_ReviseItem extends Services_Ebay_Call 
 {

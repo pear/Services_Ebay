@@ -6,6 +6,8 @@
  *
  * @package Services_Ebay
  * @author  Stephan Schmidt <schst@php.net>
+ * @link    http://developer.ebay.com/DevZone/docs/API_Doc/Functions/AddToItemDescription/AddToItemDescriptionLogic.htm
+ * @see     Services_Model_Item::AddToDescription()
  */
 class Services_Ebay_Call_AddToItemDescription extends Services_Ebay_Call 
 {
