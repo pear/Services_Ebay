@@ -72,7 +72,8 @@ if (PEAR::isError($result)) {
     die();
 }
 
-$package->addMaintainer('schst', 'lead', 'Stephan Schmidt', 'schst@schst.net');
+$package->addMaintainer('schst', 'lead', 'Stephan Schmidt', 'schst@php.net');
+$package->addMaintainer('luckec', 'developer', 'Carsten Lucke', 'luckec@php.net');
 $package->addMaintainer('amt', 'contributor', 'Adam Maccabee Trachtenberg', 'amt@php.net');
 
 $package->addDependency('PEAR', '1.3.2', 'ge', 'pkg', false);
