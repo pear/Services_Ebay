@@ -10,6 +10,13 @@
 class Services_Ebay_Model_Item extends Services_Ebay_Model
 {
    /**
+    * model type
+    *
+    * @var  string
+    */
+    protected $type = 'Item';
+
+   /**
     * property that stores the unique identifier (=pk) of the model
     *
     * @var string
