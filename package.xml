@@ -16,11 +16,16 @@ The Services_Ebay class provides a unified method to use all objects.</descripti
     </maintainer>
   </maintainers>
   <release>
-    <version>0.6.1</version>
-    <date>2004-11-07</date>
+    <version>0.7.0</version>
+    <date>2004-11-16</date>
     <license>PHP License</license>
     <state>devel</state>
-    <notes>All models now support ArrayAccess, released during the PEAR talk at the PHP Conference 2004</notes>
+    <notes>BC BREAK: changed some method names on Services_Ebay_Model_Item
+Other changes:
+- Services_Ebay_Model_Item now supports ShipToLocations and ShippingServiceOptions
+- fixed error handling, when more than one error is returned
+- added Services_Ebay_API_Exception,
+- added Services_Ebay_Model_Item::Add()</notes>
     <deps>
       <dep type="pkg" rel="ge" version="1.3.2" optional="no">PEAR</dep>
       <dep type="pkg" rel="ge" version="0.9.1" optional="no">XML_Serializer</dep>
@@ -208,6 +213,18 @@ The Services_Ebay class provides a unified method to use all objects.</descripti
       <license>PHP License</license>
       <state>devel</state>
       <notes>All models now support ArrayAccess, released during the PEAR talk at the PHP Conference 2004</notes>
+    </release>
+    <release>
+      <version>0.7.0</version>
+      <date>2004-11-16</date>
+      <license>PHP License</license>
+      <state>devel</state>
+      <notes>BC BREAK: changed some method names on Services_Ebay_Model_Item
+Other changes:
+- Services_Ebay_Model_Item now supports ShipToLocations and ShippingServiceOptions
+- fixed error handling, when more than one error is returned
+- added Services_Ebay_API_Exception,
+- added Services_Ebay_Model_Item::Add()</notes>
     </release>
   </changelog>
 </package>

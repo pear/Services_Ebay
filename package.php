@@ -18,7 +18,7 @@ require_once 'PEAR/PackageFileManager.php';
 /**
  * current version
  */
-$version = '0.6.1';
+$version = '0.7.0';
 
 /**
  * current state
@@ -29,7 +29,12 @@ $state = 'devel';
  * release notes
  */
 $notes = <<<EOT
-All models now support ArrayAccess, released during the PEAR talk at the PHP Conference 2004
+BC BREAK: changed some method names on Services_Ebay_Model_Item
+Other changes:
+- Services_Ebay_Model_Item now supports ShipToLocations and ShippingServiceOptions
+- fixed error handling, when more than one error is returned
+- added Services_Ebay_API_Exception,
+- added Services_Ebay_Model_Item::Add()
 EOT;
 
 /**
