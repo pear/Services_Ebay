@@ -222,6 +222,86 @@ class Services_Ebay
     * 1 = view by invoice
     */
     const ACCOUNT_TYPE_INVOICE = 1;
+
+   /**
+    * SiteId USA
+    */
+    const SITEID_US = 0;
+
+   /**
+    * SiteId Canada
+    */
+    const SITEID_CA = 2;
+
+   /**
+    * SiteId United Kingdom
+    */
+    const SITEID_UK = 3;
+
+   /**
+    * SiteId Australia
+    */
+    const SITEID_AU = 15;
+
+   /**
+    * SiteId Austria
+    */
+    const SITEID_AT = 16;
+
+   /**
+    * SiteId Belgium (french)
+    */
+    const SITEID_BEFR = 23;
+
+   /**
+    * SiteId France
+    */
+    const SITEID_FR = 71;
+
+   /**
+    * SiteId Germany
+    */
+    const SITEID_DE = 77;
+
+   /**
+    * SiteId eBay Motors
+    */
+    const SITEID_MOTORS = 100;
+
+   /**
+    * SiteId Italy
+    */
+    const SITEID_IT = 101;
+
+   /**
+    * SiteId Belgium (netherlands)
+    */
+    const SITEID_BENL = 123;
+
+   /**
+    * SiteId Netherlands
+    */
+    const SITEID_NL = 146;
+
+   /**
+    * SiteId Spain
+    */
+    const SITEID_ES = 186;
+
+   /**
+    * SiteId Swiss
+    */
+    const SITEID_CH = 193;
+
+   /**
+    * SiteId Taiwan
+    */
+    const SITEID_TW = 196;
+
+   /**
+    * SiteId China
+    */
+    const SITEID_CN = 223;
     
    /**
     * session used for the calls

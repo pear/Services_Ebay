@@ -25,8 +25,12 @@ print_r($details);
 echo '</pre>';
 
 
-$details = $ebay->GeteBayDetails('Currency');
+// get the shipping services for Germany
+$session->setSiteId(Services_Ebay::SITEID_DE);
+
+$details = $ebay->GeteBayDetails('ShippingService');
 echo '<pre>';
 print_r($details);
 echo '</pre>';
+
 ?>
