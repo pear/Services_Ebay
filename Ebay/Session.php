@@ -161,6 +161,13 @@ class Services_Ebay_Session
     private $detailLevel = 0;
 
    /**
+    * error language
+    *
+    * @var  int
+    */
+    private $errorLanguage = null;
+
+   /**
     * additional options for the serializer
     *
     * These options will be set by the call objects
@@ -279,6 +286,16 @@ class Services_Ebay_Session
     }
 	
    /**
+    * set the error language
+    *
+    * @param    string
+    */
+	public function setErrorLanguage($language)
+	{
+	   $this->errorLanguage = $language;
+	}
+
+   /**
     * build XML code for a request
     *
     * @access   private
@@ -339,6 +356,10 @@ class Services_Ebay_Session
     public function sendRequest( $verb, $params = array(), $authType = Services_Ebay::AUTH_TYPE_TOKEN )
     {
         $this->wire = '';
+
+        if (!isset($params['ErrorLanguage']) && !is_null($this->errorLanguage)) {
+        	$params['ErrorLanguage'] = $this->errorLanguage;
+        }
 
         $body    = $this->buildRequestBody($verb, $params, $authType);
 
