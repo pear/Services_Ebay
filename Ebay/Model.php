@@ -1,5 +1,10 @@
 <?PHP
 /**
+ * load base class for caches
+ */
+require_once SERVICES_EBAY_BASEDIR . '/Ebay/Cache.php';
+
+/**
  * Base class for all models
  *
  * $Id$
