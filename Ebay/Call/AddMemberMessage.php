@@ -22,7 +22,7 @@ class Services_Ebay_Call_AddMemberMessage extends Services_Ebay_Call
     *
     * @var  integer
     */
-    public $since = 367;
+    protected $since = 367;
     
    /**
     * parameter map that is used, when scalar parameters are passed

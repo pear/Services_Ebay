@@ -48,6 +48,20 @@ abstract class Services_Ebay_Call
     protected $serializerOptions = array();
     
    /**
+    * compatibility level this method was introduced
+    *
+    * @var  integer
+    */
+    protected $since = null;
+
+   /**
+    * deprecated since API version
+    *
+    * @var  integer
+    */
+    protected $deprecated = null;
+
+   /**
     * constructor
     *
     * @param    array   arguments to the call
@@ -124,9 +138,17 @@ abstract class Services_Ebay_Call
     public function describeCall()
     {
         echo 'API Call : '.$this->verb."\n";
+        if ($this->since !== null) {
+        	echo 'Added in API version : ' . $this->since . "\n";
+        }
+        if ($this->deprecated !== null) {
+        	echo 'Deprecated sind API version : ' . $this->deprecated . "\n";
+        }
+        echo "\n";
         echo 'Parameters (max. '.count($this->paramMap).')'."\n";
+        $i = 0;
         foreach ($this->paramMap as $param) {
-            echo ' '.$param;
+            echo ' '.++$i.'. '.$param;
             if (isset($this->args[$param])) {
                 echo '('.$this->args[$param].')';
             } else {

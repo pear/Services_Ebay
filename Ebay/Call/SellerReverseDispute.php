@@ -22,7 +22,7 @@ class Services_Ebay_Call_SellerReverseDispute extends Services_Ebay_Call
     *
     * @var  integer
     */
-    public $since = 361;
+    protected $since = 361;
     
    /**
     * parameter map that is used, when scalar parameters are passed

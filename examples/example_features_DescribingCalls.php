@@ -16,7 +16,7 @@ require_once 'config.php';
 $session = Services_Ebay::getSession($devId, $appId, $certId);
 $session->setToken($token);
 
-$call = Services_Ebay::loadAPICall('GetLogoURL');
+$call = Services_Ebay::loadAPICall('AddDispute');
 echo '<pre>';
 $call->describeCall();
 echo '</pre>';

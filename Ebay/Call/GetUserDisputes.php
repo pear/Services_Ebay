@@ -23,7 +23,7 @@ class Services_Ebay_Call_GetUserDisputes extends Services_Ebay_Call
     *
     * @var  integer
     */
-    public $since = 361;
+    protected $since = 361;
     
    /**
     * arguments of the call
