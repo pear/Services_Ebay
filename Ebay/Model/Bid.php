@@ -22,7 +22,7 @@ class Services_Ebay_Model_Bid extends Services_Ebay_Model
      * @param integer   $DetailLevel    detail-level
      */
     public function __construct($props, $session = null, $DetailLevel = 0) {
-        parent::__construct($props, $session = null, $DetailLevel = 0);
+        parent::__construct($props, $session, $DetailLevel);
         
         $this->user = Services_Ebay::loadModel('User', $props['User'], $session);
         unset($this->properties['User']);
