@@ -44,6 +44,16 @@ class Services_Ebay_Session
     const DEBUG_PRINT = 2;
 
    /**
+    * Sandbox gateway URL
+    */
+    const URL_SANDBOX = 'https://api.sandbox.ebay.com/ws/api.dll';
+
+   /**
+    * Production gateway URL
+    */
+    const URL_PRODUCTION = 'https://api.ebay.com/ws/api.dll';
+
+   /**
     * developer ID
     *
     * If you do not already have one, please
@@ -109,7 +119,7 @@ class Services_Ebay_Session
     *
     * @var  string
     */
-    private $url = 'https://api.sandbox.ebay.com/ws/api.dll';
+    private $url;
 
    /**
     * site id
@@ -187,8 +197,9 @@ class Services_Ebay_Session
 	{
         $this->devId = $devId;
         $this->appId = $appId;
-        $this->certId = $certId;
-
+        $this->certId = $certId;		
+        $this->url = self::URL_SANDBOX;
+        
         $opts = array(
                          'indent'             => '  ',
                          'linebreak'          => "\n",
@@ -259,6 +270,12 @@ class Services_Ebay_Session
     * set the API URL
     *
     * @param    string
+    *
+    * Possible values are:
+    * - Services_Ebay_Session::URL_SANDBOX
+    * - Services_Ebay_Session::URL_PRODUCTION
+    * - Other URLs as applicable
+    *
     */
 	public function setUrl($url)
 	{
