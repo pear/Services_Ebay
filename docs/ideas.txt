@@ -18,7 +18,13 @@ It should be possible to pass a list of all parameters and raise
 some notices/warnings, whenever someone is using a parameter
 that des not exist
 
-3. Deprecated Methods
+3. Cache models
+---------------
+- Use PEAR::Cache
+- Models may return their lifetime, allows you to cache items for a shorter
+  amount of time based on the time the auction has left
+
+4. Deprecated Methods
 ---------------------
 Could be implemented and raise a notice, when used.
 

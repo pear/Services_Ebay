@@ -8,7 +8,19 @@
  */
 class Services_Ebay_Model_DisputeList extends Services_Ebay_Model implements IteratorAggregate
 {
+   /**
+    * container for disputes
+    *
+    * @var  array
+    */
     private $disputes = array();
+    
+   /**
+    * create a new list of disputes
+    *
+    * @param    array   return value from GetUserDisputes
+    * @param    Services_Ebay_Session
+    */
     public function __construct($props, $session = null)
     {
         if (isset($props['Disputes'])) {
@@ -23,6 +35,11 @@ class Services_Ebay_Model_DisputeList extends Services_Ebay_Model implements Ite
         parent::__construct($props, $session);
     }
     
+   /**
+    * iterate through the disputes
+    *
+    * @return   object
+    */
     public function getIterator()
     {
         $it = new ArrayObject($this->disputes);
