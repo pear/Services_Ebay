@@ -1,0 +1,36 @@
+Services_Ebay ideas:
+--------------------
+$Id$
+
+1. Models:
+----------
+Build decorators for models to dynamically add new functionality:
+
+$item = Services_Ebay::loadModel('Item');
+$item->Title = 'JSA issue #34';
+$item->Description = 'The one where Hawkman comes back from the dead.';
+$betterItem = $item->Decorate('GetSuggestedCategories');
+$betterItem->GetSuggestedCategories();
+
+2. Auto-validating Calls and models
+-----------------------------------
+It should be possible to pass a list of all parameters and raise
+some notices/warnings, whenever someone is using a parameter
+that des not exist
+
+3. Deprecated Methods
+---------------------
+Could be implemented and raise a notice, when used.
+
+Deprecated methods:
+ - AddNonPayingBidderAlert
+ - DeleteNonPayingBidderWarning
+ - RequestFinalValueFeeCredit
+ 
+Obsolete methods:
+ - GetCategory2DomainMap
+ - GetDomains
+ - GetMerchPanelRules
+ - DeleteMerchPanelRules
+ - SetMerchPanelRules
+ - GetCategory2DomainMap

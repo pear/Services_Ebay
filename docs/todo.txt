@@ -1,0 +1,49 @@
+Todo:
+-----
+$Id$
+Methods to implement:
+- AddMemberMessage
+- AddOrder
+- AddShipment
+- GetAdFormatLeads
+- GetAttributesCS
+- GetAttributesXSL
+- GetCategory2CS
+- GetCategory2FinanceOffer
+- GetFinanceOffers
+- GetMemberMessages
+- GetNotificationPreferences
+- GetOrders
+- GetProductFamilyMembers
+- GetProductFinder
+- GetProductFinderXSL
+- GetProductSearchPage
+- GetProductSearchResults
+- GetProductSellingPages
+- GetPromotionRules
+- GetRecommendations
+- GetSellerEvents
+- ReviseCheckoutTransactionDetails
+- ReviseShipment
+- SetNotificationPreferences
+- SetPromotionRules
+
+Wrapper Methods:
+
+These methods are not available for the API, but can be
+created as simple wrappers:
+
+- GetTransaction(ItemId, TransactionId)
+- GetInvoice(Year, Month, PageNumber)
+
+Refine these methods:
+
+- GetAccount
+
+Methods on Models:
+
+Transaction:
+ - AddDispute()
+ 
+Item:
+ - Add()

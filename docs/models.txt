@@ -1,0 +1,36 @@
+Services_Ebay models
+--------------------
+$Id$
+
+1. User  -  Stores information about an eBay user
+
+Public Methods:
+ 
+ obj Feedback GetFeedback(int DetailLevel, int ItemsPerPage, int StartingPage)
+ Array GetSellerList(array Arguments)
+ 
+ 2. Item  -  Stores information about an item
+ 
+ Useful properties:
+ 
+  $item->Seller is an instance of Services_Ebay_Model_User
+ 
+ 3. Feedback  -  Stores information about User Feedback
+ 
+ Public Methos:
+ 
+ obj FeedbackEntry GetEntry(int number)
+ 
+ 4. FeedbackEntry  -  Stores information about one entry 
+ 
+ TODO:
+ -----
+ The following models possibly need to be implemented:
+ 
+ - Category
+ - CategoryList
+ - Transaction
+( - TransactionList )
+ - Dispute
+ - ProductFinder (is able to transform itself using a style sheet)
+ 
