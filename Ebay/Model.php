@@ -1,10 +1,5 @@
 <?PHP
 /**
- * load base class for caches
- */
-require_once SERVICES_EBAY_BASEDIR . '/Ebay/Cache.php';
-
-/**
  * Base class for all models
  *
  * $Id$
@@ -85,7 +80,7 @@ class Services_Ebay_Model implements ArrayAccess
             $this->properties[$this->primaryKey] = $props;
             
             // try loading the data from the cache
-            if (self::$cache instanceof Services_Ebay_Cache) {
+            if (is_object(self::$cache)) {
             	$cacheProps = self::$cache->load($this->type, $this->getPrimaryKey(), $DetailLevel);
             	if (is_array($cacheProps)) {
             		$this->properties = $cacheProps;
@@ -100,7 +95,7 @@ class Services_Ebay_Model implements ArrayAccess
         }
         $this->eBayProperties = $this->properties;
         
-        if (!$this->isCached() && self::$cache instanceof Services_Ebay_Cache) {
+        if (!$this->isCached() && is_object(self::$cache)) {
         	self::$cache->store($this->type, $this->getPrimaryKey(), $DetailLevel, $this->properties);
         }
     }
