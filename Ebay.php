@@ -217,7 +217,7 @@ class Services_Ebay
     */
     const ACCOUNT_TYPE_PERIOD = 0;
 
-    /**
+   /**
     * GetAccount():
     * 1 = view by invoice
     */
@@ -229,6 +229,13 @@ class Services_Ebay
     * @var  object Services_Ebay_Session
     */
     private $session = null;
+
+   /**
+    * class maps for the model classes
+    *
+    * @var  array
+    */
+    static private $modelClasses = array();
 
    /**
     * create Services Ebay helper class
@@ -254,7 +261,18 @@ class Services_Ebay
 
         return $session;
     }
-    
+
+   /**
+    * change the class that is used for a certain model
+    *
+    * @param    string      model name
+    * @param    string      class name
+    */
+    public static function useModelClass($model, $class)
+    {
+        self::$modelClasses[$model] = $class;
+    }
+
    /**
     * make an API call
     *
@@ -312,8 +330,13 @@ class Services_Ebay
     */
     public static function loadModel($type, $properties = null, $session = null)
     {
-        $classname = 'Services_Ebay_Model_'.$type;
-        include_once SERVICES_EBAY_BASEDIR . '/Ebay/Model/'.$type.'.php';
+        if (isset(self::$modelClasses[$type])) {
+        	$classname = self::$modelClasses[$type];
+        } else {
+            // use the default model class
+            $classname = 'Services_Ebay_Model_'.$type;
+            include_once SERVICES_EBAY_BASEDIR . '/Ebay/Model/'.$type.'.php';
+        }
         if (!class_exists($classname)) {
             throw new Services_Ebay_Exception('Model \''.$type.'\' could not be found, please check the spelling');   
         }
