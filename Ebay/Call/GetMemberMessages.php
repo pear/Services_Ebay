@@ -52,9 +52,6 @@ class Services_Ebay_Call_GetMemberMessages extends Services_Ebay_Call
     {
         $return = parent::call($session);
         $result = Services_Ebay::loadModel('MemberMessageList', $return, $session);
-        $result->setNumberOfPages((integer)$return['TotalNumberOfPages']);
-        $result->setNumberOfEntries((integer)$return['TotalNumberOfEntries']);
-        $result->setMoreItems((boolean)$return['MoreItems']);
         return $result;
     }
 }

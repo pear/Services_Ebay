@@ -44,6 +44,10 @@ class Services_Ebay_Model_MemberMessageList extends Services_Ebay_Model implemen
     */
     public function __construct($messages, $session = null)
     {
+        $this->moreItems = (boolean)$messages['MoreItems'];
+        $this->pages = (integer)$messages['TotalNumberOfPages'];
+        $this->entries = (integer)$messages['TotalNumberOfEntries'];
+        
         if (isset($messages['MemberMessages']['MemberMessage'])) {
             if (!isset($messages['MemberMessages']['MemberMessage'][0])) {
                 $messages['MemberMessages']['MemberMessage'] = array($messages['MemberMessages']['MemberMessage']);
@@ -76,15 +80,6 @@ class Services_Ebay_Model_MemberMessageList extends Services_Ebay_Model implemen
     }
     
     /**
-     * Sets the total number of pages in the retrieval.
-     * 
-     * @param integer total number of pages in the retrieval
-     */
-    public function setNumberOfPages($pages) {
-        $this->pages = $pages;
-    }
-    
-    /**
      * Returns the total number of entries being retrieved.
      * 
      * @return integer total number of entries being retrieved
@@ -94,30 +89,12 @@ class Services_Ebay_Model_MemberMessageList extends Services_Ebay_Model implemen
     }
     
     /**
-     * Sets the total number of entries being retrieved.
-     * 
-     * @param integer total number of entries being retrieved
-     */
-    public function setNumberOfEntries($entries) {
-        $this->entries = $entries;
-    }
-    
-    /**
      * Determines whether or not there are more messages left to retrieve.
      * 
      * @return boolean whether or not there are more messages left to retrieve
      */
     public function hasMoreItems() {
         return $this->moreItems;
-    }
-    
-    /**
-     * Sets whether or not there are more messages left to retrieve.
-     * 
-     * @param boolean whether or not there are more messages left to retrieve
-     */
-    public function setMoreItems($hasMoreItems) {
-        $this->moreItems = $hasMoreItems;
     }
 }
 ?>
