@@ -18,7 +18,7 @@ require_once 'PEAR/PackageFileManager.php';
 /**
  * current version
  */
-$version = '0.10.1alpha';
+$version = '0.11.0';
 
 /**
  * current state
@@ -29,10 +29,13 @@ $state = 'alpha';
  * release notes
  */
 $notes = <<<EOT
-- added constants for API URLs (amt)
-- improved Services_Ebay_Call::describeCall() (amt, schst)
-- added (optional) support for UTF-8 encoding and decoding (schst)
-- added links to API description in docblocks (schst)
+Welcome Carsten Lucke as a new developer!
+- started implementting flexibible caching system (schst)
+- added ProductFinder model and calls, requires XSL extension (schst, amt)
+- added GetHighBidders call (luckec)
+- added GetMemberMessages call (luckec)
+- added GetCategory2CS (schst)
+- added GetPromotionRules() (schst)
 EOT;
 
 /**
@@ -73,7 +76,7 @@ $package->addMaintainer('schst', 'lead', 'Stephan Schmidt', 'schst@schst.net');
 $package->addMaintainer('amt', 'contributor', 'Adam Maccabee Trachtenberg', 'amt@php.net');
 
 $package->addDependency('PEAR', '1.3.2', 'ge', 'pkg', false);
-$package->addDependency('XML_Serializer', '0.14.0', 'ge', 'pkg', false);
+$package->addDependency('XML_Serializer', '0.14.1', 'ge', 'pkg', false);
 $package->addDependency('php', '5.0.0', 'ge', 'php', false);
 $package->addDependency('curl', '', 'has', 'ext', false);
 
