@@ -95,6 +95,13 @@ class Services_Ebay_Session
     private $url = 'https://api.sandbox.ebay.com/ws/api.dll';
 
    /**
+    * site id
+    *
+    * @var  integer
+    */
+    private $siteId = 0;
+
+   /**
     * XML_Serializer object
     *
     * @var object XML_Serializer
@@ -196,14 +203,24 @@ class Services_Ebay_Session
 	    $this->requestPassword = $password;
 	}
 
-	/**
+   /**
     * set the API URL
     *
     * @param    string
     */
-	public function setUrl()
+	public function setUrl($url)
 	{
 	   $this->url = $url;
+	}
+
+   /**
+    * set the site id
+    *
+    * @param    integer
+    */
+	public function setSiteId($siteId)
+	{
+	   $this->siteId = $siteId;
 	}
 
    /**
@@ -229,7 +246,7 @@ class Services_Ebay_Session
         $request = array(
                             'DetailLevel'     => $this->detailLevel,
                             'ErrorLevel'      => 1,
-                            'SiteId'          => 0,
+                            'SiteId'          => $this->siteId,
                             'Verb'            => $verb
                         );
         switch ($authType) {
@@ -291,7 +308,7 @@ class Services_Ebay_Session
                             'X-EBAY-API-APP-NAME'            => $this->appId,                                                       // Required. Application ID, as registered with the Developer's Program. This value should match the second value (AppId) in the X-EBAY-API-SESSION-CERTIFICATE header. Used to authenticate the function call.
                             'X-EBAY-API-CERT-NAME'           => $this->certId,                                                      // Required. Certificate ID, as registered with the Developer's Program. This value should match the third value (CertId) in the X-EBAY-API-SESSION-CERTIFICATE header. Used to authenticate the function call.
                             'X-EBAY-API-CALL-NAME'           => $verb,                                                              // Required. Name of the function being called, for example: 'GetItem' (without the quotation marks). This must match the information passed in the Verb input argument for each function.
-                            'X-EBAY-API-SITEID'              => 0,                                                                  // Required. eBay site an item is listed on or that a user is registered on, depending on the purpose of the function call. This must match the information passed in the SiteId input argument for all functions.
+                            'X-EBAY-API-SITEID'              => $this->siteId,                                                      // Required. eBay site an item is listed on or that a user is registered on, depending on the purpose of the function call. This must match the information passed in the SiteId input argument for all functions.
                             'X-EBAY-API-DETAIL-LEVEL'        => $params['DetailLevel'],                                             // Required. Controls amount or level of data returned by the function call. May be zero if the function does not support varying detail levels. This must match the information passed in the DetailLevel input argument for each function.
                             'Content-Type'                   => 'text/xml',                                                         // Required. Specifies the kind of data being transmitted. The value must be 'text/xml'. Sending any other value (e.g., 'application/x-www-form-urlencoded') may cause the call to fail.
                             'Content-Length'                 => strlen( $body )                                                     // Recommended. Specifies the size of the data (i.e., the length of the XML string) you are sending. This is used by eBay to determine how much data to read from the stream.
