@@ -80,7 +80,7 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
     public function __toString()
     {
         if (isset($this->properties['Title'])) {
-            return $this->properties['Title'] . '(# '.$this->properties['Id'].')';
+            return $this->properties['Title'] . ' (# '.$this->properties['Id'].')';
         }
         return '# '.$this->properties['Id'];
     }
