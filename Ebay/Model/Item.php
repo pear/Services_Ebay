@@ -48,20 +48,18 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
     * add a shipping service option
     *
     * @param    integer     shipping service, {@link http://developer.ebay.com/DevZone/docs/API_Doc/Appendixes/AppendixN.htm#shippingservices}
-    * @param    float
-    * @param    float
-    * @param    array
+    * @param    integer     priority (1-3)
+    * @param    float       cost for the item
+    * @param    float       cost for an additional item
+    * @return   boolean
     */
-    public function addShippingServiceOption($ShippingService, $ShippingServicePriority, $ShippingServiceCost, $ShippingServiceAdditionalCost, $ShipToLocations)
+    public function addShippingServiceOption($ShippingService, $ShippingServicePriority, $ShippingServiceCost, $ShippingServiceAdditionalCost)
     {
         $option = array(
                         'ShippingService'               => $ShippingService,
                         'ShippingServicePriority'       => $ShippingServicePriority,
                         'ShippingServiceCost'           => $ShippingServiceCost,
                         'ShippingServiceAdditionalCost' => $ShippingServiceAdditionalCost,
-                        'ShipToLocations'               => array(
-                                                                'ShipToLocation' => $ShipToLocations
-                                                                )
                     );
         if (!isset($this->properties['ShippingServiceOptions'])) {
         	$this->properties['ShippingServiceOptions'] = array(
@@ -72,6 +70,36 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
         return true;
     }
     
+   /**
+    * add an international shipping service option
+    *
+    * @param    integer     shipping service, {@link http://developer.ebay.com/DevZone/docs/API_Doc/Appendixes/AppendixN.htm#shippingservices}
+    * @param    integer     priority (1-3)
+    * @param    float       cost for the item
+    * @param    float       cost for an additional item
+    * @param    array       locations for this shipping service options
+    * @return   boolean
+    */
+    public function addInternationalShippingServiceOption($ShippingService, $ShippingServicePriority, $ShippingServiceCost, $ShippingServiceAdditionalCost, $ShipToLocations)
+    {
+        $option = array(
+                        'ShippingService'               => $ShippingService,
+                        'ShippingServicePriority'       => $ShippingServicePriority,
+                        'ShippingServiceCost'           => $ShippingServiceCost,
+                        'ShippingServiceAdditionalCost' => $ShippingServiceAdditionalCost,
+                        'ShipToLocations'               => array(
+                                                                'ShipToLocation' => $ShipToLocations
+                                                                )
+                    );
+        if (!isset($this->properties['InternationalShippingServiceOptions'])) {
+        	$this->properties['InternationalShippingServiceOptions'] = array(
+        	                                                      'ShippingServiceOption' => array()
+        	                                                   );
+        }
+        array_push($this->properties['InternationalShippingServiceOptions']['ShippingServiceOption'], $option);
+        return true;
+    }
+
    /**
     * create a string representation of the item
     *
