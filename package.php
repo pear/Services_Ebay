@@ -18,7 +18,7 @@ require_once 'PEAR/PackageFileManager.php';
 /**
  * current version
  */
-$version = '0.10.0alpha';
+$version = '0.10.1alpha';
 
 /**
  * current state
@@ -29,11 +29,10 @@ $state = 'alpha';
  * release notes
  */
 $notes = <<<EOT
-Welcome Adam Trachtenberg as a new developer!
-- added Services_Ebay_Session::setErrorLanguage() (schst)
-- removed last parameter of addShippingServiceOption() (schst)
-- added addInternationalShippingServiceOption() (schst)
-- added missing space in Services_Ebay_Model_Item::__toString() (amt)
+- added constants for API URLs (amt)
+- improved Services_Ebay_Call::describeCall() (amt, schst)
+- added (optional) support for UTF-8 encoding and decoding (schst)
+- added links to API description in docblocks (schst)
 EOT;
 
 /**
