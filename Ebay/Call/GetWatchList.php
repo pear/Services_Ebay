@@ -23,7 +23,6 @@ class Services_Ebay_Call_GetWatchList extends Services_Ebay_Call
     * @var  array
     */
     protected $args = array(
-                            'DetailLevel'  => Services_Ebay::FEEDBACK_VERBOSE,
                             'StartingPage' => 1,
                             'ItemsPerPage' => 25 
                         );
