@@ -193,11 +193,11 @@ class Services_Ebay_Session
     * @param    string  application id
     * @param    string  certificate id
     */
-	public function __construct($devId, $appId, $certId)
-	{
+    public function __construct($devId, $appId, $certId)
+    {
         $this->devId = $devId;
         $this->appId = $appId;
-        $this->certId = $certId;		
+        $this->certId = $certId;
         $this->url = self::URL_SANDBOX;
         
         $opts = array(
@@ -219,8 +219,8 @@ class Services_Ebay_Session
                     'targetEncoding' => 'ISO-8859-1'
                     );
         $this->us  = new XML_Unserializer( $opts );
-	}
-	
+    }
+
    /**
     * set the debug mode
     *
@@ -232,11 +232,11 @@ class Services_Ebay_Session
     * @param    integer
     * @see      getWire()
     */
-	public function setDebug($debug)
-	{
-	    $this->debug = $debug;
-	}
-	
+    public function setDebug($debug)
+    {
+        $this->debug = $debug;
+    }
+
    /**
     * get the XML code that was sent accross the network
     *
@@ -244,31 +244,31 @@ class Services_Ebay_Session
     *
     * @return   string      xml wire
     */
-	public function getWire()
-	{
-	    return $this->wire;
-	}
+    public function getWire()
+    {
+        return $this->wire;
+    }
 
    /**
     * set the authentication token
     *
     * @param    string
     */
-	public function setToken($token)
-	{
-	    $this->token = $token;
-	}
+    public function setToken($token)
+    {
+        $this->token = $token;
+    }
 
    /**
     * set the authentication username and password
     *
     * @param    string
     */
-	public function setAuthenticationData($username, $password = null)
-	{
-	    $this->requestUserId   = $username;
-	    $this->requestPassword = $password;
-	}
+    public function setAuthenticationData($username, $password = null)
+    {
+        $this->requestUserId   = $username;
+        $this->requestPassword = $password;
+    }
 
    /**
     * set the API URL
@@ -281,20 +281,20 @@ class Services_Ebay_Session
     * - Other URLs as applicable
     *
     */
-	public function setUrl($url)
-	{
-	   $this->url = $url;
-	}
+    public function setUrl($url)
+    {
+       $this->url = $url;
+    }
 
    /**
     * set the site id
     *
     * @param    integer
     */
-	public function setSiteId($siteId)
-	{
-	   $this->siteId = $siteId;
-	}
+    public function setSiteId($siteId)
+    {
+       $this->siteId = $siteId;
+    }
 
    /**
     * set the detail level
@@ -305,16 +305,16 @@ class Services_Ebay_Session
     {
         $this->detailLevel = $level;
     }
-	
+    
    /**
     * set the error language
     *
     * @param    string
     */
-	public function setErrorLanguage($language)
-	{
-	   $this->errorLanguage = $language;
-	}
+    public function setErrorLanguage($language)
+    {
+       $this->errorLanguage = $language;
+    }
 
    /**
     * build XML code for a request
@@ -379,7 +379,7 @@ class Services_Ebay_Session
         $this->wire = '';
 
         if (!isset($params['ErrorLanguage']) && !is_null($this->errorLanguage)) {
-        	$params['ErrorLanguage'] = $this->errorLanguage;
+            $params['ErrorLanguage'] = $this->errorLanguage;
         }
 
         $body    = $this->buildRequestBody($verb, $params, $authType);
@@ -389,8 +389,8 @@ class Services_Ebay_Session
         }
         
         $headers = array(
-                            'X-EBAY-API-SESSION-CERTIFICATE' => sprintf( '%s;%s;%s', $this->devId, $this->appId, $this->certId ),  	// Required. Used to authenticate the function call. Use this format, where DevId is the same as the value of the X-EBAY-API-DEV-NAME header, AppId is the same as the value of the X-EBAY-API-APP-NAME header, and CertId  is the same as the value of the X-EBAY-API-CERT-NAME header: DevId;AppId;CertId
-                            'X-EBAY-API-COMPATIBILITY-LEVEL' => $this->compatLevel, 	                                            // Required. Regulates versioning of the XML interface for the API.
+                            'X-EBAY-API-SESSION-CERTIFICATE' => sprintf( '%s;%s;%s', $this->devId, $this->appId, $this->certId ),      // Required. Used to authenticate the function call. Use this format, where DevId is the same as the value of the X-EBAY-API-DEV-NAME header, AppId is the same as the value of the X-EBAY-API-APP-NAME header, and CertId  is the same as the value of the X-EBAY-API-CERT-NAME header: DevId;AppId;CertId
+                            'X-EBAY-API-COMPATIBILITY-LEVEL' => $this->compatLevel,                                                 // Required. Regulates versioning of the XML interface for the API.
                             'X-EBAY-API-DEV-NAME'            => $this->devId,                                                       // Required. Developer ID, as registered with the Developer's Program. This value should match the first value (DevId) in the X-EBAY-API-SESSION-CERTIFICATE header. Used to authenticate the function call.
                             'X-EBAY-API-APP-NAME'            => $this->appId,                                                       // Required. Application ID, as registered with the Developer's Program. This value should match the second value (AppId) in the X-EBAY-API-SESSION-CERTIFICATE header. Used to authenticate the function call.
                             'X-EBAY-API-CERT-NAME'           => $this->certId,                                                      // Required. Certificate ID, as registered with the Developer's Program. This value should match the third value (CertId) in the X-EBAY-API-SESSION-CERTIFICATE header. Used to authenticate the function call.
@@ -406,7 +406,7 @@ class Services_Ebay_Session
 
         @include_once $file;
         if (!class_exists($class)) {
-            throw new Services_Ebay_Transport_Exception('Could not load selected transport driver.');        	
+            throw new Services_Ebay_Transport_Exception('Could not load selected transport driver.');            
         }
         $tp = new $class();
         
@@ -438,7 +438,7 @@ class Services_Ebay_Session
             if (isset($result['Errors']['Error'])) {
                 $message = '';
                 foreach ($result['Errors']['Error'] as $error) {
-                	$message = $message . ' ' . $error['LongMessage'];
+                    $message = $message . ' ' . $error['LongMessage'];
                 }
                 throw new Services_Ebay_Exception( $message );
             } else {
