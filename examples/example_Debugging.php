@@ -1,9 +1,6 @@
 <?PHP
 /**
- * example that fetches the URL of the eBay logo
- * in three sizes.
- *
- * This call returns an array with the URL, width and height
+ * Example that shows how the debugging features can be used.
  *
  * $Id$
  *
