@@ -5,7 +5,7 @@
  * $Id$
  *
  * @package     Services_Ebay
- * @author      Stephan Schmidt <schst@php.net
+ * @author      Stephan Schmidt <schst@php.net>
  *
  * @todo        implement __toString()
  * @todo        allow rules for parameters
@@ -123,7 +123,7 @@ abstract class Services_Ebay_Call
     */
     public function describeCall()
     {
-        echo 'API-Call : '.$this->verb."\n";
+        echo 'API Call : '.$this->verb."\n";
         echo 'Parameters (max. '.count($this->paramMap).')'."\n";
         foreach ($this->paramMap as $param) {
             echo ' '.$param;
@@ -133,6 +133,11 @@ abstract class Services_Ebay_Call
                 echo '(no default value)';
             }
             echo "\n";
+        }
+        $rc = new ReflectionClass($this);
+        $dc = $rc->getDocComment();
+        if (preg_match('/@link +(.+)/', $dc, $matches)) {
+            echo 'API Documentation : '.$matches[1]."\n";            
         }
     }
 }
