@@ -40,3 +40,8 @@ Obsolete methods:
  - DeleteMerchPanelRules
  - SetMerchPanelRules
  - GetCategory2DomainMap
+ 
+ 5. Custom model classes
+ -----------------------
+ Services_Ebay::useModel('Item', 'MyItem');
+ allows you to use enhanced model classes.
