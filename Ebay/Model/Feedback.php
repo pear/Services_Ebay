@@ -42,7 +42,7 @@ class Services_Ebay_Model_Feedback extends Services_Ebay_Model implements Iterat
     * get one entry of the feedback list
     *
     * @param    int
-    * @return   object Services_Ebay_Model_DeefbackEntry
+    * @return   object Services_Ebay_Model_FeedbackEntry
     */
     public function getEntry($pos)
     {
