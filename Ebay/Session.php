@@ -185,15 +185,18 @@ class Services_Ebay_Session
     * @var  array
     */
     private $serializerOptions = array();
-    
+
    /**
     * create the session object
     *
     * @param    string  developer id
     * @param    string  application id
     * @param    string  certificate id
+    * @param    string  encoding to use: in production environments you should use UTF-8, when
+    *                   working with the sandbox, use ISO-8859-1 as the sabdbox
+    *                   does not (yet) support UTF-8 encoding
     */
-    public function __construct($devId, $appId, $certId)
+    public function __construct($devId, $appId, $certId, $encoding = 'ISO-8859-1')
     {
         $this->devId = $devId;
         $this->appId = $appId;
@@ -205,22 +208,27 @@ class Services_Ebay_Session
                          'linebreak'          => "\n",
                          'typeHints'          => false,
                          'addDecl'            => true,
-                         'encoding'           => 'UTF-8',
+                         'encoding'           => $encoding,
                          'scalarAsAttributes' => false,
                          'rootName'           => 'request',
                          'rootAttributes'     => array( 'xmlns' => 'urn:eBayAPIschema' ),
-                         'encodeFunction'     => 'utf8_encode'
                     );
-        $this->ser = new XML_Serializer( $opts );
+
+        // UTF-8 encode the document
+        if ($encoding === 'UTF-8') {
+        	$options['encodeFunction'] = 'utf8_encode';
+        }
+
+        $this->ser = new XML_Serializer($opts);
 
         $opts = array(
                     'forceEnum'      => array('Error'),
                     'encoding'       => 'UTF-8',
                     'targetEncoding' => 'ISO-8859-1'
                     );
-        $this->us  = new XML_Unserializer( $opts );
+        $this->us  = new XML_Unserializer($opts);
     }
-
+ 
    /**
     * set the debug mode
     *
