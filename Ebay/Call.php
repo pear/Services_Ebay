@@ -142,7 +142,7 @@ abstract class Services_Ebay_Call
         	echo 'Added in API version : ' . $this->since . "\n";
         }
         if ($this->deprecated !== null) {
-        	echo 'Deprecated sind API version : ' . $this->deprecated . "\n";
+        	echo 'Deprecated in API version : ' . $this->deprecated . "\n";
         }
         echo "\n";
         echo 'Parameters (max. '.count($this->paramMap).')'."\n";
