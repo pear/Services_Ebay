@@ -29,6 +29,21 @@
 class Services_Ebay_Session
 {
    /**
+    * Debugging disabled
+    */
+    const DEBUG_NONE = 0;
+
+   /**
+    * Store debug data, so it can be displayed using getWire()
+    */
+    const DEBUG_STORE = 1;
+
+   /**
+    * Display debug data
+    */
+    const DEBUG_PRINT = 2;
+
+   /**
     * developer ID
     *
     * If you do not already have one, please
@@ -90,6 +105,8 @@ class Services_Ebay_Session
    /**
     * URL to use
     *
+    * By default, the sandbox URL is used.
+    *
     * @var  string
     */
     private $url = 'https://api.sandbox.ebay.com/ws/api.dll';
@@ -120,14 +137,14 @@ class Services_Ebay_Session
     *
     * @var boolean
     */
-    public $debug = 1;
+    public $debug = 0;
     
    /**
     * XML wire
     *
     * @var string
     */
-    public $wire;
+    public $wire = null;
     
    /**
     * compatibility level
@@ -183,6 +200,34 @@ class Services_Ebay_Session
 	}
 	
    /**
+    * set the debug mode
+    *
+    * Possible values are:
+    * - Services_Ebay_Session::DEBUG_NONE
+    * - Services_Ebay_Session::DEBUG_STORE
+    * - Services_Ebay_Session::DEBUG_PRINT
+    *
+    * @param    integer
+    * @see      getWire()
+    */
+	public function setDebug($debug)
+	{
+	    $this->debug = $debug;
+	}
+	
+   /**
+    * get the XML code that was sent accross the network
+    *
+    * To use this, debug mode must be set to DEBUG_STORE or DEBUG_PRINT
+    *
+    * @return   string      xml wire
+    */
+	public function getWire()
+	{
+	    return $this->wire;
+	}
+
+   /**
     * set the authentication token
     *
     * @param    string
@@ -191,7 +236,7 @@ class Services_Ebay_Session
 	{
 	    $this->token = $token;
 	}
-	
+
    /**
     * set the authentication username and password
     *
@@ -317,10 +362,14 @@ class Services_Ebay_Session
         $file  = SERVICES_EBAY_BASEDIR.'/Ebay/Transport/'.$this->transportDriver.'.php';
         $class = 'Services_Ebay_Transport_'.$this->transportDriver;
 
-        include_once $file;
-        $tp = new $class;
+        @include_once $file;
+        if (!class_exists($class)) {
+            throw new Services_Ebay_Transport_Exception('Could not load selected transport driver.');        	
+        }
+        $tp = new $class();
         
         if ($this->debug > 0) {
+            $this->wire .= "Sending request:\n";
             $this->wire .= $body."\n\n";
         }
 
@@ -331,6 +380,7 @@ class Services_Ebay_Session
         }
         
         if ($this->debug > 0) {
+            $this->wire .= "Received response:\n";
             $this->wire .= $response."\n\n";
         }
 
