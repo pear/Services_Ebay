@@ -18,7 +18,7 @@ require_once 'PEAR/PackageFileManager.php';
 /**
  * current version
  */
-$version = '0.9.0alpha';
+$version = '0.10.0alpha';
 
 /**
  * current state
@@ -29,7 +29,11 @@ $state = 'alpha';
  * release notes
  */
 $notes = <<<EOT
-- added Services_Ebay_Session::setErrorLanguage()
+Welcome Adam Trachtenberg as a new developer!
+- added Services_Ebay_Session::setErrorLanguage() (schst)
+- removed last parameter of addShippingServiceOption() (schst)
+- added addInternationalShippingServiceOption() (schst)
+- added missing space in Services_Ebay_Model_Item::__toString() (amt)
 EOT;
 
 /**
@@ -68,7 +72,8 @@ if (PEAR::isError($result)) {
     die();
 }
 
-$package->addMaintainer('schst', 'lead', 'Stephan Schmidt', 'schst@php-tools.net');
+$package->addMaintainer('schst', 'lead', 'Stephan Schmidt', 'schst@schst.net');
+$package->addMaintainer('amt', 'contributor', 'Adam Trachtenberg', 'amt@php.net');
 
 $package->addDependency('PEAR', '1.3.2', 'ge', 'pkg', false);
 $package->addDependency('XML_Serializer', '0.9.1', 'ge', 'pkg', false);
