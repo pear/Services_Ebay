@@ -321,5 +321,27 @@ class Services_Ebay
         
         return $model;
     }
+    
+   /**
+    * get list of all available API calls
+    *
+    * This can be used to check, whether an API call already has
+    * been implemented
+    *
+    * @return   array   list of all available calls
+    */
+    public function getAvailableApiCalls()
+    {
+        $calls = array();
+
+        $it = new DirectoryIterator(SERVICES_EBAY_BASEDIR . '/Ebay/Call');
+        foreach ($it as $file) {
+        	if (!$file->isFile()) {
+        		continue;
+        	}
+        	array_push($calls, substr($file->getFilename(), 0, -4));
+        }
+        return $calls;
+    }
 }
 ?>
