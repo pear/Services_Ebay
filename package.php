@@ -18,7 +18,7 @@ require_once 'PEAR/PackageFileManager.php';
 /**
  * current version
  */
-$version = '0.5.0';
+$version = '0.6.0';
 
 /**
  * current state
@@ -29,7 +29,7 @@ $state = 'devel';
  * release notes
  */
 $notes = <<<EOT
-still in development, no public release yet
+first public release in PEAR, this is still in devel state, beware that anything might change.
 EOT;
 
 /**
