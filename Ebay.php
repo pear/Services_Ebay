@@ -185,7 +185,7 @@ class Services_Ebay
     * AddDisputeResponse():
     * 15 = Seller wants to end communication or stop waiting for the buyer.
     */
-    const DISPUTE_RESPONSE_AGREEMENT = 15;
+    const DISPUTE_RESPONSE_END = 15;
 
    /**
     * SellerReverseDispute():
