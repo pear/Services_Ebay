@@ -187,6 +187,15 @@ class Services_Ebay_Session
     private $serializerOptions = array();
 
    /**
+    * additional options for the unserializer
+    *
+    * These options will be set by the call objects
+    *
+    * @var  array
+    */
+    private $unserializerOptions = array();
+
+   /**
     * create the session object
     *
     * @param    string  developer id
@@ -379,10 +388,12 @@ class Services_Ebay_Session
     * @access   public
     * @param    string      function to call
     * @param    array       associative array containing all parameters for the function call
+    * @param    integer     authentication type
+    * @param    boolean     flag to indicate, whether XML should be parsed or returned raw
     * @return   array       response
     * @todo     add real error handling
     */
-    public function sendRequest( $verb, $params = array(), $authType = Services_Ebay::AUTH_TYPE_TOKEN )
+    public function sendRequest( $verb, $params = array(), $authType = Services_Ebay::AUTH_TYPE_TOKEN, $parseResult = true )
     {
         $this->wire = '';
 
@@ -434,14 +445,17 @@ class Services_Ebay_Session
             $this->wire .= $response."\n\n";
         }
 
-        $this->us->unserialize( $response );
-        
-        $result = $this->us->getUnserializedData();
-
         if ($this->debug > 1) {
-            echo $this->wire;
+            echo $this->wire . "\n";
         }
         
+        if ($parseResult === false) {
+            return $response;
+        }
+
+        $this->us->unserialize( $response, false, $this->unserializerOptions );
+        $result = $this->us->getUnserializedData();
+
         if (isset($result['Errors'])) {
             if (isset($result['Errors']['Error'])) {
                 $message = '';
@@ -452,9 +466,7 @@ class Services_Ebay_Session
             } else {
                 throw new Services_Ebay_API_Exception('Unknown error occured.');
             }
-            
         }
-
         return $result;
     }
     
@@ -466,6 +478,16 @@ class Services_Ebay_Session
     public function setSerializerOptions($opts = array())
     {
         $this->serializerOptions = $opts;
+    }
+
+   /**
+    * set additional options for the unserializer
+    *
+    * @param    array
+    */
+    public function setUnserializerOptions($opts = array())
+    {
+        $this->unserializerOptions = $opts;
     }
 }
 ?>

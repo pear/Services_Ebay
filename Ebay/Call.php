@@ -46,7 +46,14 @@ abstract class Services_Ebay_Call
     * @var  array
     */
     protected $serializerOptions = array();
-    
+
+   /**
+    * options that will be passed to the unserializer
+    *
+    * @var  array
+    */
+    protected $unserializerOptions = array();
+
    /**
     * compatibility level this method was introduced
     *
@@ -97,12 +104,14 @@ abstract class Services_Ebay_Call
     * make the API call
     *
     * @param  object Services_Ebay_Session
+    * @param  boolean  flag to indicate, whether the result should be parsed using XML_Serializer
     * @return array
     */
-    public function call(Services_Ebay_Session $session)
+    public function call(Services_Ebay_Session $session, $parseResult = true)
     {
         $session->setSerializerOptions($this->serializerOptions);
-        $return = $session->sendRequest($this->verb, $this->args, $this->authType);
+        $session->setUnserializerOptions($this->unserializerOptions);
+        $return = $session->sendRequest($this->verb, $this->args, $this->authType, $parseResult);
         return $return;
     }
     
