@@ -39,9 +39,7 @@ EOT;
  * package description
  */
 $description = <<<EOT
-Interface to eBay's XML-API. It provides objects that are able to
-communicate with eBay as well as models that help you working with
-the return values like User or Item models.
+Interface to eBay's XML-API. It provides objects that are able to communicate with eBay as well as models that help you working with the return values like User or Item models.
 The Services_Ebay class provides a unified method to use all objects.
 EOT;
 
