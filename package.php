@@ -76,7 +76,7 @@ $package->addMaintainer('schst', 'lead', 'Stephan Schmidt', 'schst@schst.net');
 $package->addMaintainer('amt', 'contributor', 'Adam Trachtenberg', 'amt@php.net');
 
 $package->addDependency('PEAR', '1.3.2', 'ge', 'pkg', false);
-$package->addDependency('XML_Serializer', '0.9.1', 'ge', 'pkg', false);
+$package->addDependency('XML_Serializer', '0.14.0', 'ge', 'pkg', false);
 $package->addDependency('php', '5.0.0', 'ge', 'php', false);
 $package->addDependency('curl', '', 'has', 'ext', false);
 

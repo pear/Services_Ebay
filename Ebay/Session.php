@@ -205,14 +205,18 @@ class Services_Ebay_Session
                          'linebreak'          => "\n",
                          'typeHints'          => false,
                          'addDecl'            => true,
+                         'encoding'           => 'UTF-8',
 						 'scalarAsAttributes' => false,
                          'rootName'           => 'request',
                          'rootAttributes'     => array( 'xmlns' => 'urn:eBayAPIschema' ),
+                         'encodeFunction'     => 'utf8_encode'
                     );
         $this->ser = new XML_Serializer( $opts );
 
         $opts = array(
-                    'forceEnum' => array('Error')
+                    'forceEnum'      => array('Error'),
+                    'encoding'       => 'UTF-8',
+                    'targetEncoding' => 'ISO-8859-1'
                     );
         $this->us  = new XML_Unserializer( $opts );
 	}
