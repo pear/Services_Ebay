@@ -233,20 +233,20 @@ class Services_Ebay_Session
         switch ($authType) {
             case Services_Ebay::AUTH_TYPE_TOKEN:
                 if (empty($this->token)) {
-                    throw new Exception('No authentication token set.');
+                    throw new Services_Ebay_Auth_Exception('No authentication token set.');
                 }
                 $request['RequestToken'] = $this->token;
                 break;
             case Services_Ebay::AUTH_TYPE_USER:
                 if (empty($this->requestUserId) || empty($this->requestPassword)) {
-                    throw new Exception('No authentication data (username and password) set.');
+                    throw new Services_Ebay_Auth_Exception('No authentication data (username and password) set.');
                 }
                 $request['RequestUserId']   = $this->requestUserId;
                 $request['RequestPassword'] = $this->requestPassword;
                 break;
             case Services_Ebay::AUTH_TYPE_NONE:
                 if (empty($this->requestUserId)) {
-                    throw new Exception('No username has been set.');
+                    throw new Services_Ebay_Auth_Exception('No username has been set.');
                 }
                 $request['RequestUserId']   = $this->requestUserId;
                 break;
@@ -324,16 +324,12 @@ class Services_Ebay_Session
         }
         
         if (isset($result['Errors'])) {
-            echo	"<pre>";
-            print_r($result);
-            echo	"</pre>";        
-        
             if (isset($result['Errors']['Error'])) {
                 $error = $result['Errors']['Error'];
             } else {
                 $error = $result['Errors'][0];
             }
-            throw new Exception( $error['LongMessage'], $error['Code'] );
+            throw new Services_Ebay_Exception( $error['LongMessage'], $error['Code'] );
         }
 
         return $result;

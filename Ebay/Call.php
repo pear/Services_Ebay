@@ -71,7 +71,7 @@ abstract class Services_Ebay_Call
 
         $cnt = count($args);
         if ($cnt > count($this->paramMap)) {
-            throw new Exception('To many parameters have been passed');
+            throw new Services_Ebay_Exception('To many parameters have been passed');
         }
 
         for ($i = 0; $i < $cnt; $i++) {

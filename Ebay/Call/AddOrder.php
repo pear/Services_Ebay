@@ -41,7 +41,7 @@ class Services_Ebay_Call_AddOrder extends Services_Ebay_Call
         $order = $args[0];
         
         if (!$order instanceof Services_Ebay_Model_Order ) {
-            throw new Exception( 'No order passed.' );
+            throw new Services_Ebay_Exception( 'No order passed.' );
         }
         $this->args['Order'] = $order->toArray();
     }

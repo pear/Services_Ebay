@@ -28,10 +28,20 @@
  */
 
 /**
+ * uses PEAR_Exception
+ */
+require_once 'PEAR/Exception.php';
+ 
+/**
  * directory where Services_Ebay is installed
  */
 define('SERVICES_EBAY_BASEDIR', dirname(__FILE__));
  
+/**
+ * API Call base class
+ */
+require_once SERVICES_EBAY_BASEDIR . '/Ebay/Exception.php';
+
 /**
  * API Call base class
  */
@@ -293,9 +303,12 @@ class Services_Ebay
         $method = ucfirst($method);
 
         $classname = 'Services_Ebay_Call_'.$method;
-        include_once SERVICES_EBAY_BASEDIR . '/Ebay/Call/'.$method.'.php';
+        $filename  = SERVICES_EBAY_BASEDIR . '/Ebay/Call/'.$method.'.php';
+        if (file_exists($filename)) {
+            include_once $filename;
+        }
         if (!class_exists($classname)) {
-            throw new Exception('API-Call \''.$method.'\' could not be found, please check the spelling');   
+            throw new Services_Ebay_Exception('API-Call \''.$method.'\' could not be found, please check the spelling');   
         }
         $call = new $classname($args);
         return $call;
@@ -312,7 +325,7 @@ class Services_Ebay
         $classname = 'Services_Ebay_Model_'.$type;
         include_once SERVICES_EBAY_BASEDIR . '/Ebay/Model/'.$type.'.php';
         if (!class_exists($classname)) {
-            throw new Exception('Model \''.$type.'\' could not be found, please check the spelling');   
+            throw new Services_Ebay_Exception('Model \''.$type.'\' could not be found, please check the spelling');   
         }
         $model = new $classname($properties, $session);
         

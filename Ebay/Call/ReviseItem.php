@@ -39,18 +39,18 @@ class Services_Ebay_Call_ReviseItem extends Services_Ebay_Call
         $item = $args[0];
         
         if (!$item instanceof Services_Ebay_Model_Item) {
-            throw new Exception( 'No item passed.' );
+            throw new Services_Ebay_Exception( 'No item passed.' );
         }
         
         $id = $item->Id;
         
         if (empty($id)) {
-            throw new Exception( 'Item has no ID.' );
+            throw new Services_Ebay_Exception( 'Item has no ID.' );
         }
 
         $this->args = $item->GetModifiedProperties();
         if (isset($this->args['Id'])) {
-            throw new Exception( 'You must not change the item ID.' );
+            throw new Services_Ebay_Exception( 'You must not change the item ID.' );
         }
         
         $this->args['ItemId'] = $id;

@@ -41,7 +41,7 @@ class Services_Ebay_Call_AddShipment extends Services_Ebay_Call
         $item = $args[0];
         
         if (!$item instanceof Services_Ebay_Model_Shipment ) {
-            throw new Exception( 'No shipment passed.' );
+            throw new Services_Ebay_Exception( 'No shipment passed.' );
         }
         $this->item = $item;
         $this->args['Shipment'] = $item->toArray();

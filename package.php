@@ -70,8 +70,9 @@ if (PEAR::isError($result)) {
 
 $package->addMaintainer('schst', 'lead', 'Stephan Schmidt', 'schst@php-tools.net');
 
-$package->addDependency('php', '5.0.0', 'ge', 'php', false);
+$package->addDependency('PEAR', '1.3.2', 'ge', 'pkg', false);
 $package->addDependency('XML_Serializer', '0.9.1', 'ge', 'pkg', false);
+$package->addDependency('php', '5.0.0', 'ge', 'php', false);
 $package->addDependency('curl', '', 'has', 'ext', false);
 
 if (isset($_GET['make']) || (isset($_SERVER['argv'][1]) && $_SERVER['argv'][1] == 'make')) {

@@ -41,7 +41,7 @@ class Services_Ebay_Call_SetPreferences extends Services_Ebay_Call
         $prefs = $args[0];
         
         if (!$prefs instanceof Services_Ebay_Model_Preferences ) {
-            throw new Exception( 'No preferences passed.' );
+            throw new Services_Ebay_Exception( 'No preferences passed.' );
         }
         $this->args = $prefs->toArray();
     }
