@@ -1,12 +1,12 @@
 <?PHP
 /**
- * example that fetches all transactions for an item
+ * Example that lists all API calls the are supported by Services_Ebay
  *
  * $Id$
  *
  * @package     Services_Ebay
  * @subpackage  Examples
- * @author      Stephan Schmidt
+ * @author      Stephan Schmidt <schst@php.net>
  */
 error_reporting(E_ALL);
 require_once '../Ebay.php';
