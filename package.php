@@ -29,7 +29,7 @@ $state = 'devel';
  * release notes
  */
 $notes = <<<EOT
-All models now support ArrayAccess
+All models now support ArrayAccess, released during the PEAR talk at the PHP Conference 2004
 EOT;
 
 /**

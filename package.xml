@@ -16,11 +16,11 @@ The Services_Ebay class provides a unified method to use all objects.</descripti
     </maintainer>
   </maintainers>
   <release>
-    <version>0.6.0</version>
-    <date>2004-10-30</date>
+    <version>0.6.1</version>
+    <date>2004-11-07</date>
     <license>PHP License</license>
     <state>devel</state>
-    <notes>first public release in PEAR, this is still in devel state, beware that anything might change.</notes>
+    <notes>All models now support ArrayAccess, released during the PEAR talk at the PHP Conference 2004</notes>
     <deps>
       <dep type="pkg" rel="ge" version="1.3.2" optional="no">PEAR</dep>
       <dep type="pkg" rel="ge" version="0.9.1" optional="no">XML_Serializer</dep>
@@ -114,6 +114,8 @@ The Services_Ebay class provides a unified method to use all objects.</descripti
         </dir> <!-- Ebay/Model -->
         <dir name="Transport">
          <file role="php" name="Curl.php"/>
+         <file role="php" name="HttpRequest.php"/>
+         <file role="php" name="Streams.php"/>
         </dir> <!-- Ebay/Transport -->
        </dir> <!-- Ebay -->
        <dir name="examples">
@@ -199,6 +201,13 @@ The Services_Ebay class provides a unified method to use all objects.</descripti
       <license>PHP License</license>
       <state>devel</state>
       <notes>first public release in PEAR, this is still in devel state, beware that anything might change.</notes>
+    </release>
+    <release>
+      <version>0.6.1</version>
+      <date>2004-11-07</date>
+      <license>PHP License</license>
+      <state>devel</state>
+      <notes>All models now support ArrayAccess, released during the PEAR talk at the PHP Conference 2004</notes>
     </release>
   </changelog>
 </package>
