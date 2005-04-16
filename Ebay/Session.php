@@ -106,7 +106,7 @@ class Services_Ebay_Session
     private $transportDriver = 'Curl';
 
    /**
-    * transpor driver
+    * transport driver
     *
     * @var  object Services_Ebay_Transport
     */
@@ -201,11 +201,10 @@ class Services_Ebay_Session
     * @param    string  developer id
     * @param    string  application id
     * @param    string  certificate id
-    * @param    string  encoding to use: in production environments you should use UTF-8, when
-    *                   working with the sandbox, use ISO-8859-1 as the sabdbox
-    *                   does not (yet) support UTF-8 encoding
+    * @param    string  encoding to use: As of May 15, 2005, you
+    *                   must use UTF-8 in Sandbox and Production.
     */
-    public function __construct($devId, $appId, $certId, $encoding = 'ISO-8859-1')
+    public function __construct($devId, $appId, $certId, $encoding = 'UTF-8')
     {
         $this->devId = $devId;
         $this->appId = $appId;
@@ -233,7 +232,7 @@ class Services_Ebay_Session
         $opts = array(
                     'forceEnum'      => array('Error'),
                     'encoding'       => 'UTF-8',
-                    'targetEncoding' => 'ISO-8859-1'
+                    'targetEncoding' => 'UTF-8',
                     );
         $this->us  = new XML_Unserializer($opts);
     }
