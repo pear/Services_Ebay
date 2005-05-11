@@ -53,7 +53,7 @@ class Services_Ebay_Session
     */
     const URL_PRODUCTION = 'https://api.ebay.com/ws/api.dll';
 
-   /**
+   /**o
     * developer ID
     *
     * If you do not already have one, please
@@ -224,7 +224,7 @@ class Services_Ebay_Session
 
         // UTF-8 encode the document
         if ($encoding === 'UTF-8') {
-        	$options['encodeFunction'] = 'utf8_encode';
+        	$opts['encodeFunction'] = 'utf8_encode';
         }
 
         $this->ser = new XML_Serializer($opts);
