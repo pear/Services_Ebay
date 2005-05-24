@@ -21,11 +21,11 @@ echo 'Getting RuName...';
 $RuName = $ebay->GetRuName('MyUseCase');
 echo $RuName.'<br />';
 
-$result = $ebay->SetReturnUrl($RuName, 'add', 'https://foo.de/accept/', 'https://foo.de/reject');
+$result = $ebay->SetReturnURL($RuName, 'add', 'https://foo.de/accept/', 'https://foo.de/reject');
 echo 'Setting Return URL...';
 var_dump($result);
 
-$result = $ebay->GetReturnUrl();
+$result = $ebay->GetReturnURL();
 echo '<pre>';
 print_r($result);
 echo '</pre>';
