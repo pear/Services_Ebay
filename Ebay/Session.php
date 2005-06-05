@@ -196,6 +196,13 @@ class Services_Ebay_Session
     private $unserializerOptions = array();
 
    /**
+    * errors returned by the webservice
+    *
+    * @var array
+    */
+    private $errors = array();
+    
+   /**
     * create the session object
     *
     * @param    string  developer id
@@ -221,7 +228,6 @@ class Services_Ebay_Session
                          'rootName'           => 'request',
                          'rootAttributes'     => array( 'xmlns' => 'urn:eBayAPIschema' ),
                     );
-
         // UTF-8 encode the document, if the user does not already
         // use UTF-8 encoding
         if ($encoding !== 'UTF-8') {
@@ -456,18 +462,54 @@ class Services_Ebay_Session
         $this->us->unserialize( $response, false, $this->unserializerOptions );
         $result = $this->us->getUnserializedData();
 
+        $errors = array();
+        
         if (isset($result['Errors'])) {
             if (isset($result['Errors']['Error'])) {
-                $message = '';
                 foreach ($result['Errors']['Error'] as $error) {
-                    $message = $message . ' ' . $error['LongMessage'];
+                    $tmp = new Services_Ebay_Error($error);
+                    // last errors
+                    array_push($errors, $tmp);
+                    
+                    // all errors
+                    array_push($this->errors, $tmp);
                 }
-                throw new Services_Ebay_Exception( $message );
+
+                // check for serious errors
+                $message = '';
+                $severe  = array();
+                foreach ($errors as $error) {
+                	if ($error->getSeverityCode() == 2) {
+                		continue;
+                	}
+                	$message .= $error->getLongMessage();
+                	$message .= "\n";
+                	array_push($severe, $error);
+                }
+                if (!empty($severe)) {
+                	throw new Services_Ebay_API_Exception($message, $severe);
+                }
             } else {
                 throw new Services_Ebay_API_Exception('Unknown error occured.');
             }
         }
         return $result;
+    }
+
+   /**
+    * get the errors and warnings that happened during the
+    * last API calls
+    *
+    * @param  boolean   whether to clear the internal error list
+    * @return array
+    */
+    public function getErrors($clear = true)
+    {
+        $errors = $this->errors;
+        if ($clear === true) {
+        	$this->errors = array();
+        }
+        return $errors;
     }
     
    /**

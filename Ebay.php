@@ -36,7 +36,12 @@ require_once 'PEAR/Exception.php';
  * directory where Services_Ebay is installed
  */
 define('SERVICES_EBAY_BASEDIR', dirname(__FILE__));
- 
+
+/**
+ * Services_Ebay warning class
+ */
+require_once SERVICES_EBAY_BASEDIR . '/Ebay/Error.php';
+
 /**
  * Services_Ebay exception classes
  */
