@@ -150,6 +150,7 @@ If you like to switch off this feature, you can tell the session-object that you
      </dir> <!-- /Ebay/Transport -->
      <file role="php" name="Cache.php"/>
      <file role="php" name="Call.php"/>
+     <file role="php" name="Error.php"/>
      <file role="php" name="Exception.php"/>
      <file role="php" name="Model.php"/>
      <file role="php" name="Session.php"/>
