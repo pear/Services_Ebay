@@ -216,7 +216,7 @@ class Services_Ebay_Session
                          'linebreak'          => "\n",
                          'typeHints'          => false,
                          'addDecl'            => true,
-                         'encoding'           => $encoding,
+                         'encoding'           => 'UTF-8',
                          'scalarAsAttributes' => false,
                          'rootName'           => 'request',
                          'rootAttributes'     => array( 'xmlns' => 'urn:eBayAPIschema' ),

@@ -339,7 +339,7 @@ class Services_Ebay
     *                       allows UTF-8 encoded data
     * @return   object Services_Ebay_Session
     */
-    public static function getSession($devId, $appId, $certId, $encoding, $encoding = 'ISO-8859-1')
+    public static function getSession($devId, $appId, $certId, $encoding = 'ISO-8859-1')
     {
         $session = new Services_Ebay_Session($devId, $appId, $certId, $encoding);
 
