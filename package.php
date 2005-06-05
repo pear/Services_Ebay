@@ -18,7 +18,7 @@ require_once 'PEAR/PackageFileManager.php';
 /**
  * current version
  */
-$version = '0.11.0';
+$version = '0.12.0';
 
 /**
  * current state
@@ -29,13 +29,13 @@ $state = 'alpha';
  * release notes
  */
 $notes = <<<EOT
-Welcome Carsten Lucke as a new developer!
-- started implementting flexibible caching system (schst)
-- added ProductFinder model and calls, requires XSL extension (schst, amt)
-- added GetHighBidders call (luckec)
-- added GetMemberMessages call (luckec)
-- added GetCategory2CS (schst)
-- added GetPromotionRules() (schst)
+Services_Ebay now always encodes data in UTF-8, as requested by the eBay webservice. You can still use ISO-8859-1 encoding in your scripts as all encoding and decoding is done automatically.
+If you like to switch off this feature, you can tell the session-object that your data already is UTF-8 encoded and that you want UTF-8 encoded data in return.
+- Added new getErrors() method to Services_Ebay session which will return an array of Services_Ebay_Error objects containing information about all warnings and serious errors (schst)
+- fixed bug #4181: Only serious errors will be thrown as exceptions (schst)
+- fixed bug #4296: UTF-8 encoding (schst)
+- fixed bug #4326: wrong variable name (schst)
+- fixed bug #4420: wrong capitalization in example (amt)
 EOT;
 
 /**
@@ -77,7 +77,7 @@ $package->addMaintainer('luckec', 'developer', 'Carsten Lucke', 'luckec@php.net'
 $package->addMaintainer('amt', 'contributor', 'Adam Maccabee Trachtenberg', 'amt@php.net');
 
 $package->addDependency('PEAR', '1.3.2', 'ge', 'pkg', false);
-$package->addDependency('XML_Serializer', '0.14.1', 'ge', 'pkg', false);
+$package->addDependency('XML_Serializer', '0.16.0', 'ge', 'pkg', false);
 $package->addDependency('php', '5.0.0', 'ge', 'php', false);
 $package->addDependency('curl', '', 'has', 'ext', false);
 

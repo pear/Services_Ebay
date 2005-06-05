@@ -1,316 +1,350 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE package SYSTEM "http://pear.php.net/dtd/package-1.0">
-<package version="1.0">
-  <name>Services_Ebay</name>
-  <summary>Interface to eBay's XML-API.</summary>
-  <description>Interface to eBay's XML-API. It provides objects that are able to communicate with eBay as well as models that help you working with the return values like User or Item models.
-The Services_Ebay class provides a unified method to use all objects.</description>
-  <maintainers>
-    <maintainer>
-      <user>schst</user>
-      <name>Stephan Schmidt</name>
-      <email>schst@schst.net</email>
-      <role>lead</role>
-    </maintainer>
-    <maintainer>
-      <user>amt</user>
-      <name>Adam Maccabee Trachtenberg</name>
-      <email>amt@php.net</email>
-      <role>contributor</role>
-    </maintainer>
+<package version="1.0" packagerversion="1.4.0a11">
+ <name>Services_Ebay</name>
+ <summary>Interface to eBay's XML-API.</summary>
+ <description>Interface to eBay's XML-API. It provides objects that are able to communicate with eBay as well as models that help you working with the return values like User or Item models.
+The Services_Ebay class provides a unified method to use all objects.
+ </description>
+ <maintainers>
+  <maintainer>
+   <user>schst</user>
+   <name>Stephan Schmidt</name>
+   <email>schst@php.net</email>
+   <role>lead</role>
+  </maintainer>
+  <maintainer>
+   <user>amt</user>
+   <name>Adam Maccabee Trachtenberg</name>
+   <email>amt@php.net</email>
+   <role>contributor</role>
+  </maintainer>
+  <maintainer>
+   <user>luckec</user>
+   <name>Carsten Lucke</name>
+   <email>luckec@php.net</email>
+   <role>developer</role>
+  </maintainer>
   </maintainers>
-  <release>
-    <version>0.12.0</version>
-    <date>2005-04-16</date>
+ <release>
+  <version>0.12.0</version>
+  <date>2005-06-05</date>
+  <license>PHP License</license>
+  <state>alpha</state>
+  <notes>Services_Ebay now always encodes data in UTF-8, as requested by the eBay webservice. You can still use ISO-8859-1 encoding in your scripts as all encoding and decoding is done automatically.
+If you like to switch off this feature, you can tell the session-object that your data already is UTF-8 encoded and that you want UTF-8 encoded data in return.
+- Added new getErrors() method to Services_Ebay session which will return an array of Services_Ebay_Error objects containing information about all warnings and serious errors (schst)
+- fixed bug #4181: Only serious errors will be thrown as exceptions (schst)
+- fixed bug #4296: UTF-8 encoding (schst)
+- fixed bug #4326: wrong variable name (schst)
+- fixed bug #4420: wrong capitalization in example (amt)
+  </notes>
+  <deps>
+   <dep type="pkg" rel="ge" version="1.3.2" optional="no">PEAR</dep>
+   <dep type="pkg" rel="ge" version="0.16.0" optional="no">XML_Serializer</dep>
+   <dep type="php" rel="ge" version="5.0.0" optional="no"/>
+   <dep type="ext" rel="has" optional="no">curl</dep>
+  </deps>
+  <filelist>
+   <dir name="/" baseinstalldir="Services">
+    <dir name="docs">
+     <file role="doc" name="ideas.txt"/>
+     <file role="doc" name="models.txt"/>
+     <file role="doc" name="todo.txt"/>
+    </dir> <!-- /docs -->
+    <dir name="Ebay">
+     <dir name="Cache">
+      <dir name="ExpiryCheck">
+       <file role="php" name="Static.php"/>
+      </dir> <!-- /Ebay/Cache/ExpiryCheck -->
+      <file role="php" name="Filesystem.php"/>
+     </dir> <!-- /Ebay/Cache -->
+     <dir name="Call">
+      <file role="php" name="AddDispute.php"/>
+      <file role="php" name="AddDisputeResponse.php"/>
+      <file role="php" name="AddItem.php"/>
+      <file role="php" name="AddMemberMessage.php"/>
+      <file role="php" name="AddOrder.php"/>
+      <file role="php" name="AddSecondChanceItem.php"/>
+      <file role="php" name="AddShipment.php"/>
+      <file role="php" name="AddToItemDescription.php"/>
+      <file role="php" name="EndItem.php"/>
+      <file role="php" name="FetchToken.php"/>
+      <file role="php" name="GetAccount.php"/>
+      <file role="php" name="GetAllBidders.php"/>
+      <file role="php" name="GetAPIAccessRules.php"/>
+      <file role="php" name="GetBidderList.php"/>
+      <file role="php" name="GetCategories.php"/>
+      <file role="php" name="GetCategory2CS.php"/>
+      <file role="php" name="GetCategoryListings.php"/>
+      <file role="php" name="GetCrossPromotions.php"/>
+      <file role="php" name="GetDescriptionTemplates.php"/>
+      <file role="php" name="GetDispute.php"/>
+      <file role="php" name="GetDomains.php"/>
+      <file role="php" name="GeteBayDetails.php"/>
+      <file role="php" name="GeteBayOfficialTime.php"/>
+      <file role="php" name="GetFeedback.php"/>
+      <file role="php" name="GetHighBidders.php"/>
+      <file role="php" name="GetItem.php"/>
+      <file role="php" name="GetItemShipping.php"/>
+      <file role="php" name="GetItemTransactions.php"/>
+      <file role="php" name="GetLogoURL.php"/>
+      <file role="php" name="GetMemberMessages.php"/>
+      <file role="php" name="GetMyeBay.php"/>
+      <file role="php" name="GetNotificationPreferences.php"/>
+      <file role="php" name="GetOutageSchedules.php"/>
+      <file role="php" name="GetPreferences.php"/>
+      <file role="php" name="GetProductFinder.php"/>
+      <file role="php" name="GetProductFinderXSL.php"/>
+      <file role="php" name="GetPromotionRules.php"/>
+      <file role="php" name="GetReturnURL.php"/>
+      <file role="php" name="GetRuName.php"/>
+      <file role="php" name="GetSearchResults.php"/>
+      <file role="php" name="GetSellerList.php"/>
+      <file role="php" name="GetSellerTransactions.php"/>
+      <file role="php" name="GetShippingRates.php"/>
+      <file role="php" name="GetStoreDetails.php"/>
+      <file role="php" name="GetSuggestedCategories.php"/>
+      <file role="php" name="GetUser.php"/>
+      <file role="php" name="GetUserDisputes.php"/>
+      <file role="php" name="GetWatchList.php"/>
+      <file role="php" name="LeaveFeedback.php"/>
+      <file role="php" name="RelistItem.php"/>
+      <file role="php" name="ReviseCheckoutStatus.php"/>
+      <file role="php" name="ReviseItem.php"/>
+      <file role="php" name="SellerReverseDispute.php"/>
+      <file role="php" name="SetPreferences.php"/>
+      <file role="php" name="SetReturnURL.php"/>
+      <file role="php" name="SetSellerPaymentAddress.php"/>
+      <file role="php" name="ValidateTestUserRegistration.php"/>
+      <file role="php" name="VerifyAddItem.php"/>
+      <file role="php" name="VerifyAddSecondChanceItem.php"/>
+     </dir> <!-- /Ebay/Call -->
+     <dir name="Model">
+      <file role="php" name="Account.php"/>
+      <file role="php" name="Bid.php"/>
+      <file role="php" name="BidList.php"/>
+      <file role="php" name="Dispute.php"/>
+      <file role="php" name="DisputeList.php"/>
+      <file role="php" name="Feedback.php"/>
+      <file role="php" name="FeedbackEntry.php"/>
+      <file role="php" name="Item.php"/>
+      <file role="php" name="ItemList.php"/>
+      <file role="php" name="MemberMessage.php"/>
+      <file role="php" name="MemberMessageList.php"/>
+      <file role="php" name="MyeBay.php"/>
+      <file role="php" name="Order.php"/>
+      <file role="php" name="Preferences.php"/>
+      <file role="php" name="ProductFinder.php"/>
+      <file role="php" name="SearchResult.php"/>
+      <file role="php" name="Shipment.php"/>
+      <file role="php" name="Store.php"/>
+      <file role="php" name="Transaction.php"/>
+      <file role="php" name="TransactionList.php"/>
+      <file role="php" name="User.php"/>
+     </dir> <!-- /Ebay/Model -->
+     <dir name="Transport">
+      <file role="php" name="Curl.php"/>
+      <file role="php" name="HttpRequest.php"/>
+      <file role="php" name="Streams.php"/>
+     </dir> <!-- /Ebay/Transport -->
+     <file role="php" name="Cache.php"/>
+     <file role="php" name="Call.php"/>
+     <file role="php" name="Exception.php"/>
+     <file role="php" name="Model.php"/>
+     <file role="php" name="Session.php"/>
+    </dir> <!-- /Ebay -->
+    <dir name="examples">
+     <dir name="cache">
+      <file role="doc" name="readme.txt"/>
+     </dir> <!-- /examples/cache -->
+     <file role="doc" name="config.php"/>
+     <file role="doc" name="example_AddDispute.php"/>
+     <file role="doc" name="example_AddDisputeResponse.php"/>
+     <file role="doc" name="example_AddItem.php"/>
+     <file role="doc" name="example_AddMemberMessage.php"/>
+     <file role="doc" name="example_AddOrder.php"/>
+     <file role="doc" name="example_AddSecondChanceItem.php"/>
+     <file role="doc" name="example_AddShipment.php"/>
+     <file role="doc" name="example_AddToItemDescription.php"/>
+     <file role="doc" name="example_EndItem.php"/>
+     <file role="doc" name="example_features_cache.php"/>
+     <file role="doc" name="example_features_customModels.php"/>
+     <file role="doc" name="example_features_Debugging.php"/>
+     <file role="doc" name="example_features_DescribingCalls.php"/>
+     <file role="doc" name="example_features_Exception.php"/>
+     <file role="doc" name="example_features_introspection.php"/>
+     <file role="doc" name="example_features_models.php"/>
+     <file role="doc" name="example_features_setErrorLanguage.php"/>
+     <file role="doc" name="example_features_UsingModels.php"/>
+     <file role="doc" name="example_features_UsingObjects.php"/>
+     <file role="doc" name="example_FetchToken.php"/>
+     <file role="doc" name="example_GetAccount.php"/>
+     <file role="doc" name="example_GetAllBidders.php"/>
+     <file role="doc" name="example_GetAPIAccessRules.php"/>
+     <file role="doc" name="example_GetBidderList.php"/>
+     <file role="doc" name="example_GetCategories.php"/>
+     <file role="doc" name="example_GetCategory2Cs.php"/>
+     <file role="doc" name="example_GetCategoryListings.php"/>
+     <file role="doc" name="example_GetCrossPromotions.php"/>
+     <file role="doc" name="example_GetDescriptionTemplates.php"/>
+     <file role="doc" name="example_GetDispute.php"/>
+     <file role="doc" name="example_GetDomains.php"/>
+     <file role="doc" name="example_GeteBayDetails.php"/>
+     <file role="doc" name="example_GeteBayOfficalTime.php"/>
+     <file role="doc" name="example_GetFeedback.php"/>
+     <file role="doc" name="example_GetHighBidders.php"/>
+     <file role="doc" name="example_GetItem.php"/>
+     <file role="doc" name="example_GetItemShipping.php"/>
+     <file role="doc" name="example_GetItemTransactions.php"/>
+     <file role="doc" name="example_GetLogoUrl.php"/>
+     <file role="doc" name="example_GetMemberMessages.php"/>
+     <file role="doc" name="example_GetMyeBay.php"/>
+     <file role="doc" name="example_GetNotificationPreferences.php"/>
+     <file role="doc" name="example_GetOutageSchedules.php"/>
+     <file role="doc" name="example_GetPreferences.php"/>
+     <file role="doc" name="example_GetProductFinder.php"/>
+     <file role="doc" name="example_GetProductFinderXSL.php"/>
+     <file role="doc" name="example_GetPromotionRules.php"/>
+     <file role="doc" name="example_GetRuName.php"/>
+     <file role="doc" name="example_GetSearchResults.php"/>
+     <file role="doc" name="example_GetSellerList.php"/>
+     <file role="doc" name="example_GetSellerTransactions.php"/>
+     <file role="doc" name="example_GetShippingRates.php"/>
+     <file role="doc" name="example_GetStoreDetails.php"/>
+     <file role="doc" name="example_GetSuggestedCategories.php"/>
+     <file role="doc" name="example_GetUser.php"/>
+     <file role="doc" name="example_GetUserDisputes.php"/>
+     <file role="doc" name="example_GetWatchList.php"/>
+     <file role="doc" name="example_LeaveFeedback.php"/>
+     <file role="doc" name="example_RelistItem.php"/>
+     <file role="doc" name="example_ReviseCheckoutStatus.php"/>
+     <file role="doc" name="example_ReviseItem.php"/>
+     <file role="doc" name="example_SellerReverseDispute.php"/>
+     <file role="doc" name="example_SetPreferences.php"/>
+     <file role="doc" name="example_SetSellerPaymentAddress.php"/>
+     <file role="doc" name="example_ValidateTestUserRegistration.php"/>
+     <file role="doc" name="example_VerifyAddItem.php"/>
+     <file role="doc" name="product_finder.xsl"/>
+    </dir> <!-- /examples -->
+    <dir name="tests">
+     <file role="test" name="bug4181.php"/>
+     <file role="test" name="bug4296.php"/>
+    </dir> <!-- /tests -->
+    <file role="php" name="Ebay.php"/>
+   </dir> <!-- / -->
+  </filelist>
+ </release>
+ <changelog>
+   <release>
+    <version>0.1.0</version>
+    <date>2004-03-18</date>
     <license>PHP License</license>
     <state>alpha</state>
-    <notes>Switch encoding defaults to UTF-8 (amt)</notes>
-    <deps>
-      <dep type="pkg" rel="ge" version="1.3.2" optional="no">PEAR</dep>
-      <dep type="pkg" rel="ge" version="0.14.1" optional="no">XML_Serializer</dep>
-      <dep type="php" rel="ge" version="5.0.0" optional="no"/>
-      <dep type="ext" rel="has" optional="no">curl</dep>
-    </deps>
-    <filelist>
-      <dir baseinstalldir="Services" name="/">
-       <dir name="docs">
-        <file role="doc" name="ideas.txt"/>
-        <file role="doc" name="models.txt"/>
-        <file role="doc" name="todo.txt"/>
-       </dir> <!-- docs -->
-       <dir name="Ebay">
-        <file role="php" name="Cache.php"/>
-        <file role="php" name="Call.php"/>
-        <file role="php" name="Exception.php"/>
-        <file role="php" name="Model.php"/>
-        <file role="php" name="Session.php"/>
-        <dir name="Cache">
-         <file role="php" name="Filesystem.php"/>
-         <dir name="ExpiryCheck">
-          <file role="php" name="Static.php"/>
-         </dir> <!-- Ebay/Cache/ExpiryCheck -->
-        </dir> <!-- Ebay/Cache -->
-        <dir name="Call">
-         <file role="php" name="AddDispute.php"/>
-         <file role="php" name="AddDisputeResponse.php"/>
-         <file role="php" name="AddItem.php"/>
-         <file role="php" name="AddMemberMessage.php"/>
-         <file role="php" name="AddOrder.php"/>
-         <file role="php" name="AddSecondChanceItem.php"/>
-         <file role="php" name="AddShipment.php"/>
-         <file role="php" name="AddToItemDescription.php"/>
-         <file role="php" name="EndItem.php"/>
-         <file role="php" name="FetchToken.php"/>
-         <file role="php" name="GetAccount.php"/>
-         <file role="php" name="GetAllBidders.php"/>
-         <file role="php" name="GetAPIAccessRules.php"/>
-         <file role="php" name="GetBidderList.php"/>
-         <file role="php" name="GetCategories.php"/>
-         <file role="php" name="GetCategory2CS.php"/>
-         <file role="php" name="GetCategoryListings.php"/>
-         <file role="php" name="GetCrossPromotions.php"/>
-         <file role="php" name="GetDescriptionTemplates.php"/>
-         <file role="php" name="GetDispute.php"/>
-         <file role="php" name="GetDomains.php"/>
-         <file role="php" name="GeteBayDetails.php"/>
-         <file role="php" name="GeteBayOfficialTime.php"/>
-         <file role="php" name="GetFeedback.php"/>
-         <file role="php" name="GetHighBidders.php"/>
-         <file role="php" name="GetItem.php"/>
-         <file role="php" name="GetItemShipping.php"/>
-         <file role="php" name="GetItemTransactions.php"/>
-         <file role="php" name="GetLogoURL.php"/>
-         <file role="php" name="GetMemberMessages.php"/>
-         <file role="php" name="GetMyeBay.php"/>
-         <file role="php" name="GetNotificationPreferences.php"/>
-         <file role="php" name="GetOutageSchedules.php"/>
-         <file role="php" name="GetPreferences.php"/>
-         <file role="php" name="GetProductFinder.php"/>
-         <file role="php" name="GetProductFinderXSL.php"/>
-         <file role="php" name="GetPromotionRules.php"/>
-         <file role="php" name="GetReturnURL.php"/>
-         <file role="php" name="GetRuName.php"/>
-         <file role="php" name="GetSearchResults.php"/>
-         <file role="php" name="GetSellerList.php"/>
-         <file role="php" name="GetSellerTransactions.php"/>
-         <file role="php" name="GetShippingRates.php"/>
-         <file role="php" name="GetStoreDetails.php"/>
-         <file role="php" name="GetSuggestedCategories.php"/>
-         <file role="php" name="GetUser.php"/>
-         <file role="php" name="GetUserDisputes.php"/>
-         <file role="php" name="GetWatchList.php"/>
-         <file role="php" name="LeaveFeedback.php"/>
-         <file role="php" name="RelistItem.php"/>
-         <file role="php" name="ReviseCheckoutStatus.php"/>
-         <file role="php" name="ReviseItem.php"/>
-         <file role="php" name="SellerReverseDispute.php"/>
-         <file role="php" name="SetPreferences.php"/>
-         <file role="php" name="SetReturnURL.php"/>
-         <file role="php" name="SetSellerPaymentAddress.php"/>
-         <file role="php" name="ValidateTestUserRegistration.php"/>
-         <file role="php" name="VerifyAddItem.php"/>
-         <file role="php" name="VerifyAddSecondChanceItem.php"/>
-        </dir> <!-- Ebay/Call -->
-        <dir name="Model">
-         <file role="php" name="Account.php"/>
-         <file role="php" name="Bid.php"/>
-         <file role="php" name="BidList.php"/>
-         <file role="php" name="Dispute.php"/>
-         <file role="php" name="DisputeList.php"/>
-         <file role="php" name="Feedback.php"/>
-         <file role="php" name="FeedbackEntry.php"/>
-         <file role="php" name="Item.php"/>
-         <file role="php" name="ItemList.php"/>
-         <file role="php" name="MemberMessage.php"/>
-         <file role="php" name="MemberMessageList.php"/>
-         <file role="php" name="MyeBay.php"/>
-         <file role="php" name="Order.php"/>
-         <file role="php" name="Preferences.php"/>
-         <file role="php" name="ProductFinder.php"/>
-         <file role="php" name="SearchResult.php"/>
-         <file role="php" name="Shipment.php"/>
-         <file role="php" name="Store.php"/>
-         <file role="php" name="Transaction.php"/>
-         <file role="php" name="TransactionList.php"/>
-         <file role="php" name="User.php"/>
-        </dir> <!-- Ebay/Model -->
-        <dir name="Transport">
-         <file role="php" name="Curl.php"/>
-         <file role="php" name="HttpRequest.php"/>
-         <file role="php" name="Streams.php"/>
-        </dir> <!-- Ebay/Transport -->
-       </dir> <!-- Ebay -->
-       <dir name="examples">
-        <file role="doc" name="config.php"/>
-        <file role="doc" name="example_AddDispute.php"/>
-        <file role="doc" name="example_AddDisputeResponse.php"/>
-        <file role="doc" name="example_AddItem.php"/>
-        <file role="doc" name="example_AddMemberMessage.php"/>
-        <file role="doc" name="example_AddOrder.php"/>
-        <file role="doc" name="example_AddSecondChanceItem.php"/>
-        <file role="doc" name="example_AddShipment.php"/>
-        <file role="doc" name="example_AddToItemDescription.php"/>
-        <file role="doc" name="example_EndItem.php"/>
-        <file role="doc" name="example_features_cache.php"/>
-        <file role="doc" name="example_features_customModels.php"/>
-        <file role="doc" name="example_features_Debugging.php"/>
-        <file role="doc" name="example_features_DescribingCalls.php"/>
-        <file role="doc" name="example_features_Exception.php"/>
-        <file role="doc" name="example_features_introspection.php"/>
-        <file role="doc" name="example_features_models.php"/>
-        <file role="doc" name="example_features_setErrorLanguage.php"/>
-        <file role="doc" name="example_features_UsingModels.php"/>
-        <file role="doc" name="example_features_UsingObjects.php"/>
-        <file role="doc" name="example_FetchToken.php"/>
-        <file role="doc" name="example_GetAccount.php"/>
-        <file role="doc" name="example_GetAllBidders.php"/>
-        <file role="doc" name="example_GetAPIAccessRules.php"/>
-        <file role="doc" name="example_GetBidderList.php"/>
-        <file role="doc" name="example_GetCategories.php"/>
-        <file role="doc" name="example_GetCategory2Cs.php"/>
-        <file role="doc" name="example_GetCategoryListings.php"/>
-        <file role="doc" name="example_GetCrossPromotions.php"/>
-        <file role="doc" name="example_GetDescriptionTemplates.php"/>
-        <file role="doc" name="example_GetDispute.php"/>
-        <file role="doc" name="example_GetDomains.php"/>
-        <file role="doc" name="example_GeteBayDetails.php"/>
-        <file role="doc" name="example_GeteBayOfficalTime.php"/>
-        <file role="doc" name="example_GetFeedback.php"/>
-        <file role="doc" name="example_GetHighBidders.php"/>
-        <file role="doc" name="example_GetItem.php"/>
-        <file role="doc" name="example_GetItemShipping.php"/>
-        <file role="doc" name="example_GetItemTransactions.php"/>
-        <file role="doc" name="example_GetLogoUrl.php"/>
-        <file role="doc" name="example_GetMemberMessages.php"/>
-        <file role="doc" name="example_GetMyeBay.php"/>
-        <file role="doc" name="example_GetNotificationPreferences.php"/>
-        <file role="doc" name="example_GetOutageSchedules.php"/>
-        <file role="doc" name="example_GetPreferences.php"/>
-        <file role="doc" name="example_GetProductFinder.php"/>
-        <file role="doc" name="example_GetProductFinderXSL.php"/>
-        <file role="doc" name="example_GetPromotionRules.php"/>
-        <file role="doc" name="example_GetRuName.php"/>
-        <file role="doc" name="example_GetSearchResults.php"/>
-        <file role="doc" name="example_GetSellerList.php"/>
-        <file role="doc" name="example_GetSellerTransactions.php"/>
-        <file role="doc" name="example_GetShippingRates.php"/>
-        <file role="doc" name="example_GetStoreDetails.php"/>
-        <file role="doc" name="example_GetSuggestedCategories.php"/>
-        <file role="doc" name="example_GetUser.php"/>
-        <file role="doc" name="example_GetUserDisputes.php"/>
-        <file role="doc" name="example_GetWatchList.php"/>
-        <file role="doc" name="example_LeaveFeedback.php"/>
-        <file role="doc" name="example_RelistItem.php"/>
-        <file role="doc" name="example_ReviseCheckoutStatus.php"/>
-        <file role="doc" name="example_ReviseItem.php"/>
-        <file role="doc" name="example_SellerReverseDispute.php"/>
-        <file role="doc" name="example_SetPreferences.php"/>
-        <file role="doc" name="example_SetSellerPaymentAddress.php"/>
-        <file role="doc" name="example_ValidateTestUserRegistration.php"/>
-        <file role="doc" name="example_VerifyAddItem.php"/>
-        <file role="doc" name="product_finder.xsl"/>
-        <dir name="cache">
-         <file role="doc" name="readme.txt"/>
-        </dir> <!-- examples/cache -->
-       </dir> <!-- examples -->
-       <file role="php" name="Ebay.php"/>
-      </dir> <!-- / -->
-    </filelist>
-  </release>
-  <changelog>
-    <release>
-      <version>0.1.0</version>
-      <date>2004-03-18</date>
-      <license>PHP License</license>
-      <state>alpha</state>
-      <notes>first draft</notes>
-    </release>
-    <release>
-      <version>0.5.0</version>
-      <date>2004-08-30</date>
-      <license>PHP License</license>
-      <state>devel</state>
-      <notes>still in development, no public release yet</notes>
-    </release>
-    <release>
-      <version>0.6.0</version>
-      <date>2004-10-30</date>
-      <license>PHP License</license>
-      <state>devel</state>
-      <notes>first public release in PEAR, this is still in devel state, beware that anything might change.</notes>
-    </release>
-    <release>
-      <version>0.6.1</version>
-      <date>2004-11-07</date>
-      <license>PHP License</license>
-      <state>devel</state>
-      <notes>All models now support ArrayAccess, released during the PEAR talk at the PHP Conference 2004</notes>
-    </release>
-    <release>
-      <version>0.7.0</version>
-      <date>2004-11-16</date>
-      <license>PHP License</license>
-      <state>devel</state>
-      <notes>BC BREAK: changed some method names on Services_Ebay_Model_Item
+    <notes>first draft
+    </notes>
+   </release>
+   <release>
+    <version>0.5.0</version>
+    <date>2004-08-30</date>
+    <license>PHP License</license>
+    <state>devel</state>
+    <notes>still in development, no public release yet
+    </notes>
+   </release>
+   <release>
+    <version>0.6.0</version>
+    <date>2004-10-30</date>
+    <license>PHP License</license>
+    <state>devel</state>
+    <notes>first public release in PEAR, this is still in devel state, beware that anything might change.
+    </notes>
+   </release>
+   <release>
+    <version>0.6.1</version>
+    <date>2004-11-07</date>
+    <license>PHP License</license>
+    <state>devel</state>
+    <notes>All models now support ArrayAccess, released during the PEAR talk at the PHP Conference 2004
+    </notes>
+   </release>
+   <release>
+    <version>0.7.0</version>
+    <date>2004-11-16</date>
+    <license>PHP License</license>
+    <state>devel</state>
+    <notes>BC BREAK: changed some method names on Services_Ebay_Model_Item
 Other changes:
 - Services_Ebay_Model_Item now supports ShipToLocations and ShippingServiceOptions
 - fixed error handling, when more than one error is returned
 - added Services_Ebay_API_Exception,
-- added Services_Ebay_Model_Item::Add()</notes>
-    </release>
-    <release>
-      <version>0.8.0alpha</version>
-      <date>2004-11-30</date>
-      <license>PHP License</license>
-      <state>alpha</state>
-      <notes>- added method to change SiteId
+- added Services_Ebay_Model_Item::Add()
+    </notes>
+   </release>
+   <release>
+    <version>0.8.0alpha</version>
+    <date>2004-11-30</date>
+    <license>PHP License</license>
+    <state>alpha</state>
+    <notes>- added method to change SiteId
 - added some debugging facilities
 - added custom model classes
 - added introspection by using getAvailableCalls()
 - added constants for SiteIds
 - renamed some examples to have a clean separation between API call examples and features of Services_Ebay
-- changed state to alpha</notes>
-    </release>
-    <release>
-      <version>0.10.0alpha</version>
-      <date>2004-12-08</date>
-      <license>PHP License</license>
-      <state>alpha</state>
-      <notes>Welcome Adam Trachtenberg as a new developer!
+- changed state to alpha
+    </notes>
+   </release>
+   <release>
+    <version>0.10.0alpha</version>
+    <date>2004-12-08</date>
+    <license>PHP License</license>
+    <state>alpha</state>
+    <notes>Welcome Adam Trachtenberg as a new developer!
 - added Services_Ebay_Session::setErrorLanguage() (schst)
 - removed last parameter of addShippingServiceOption() (schst)
 - added addInternationalShippingServiceOption() (schst)
-- added missing space in Services_Ebay_Model_Item::__toString() (amt)</notes>
-    </release>
-    <release>
-      <version>0.10.1alpha</version>
-      <date>2004-12-23</date>
-      <license>PHP License</license>
-      <state>alpha</state>
-      <notes>- added constants for API URLs (amt)
+- added missing space in Services_Ebay_Model_Item::__toString() (amt)
+    </notes>
+   </release>
+   <release>
+    <version>0.10.1alpha</version>
+    <date>2004-12-23</date>
+    <license>PHP License</license>
+    <state>alpha</state>
+    <notes>- added constants for API URLs (amt)
 - improved Services_Ebay_Call::describeCall() (amt, schst)
 - added (optional) support for UTF-8 encoding and decoding (schst)
-- added links to API description in docblocks (schst)</notes>
-    </release>
-    <release>
-      <version>0.11.0</version>
-      <date>2005-02-03</date>
-      <license>PHP License</license>
-      <state>alpha</state>
-      <notes>Welcome Carsten Lucke as a new developer!
+- added links to API description in docblocks (schst)
+    </notes>
+   </release>
+   <release>
+    <version>0.11.0</version>
+    <date>2005-02-03</date>
+    <license>PHP License</license>
+    <state>alpha</state>
+    <notes>Welcome Carsten Lucke as a new developer!
 - started implementting flexibible caching system (schst)
 - added ProductFinder model and calls, requires XSL extension (schst, amt)
 - added GetHighBidders call (luckec)
 - added GetMemberMessages call (luckec)
 - added GetCategory2CS (schst)
-- added GetPromotionRules() (schst)</notes>
-    </release>
-    <release>
-      <version>0.12.0</version>
-      <date>2005-04-16</date>
-      <license>PHP License</license>
-      <state>alpha</state>
-      <notes>Switch encoding defaults to UTF-8 (amt)</notes>
-    </release>
-  </changelog>
+- added GetPromotionRules() (schst)
+    </notes>
+   </release>
+   <release>
+    <version>0.12.0</version>
+    <date>2005-06-05</date>
+    <license>PHP License</license>
+    <state>alpha</state>
+    <notes>Services_Ebay now always encodes data in UTF-8, as requested by the eBay webservice. You can still use ISO-8859-1 encoding in your scripts as all encoding and decoding is done automatically.
+If you like to switch off this feature, you can tell the session-object that your data already is UTF-8 encoded and that you want UTF-8 encoded data in return.
+- Added new getErrors() method to Services_Ebay session which will return an array of Services_Ebay_Error objects containing information about all warnings and serious errors (schst)
+- fixed bug #4181: Only serious errors will be thrown as exceptions (schst)
+- fixed bug #4296: UTF-8 encoding (schst)
+- fixed bug #4326: wrong variable name (schst)
+- fixed bug #4420: wrong capitalization in example (amt)
+    </notes>
+   </release>
+ </changelog>
 </package>
