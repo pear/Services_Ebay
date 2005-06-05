@@ -201,10 +201,10 @@ class Services_Ebay_Session
     * @param    string  developer id
     * @param    string  application id
     * @param    string  certificate id
-    * @param    string  encoding to use: As of May 15, 2005, you
-    *                   must use UTF-8 in Sandbox and Production.
+    * @param    string  external encoding, as eBay uses UTF-8, the session will encode and decode to
+    *                   the specified encoding. Possible values are ISO-8859-1 and UTF-8
     */
-    public function __construct($devId, $appId, $certId, $encoding = 'UTF-8')
+    public function __construct($devId, $appId, $certId, $encoding = 'ISO-8859-1')
     {
         $this->devId = $devId;
         $this->appId = $appId;
@@ -222,8 +222,9 @@ class Services_Ebay_Session
                          'rootAttributes'     => array( 'xmlns' => 'urn:eBayAPIschema' ),
                     );
 
-        // UTF-8 encode the document
-        if ($encoding === 'UTF-8') {
+        // UTF-8 encode the document, if the user does not already
+        // use UTF-8 encoding
+        if ($encoding !== 'UTF-8') {
         	$opts['encodeFunction'] = 'utf8_encode';
         }
 
@@ -232,7 +233,7 @@ class Services_Ebay_Session
         $opts = array(
                     'forceEnum'      => array('Error'),
                     'encoding'       => 'UTF-8',
-                    'targetEncoding' => 'UTF-8',
+                    'targetEncoding' => $encoding,
                     );
         $this->us  = new XML_Unserializer($opts);
     }

@@ -333,11 +333,15 @@ class Services_Ebay
     * @param    string      developer id
     * @param    string      application id
     * @param    string      certificate id
+    * @param    string      encoding that you want to use (UTF-8 or ISO-8859-1)
+    *                       If you choose to use ISO-8859-1, Services_Ebay will automatically
+    *                       encode and decode your data to and from UTF-8, as eBay only
+    *                       allows UTF-8 encoded data
     * @return   object Services_Ebay_Session
     */
-    public static function getSession($devId, $appId, $certId)
+    public static function getSession($devId, $appId, $certId, $encoding, $encoding = 'ISO-8859-1')
     {
-        $session = new Services_Ebay_Session($devId, $appId, $certId);
+        $session = new Services_Ebay_Session($devId, $appId, $certId, $encoding);
 
         return $session;
     }
