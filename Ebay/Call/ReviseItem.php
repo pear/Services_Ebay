@@ -32,6 +32,14 @@ class Services_Ebay_Call_ReviseItem extends Services_Ebay_Call
     protected $paramMap = array();
 
    /**
+    * options that will be passed to the serializer
+    *
+    * @var  array
+    */
+    protected $serializerOptions = array(
+                                            'mode' => 'simplexml'
+                                        );
+   /**
     * constructor
     *
     * @param    array
