@@ -18,27 +18,20 @@ class Services_Ebay_Call_GeteBayDetails extends Services_Ebay_Call
     protected $verb = 'GeteBayDetails';
 
    /**
-    * options that will be passed to the serializer
+    * compatibility level this method was introduced
+    *
+    * @var integer
+    */
+    protected $since = 437;
+
+   /**
+    * parameter map that is used, when scalar parameters are passed
     *
     * @var  array
     */
-    protected $serializerOptions = array(
-                                            'defaultTagName' => 'Detail'
-                                        );
-   /**
-    * create a new call
-    *
-    * @param    array   details you want to retrieve
-    */
-    public function __construct($args)
-    {
-        if (!empty($args)) {
-            $this->args['Details'] = array();
-            foreach ($args as $detail) {
-            	array_push($this->args['Details'], array('Name' => $detail));
-            }
-        }
-    }
+    protected $paramMap = array(
+                                    'DetailName'
+                                );
     
    /**
     * make the API call
@@ -48,11 +41,13 @@ class Services_Ebay_Call_GeteBayDetails extends Services_Ebay_Call
     */
     public function call(Services_Ebay_Session $session)
     {
+        $returnElement = $this->args['DetailName'];
+        $returnSubElements = str_replace('Details', '', $returnElement);
         $return = parent::call($session);
-        if (!isset($return['Details']['Detail'][0])) {
-            $return['Details']['Detail'] = array($return['Details']['Detail']);
+        if (!isset($return[$returnElement][0][$returnSubElements])) {
+            $return[$returnElement][$returnSubElements] = array($return[$returnElement][$returnSubElements]);
         }
-        return $return['Details']['Detail'];
+        return $return[$returnElement];
     }
 }
 ?>

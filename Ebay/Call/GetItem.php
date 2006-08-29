@@ -23,10 +23,8 @@ class Services_Ebay_Call_GetItem extends Services_Ebay_Call
     * @var  array
     */
     protected $paramMap = array(
-                                 'Id',
-                                 'DetailLevel',
-                                 'DescFormat'
-                                );
+                                 'ItemID'
+                               );
    /**
     * make the API call
     *

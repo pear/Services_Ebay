@@ -18,23 +18,13 @@ $session->setToken($token);
 
 $ebay = new Services_Ebay($session);
 
-$item = $ebay->GetItem(4501333179);
-
-echo 'User-Id of the seller: '.$item->Seller->UserId.'<br />';
-
+$item = $ebay->GetItem(110002463992);
+echo 'User-Id of the seller: '.$item->Seller->UserID.'<br />';
 echo '<pre>';
 print_r($item->toArray());
 echo '</pre>';
 
-/**
- * to get the item description,
- * you must use Detail Level 2
- */
-$item = $ebay->GetItem(4501333179, 2);
-
-echo 'Get description of the item:<br />';
-echo $item->Description;
-
-echo 'You may also access properties using the array syntax:<br />';
-echo $item['Description'];
+$item_2 = Services_Ebay::loadModel('Item', null, $session);
+$item_2->Id = 110002463987;
+$res2 = $item_2->Get();
 ?>

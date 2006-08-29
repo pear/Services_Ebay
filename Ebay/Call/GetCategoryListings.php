@@ -23,9 +23,11 @@ class Services_Ebay_Call_GetCategoryListings extends Services_Ebay_Call
     * @var  array
     */
     protected $args = array(
-                            'ItemsPerPage'   => 100,
-                            'PageNumber'     => 1,
-                            'ItemTypeFilter' => 0
+                            'Pagination'     => array(
+                                                        'PageNumber'    => 1,
+                                                        'EntriesPerPage'=> 100
+                                                     ),
+                            'ItemTypeFilter' => 'AuctionItemsOnly'
                         );
    /**
     * parameter map that is used, when scalar parameters are passed
@@ -33,9 +35,7 @@ class Services_Ebay_Call_GetCategoryListings extends Services_Ebay_Call
     * @var  array
     */
     protected $paramMap = array(
-                                 'CategoryId',
-                                 'ItemsPerPage',
-                                 'PageNumber',
+                                 'CategoryID',
                                  'OrderBy',
                                  'ItemTypeFilter',
                                 );
@@ -49,7 +49,7 @@ class Services_Ebay_Call_GetCategoryListings extends Services_Ebay_Call
     public function call(Services_Ebay_Session $session)
     {
         $return = parent::call($session);
-        return $return['Listings'];
+        return $return['ItemArray'];
     }
 }
 ?>

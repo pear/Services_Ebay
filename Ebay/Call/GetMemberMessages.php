@@ -24,7 +24,7 @@ class Services_Ebay_Call_GetMemberMessages extends Services_Ebay_Call
     * @var  array
     */
     protected $args = array(
-                            'MessageType' => 1
+                            'MailMessageType' => 'AskSellerQuestion'
                         );
 
    /**
@@ -33,10 +33,10 @@ class Services_Ebay_Call_GetMemberMessages extends Services_Ebay_Call
     * @var  array
     */
     protected $paramMap = array(
-                                 'StartCreationDate',
-                                 'EndCreationDate',
-                                 'ItemId',
-                                 'MessageType',
+                                 'StartCreationTime',
+                                 'EndCreationTime',
+                                 'ItemID',
+                                 'MailMessageType',
                                  'DisplayToPublic',
                                  'Pagination',
                                  'MessageStatus'

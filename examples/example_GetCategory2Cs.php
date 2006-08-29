@@ -18,5 +18,5 @@ $session->setToken($token);
 
 $ebay = new Services_Ebay($session);
 
-$cats = $ebay->GetCategory2CS();
+$cats = $ebay->GetCategory2CS(57882);
 ?>

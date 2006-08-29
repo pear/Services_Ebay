@@ -42,9 +42,10 @@ foreach ($feedback as $entry) {
     echo "<br />";
 }
 
-echo 'Pick one feedback entry:<br />';
-$entry = $feedback->getEntry(1);
-echo	"<pre>";
-print_r($entry->toArray());
-echo	"</pre>";
+if ($entry = $feedback->getEntry(0)) {
+    echo 'Pick one feedback entry:<br />';
+    echo	"<pre>";
+    print_r($entry->toArray());
+    echo	"</pre>";
+}
 ?>

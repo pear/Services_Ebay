@@ -18,7 +18,7 @@ $session->setToken($token);
 
 $ebay = new Services_Ebay($session);
 
-$result = $dispute = $ebay->AddDisputeResponse('997', Services_Ebay::DISPUTE_RESPONSE_MESSAGE, 'This is only a test.');
+$result = $dispute = $ebay->AddDisputeResponse('997', 'SellerComment', 'This is only a test.');
 
 if ($result === true) {
 	echo 'Added response';

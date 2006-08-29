@@ -24,7 +24,7 @@ class Services_Ebay_Call_AddToItemDescription extends Services_Ebay_Call
     * @var  array
     */
     protected $paramMap = array(
-                                 'ItemId',
+                                 'ItemID',
                                  'Description'
                                 );
  
@@ -38,7 +38,7 @@ class Services_Ebay_Call_AddToItemDescription extends Services_Ebay_Call
     public function call(Services_Ebay_Session $session)
     {
         $return = parent::call($session);
-        if ($return['AddToItemDescription']['Status'] === 'Success') {
+        if ($return['AddToItemDescriptionResponse']['Ack'] === 'Success') {
             return true;
         }
         return false;

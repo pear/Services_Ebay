@@ -30,7 +30,7 @@ class Services_Ebay_Call_GetDispute extends Services_Ebay_Call
     * @var  array
     */
     protected $paramMap = array(
-                                 'DisputeId',
+                                 'DisputeID',
                                 );
     
    /**

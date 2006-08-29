@@ -23,7 +23,7 @@ class Services_Ebay_Call_GetNotificationPreferences extends Services_Ebay_Call
     * @var  array
     */
     protected $paramMap = array(
-                                 'Role'
+                                 'PreferenceLevel'
                                 );
     
    /**
@@ -35,7 +35,22 @@ class Services_Ebay_Call_GetNotificationPreferences extends Services_Ebay_Call
     public function call(Services_Ebay_Session $session)
     {
         $return = parent::call($session);
-        return $return['Preferences'];
+        switch($this->args['PreferenceLevel']) {
+            case 'Application':
+                return $return['ApplicationDeliveryPreferences'];
+                break;
+            case 'User':
+                return $return['UserDeliveryPreferenceArray'];
+                break;
+            case 'UserData':
+                return $return['UserData'];
+                break;
+            case 'Event':
+                return $return['EventProperty'];
+                break;
+            default:
+                return $return;
+        }
     }
 }
 ?>

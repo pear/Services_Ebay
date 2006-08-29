@@ -18,6 +18,13 @@ class Services_Ebay_Call_AddItem extends Services_Ebay_Call
     protected $verb = 'AddItem';
 
    /**
+    * compatibility level this method was introduced
+    *
+    * @var integer
+    */
+    protected $since = 465;
+
+   /**
     * parameter map that is used, when scalar parameters are passed
     *
     * @var  array
@@ -39,15 +46,16 @@ class Services_Ebay_Call_AddItem extends Services_Ebay_Call
     * @var  array
     */
     protected $args = array(
-                            'CheckoutDetailsSpecified' => 0,
-                            'Country'                  => 'us',
-                            'Currency'                 => '1',
-                            'Duration'                 => '7',
-                            'MinimumBid'               => '1.0',
-                            'Quantity'                 => '1',
-                            'Region'                   => '0',
-                            'Version'                  => '2'
-                            );
+                            'Item' => array(
+                                            'ShippingDetails'   => array(
+                                                                            'InsuranceFee' => 0
+                                                                        ),
+                                            'Country'           => 'US',
+                                            'Currency'          => 'USD',
+                                            'StartPrice'        => '1.0',
+                                            'Quantity'          => '1'
+                                           ),
+                           );
 
    /**
     * item that should be added
@@ -96,13 +104,11 @@ class Services_Ebay_Call_AddItem extends Services_Ebay_Call
     {
         $return = parent::call($session);
 
-        if (isset($return['Item'])) {
-            $returnItem = $return['Item'];
-
-            $this->item->Id = $returnItem['Id'];
-            $this->item->StartTime = $returnItem['StartTime'];
-            $this->item->EndTime = $returnItem['EndTime'];
-            $this->item->Fees = $returnItem['Fees'];
+        if (isset($return['ItemID'])) {
+            $this->item->Id = $return['ItemID'];
+            $this->item->StartTime = $return['StartTime'];
+            $this->item->EndTime = $return['EndTime'];
+            $this->item->Fees = $return['Fees']['Fee'];
         
             return true;
         }

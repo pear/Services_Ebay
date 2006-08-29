@@ -22,16 +22,16 @@ class Services_Ebay_Model_ItemList extends Services_Ebay_Model implements Iterat
     */
     public function __construct($props, $session = null)
     {
-        if (isset($props['Item'])) {
-            if ( is_array($props['Item'])) {
-                if (!isset($props['Item'][0])) {
-                    $props['Item'] = array($props['Item']);
+        if (isset($props['ItemArray'])) {
+            if ( is_array($props['ItemArray'])) {
+                if (!isset($props['ItemArray']['Item'][0])) {
+                    $props['ItemArray']['Item'] = array($props['ItemArray']['Item']);
                 }
-                foreach ($props['Item'] as $item) {
+                foreach ($props['ItemArray']['Item'] as $item) {
                     array_push( $this->items, Services_Ebay::loadModel('Item', $item, $session) );
                 }
             }
-            unset($props['Item']);
+            unset($props['ItemArray']);
         }
     
         parent::__construct($props, $session);

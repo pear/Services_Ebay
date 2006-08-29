@@ -23,9 +23,9 @@ class Services_Ebay_Model_DisputeList extends Services_Ebay_Model implements Ite
     */
     public function __construct($props, $session = null)
     {
-        if (isset($props['Disputes'])) {
-            $disputes = $props['Disputes'];
-            unset($props['Disputes']);
+        if (isset($props['DisputeArray'])) {
+            $disputes = $props['DisputeArray'];
+            unset($props['DisputeArray']);
             if (isset($disputes['Dispute'][0])) {
                 $this->disputes = $disputes['Dispute'];
             } else {

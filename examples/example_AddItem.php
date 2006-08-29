@@ -22,6 +22,7 @@ $item->Title = 'Supergirls\'s cape';
 $item->Description = 'Another test item';
 $item->Location = 'At my home';
 $item->MinimumBid = '532.0';
+$item->ListingDuration = 'Days_3';
 
 $item->VisaMaster = 1;
 

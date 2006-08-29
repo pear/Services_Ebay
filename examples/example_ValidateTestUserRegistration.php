@@ -22,6 +22,4 @@ $ebay = new Services_Ebay($session);
  * validate the test user
  */
 $result = $ebay->ValidateTestUserRegistration();
-
-var_dump($result);
 ?>

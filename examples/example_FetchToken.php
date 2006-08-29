@@ -14,7 +14,7 @@ require_once 'config.php';
 
 $session = Services_Ebay::getSession($devId, $appId, $certId);
 
-$session->setAuthenticationData($username);
+$session->setAuthenticationData($username, $password);
 
 $ebay = new Services_Ebay($session);
 $token = $ebay->FetchToken('MySecretId');

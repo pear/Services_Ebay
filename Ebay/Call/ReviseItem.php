@@ -63,7 +63,7 @@ class Services_Ebay_Call_ReviseItem extends Services_Ebay_Call
             throw new Services_Ebay_Exception( 'You must not change the item ID.' );
         }
         
-        $this->args['ItemId'] = $id;
+        $this->args['ItemID'] = $id;
     }
     
    /**

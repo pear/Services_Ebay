@@ -129,6 +129,13 @@ class Services_Ebay_Session
     private $siteId = 0;
 
    /**
+    * Session options
+    *
+    * @var  array
+    */
+    private $opts;
+
+   /**
     * XML_Serializer object
     *
     * @var object XML_Serializer
@@ -147,7 +154,7 @@ class Services_Ebay_Session
     *
     * @var boolean
     */
-    public $debug = 0;
+    public $debug = 1;
     
    /**
     * XML wire
@@ -161,21 +168,28 @@ class Services_Ebay_Session
     *
     * @var       integer
     */
-    public $compatLevel = 379;
+    public $compatLevel = 405;
 
    /**
-    * general detail Level
+    * detail level
+    *
+    * @var  string
+    */
+    public $detailLevel;
+
+   /**
+    * general warning Level
     *
     * @var  int
     */
-    private $detailLevel = 0;
+    private $warningLevel = 'High';
 
    /**
     * error language
     *
     * @var  int
     */
-    private $errorLanguage = null;
+    private $errorLanguage = 'en_US';
 
    /**
     * additional options for the serializer
@@ -218,23 +232,19 @@ class Services_Ebay_Session
         $this->certId = $certId;
         $this->url = self::URL_SANDBOX;
         
-        $opts = array(
-                         'indent'             => '  ',
-                         'linebreak'          => "\n",
-                         'typeHints'          => false,
-                         'addDecl'            => true,
-                         'encoding'           => 'UTF-8',
-                         'scalarAsAttributes' => false,
-                         'rootName'           => 'request',
-                         'rootAttributes'     => array( 'xmlns' => 'urn:eBayAPIschema' ),
-                    );
+        $this->opts = array(
+                                'indent'             => '  ',
+                                'linebreak'          => "\n",
+                                'typeHints'          => false,
+                                'addDecl'            => true,
+                                'encoding'           => 'UTF-8',
+                                'scalarAsAttributes' => false
+                           );
         // UTF-8 encode the document, if the user does not already
         // use UTF-8 encoding
         if ($encoding !== 'UTF-8') {
         	$opts['encodeFunction'] = 'utf8_encode';
         }
-
-        $this->ser = new XML_Serializer($opts);
 
         $opts = array(
                     'forceEnum'      => array('Error'),
@@ -349,38 +359,45 @@ class Services_Ebay_Session
     */
     public function buildRequestBody( $verb, $params = array(), $authType = Services_Ebay::AUTH_TYPE_TOKEN )
     {
+        $this->opts['rootName'] = $verb.'Request';
+        $this->opts['rootAttributes'] = array( 'xmlns' => 'urn:ebay:apis:eBLBaseComponents' );
+        $this->ser = new XML_Serializer($this->opts);
+
         $request = array(
-                            'DetailLevel'     => $this->detailLevel,
-                            'ErrorLevel'      => 1,
-                            'SiteId'          => $this->siteId,
-                            'Verb'            => $verb
+                            'ErrorLanguage'     => $this->errorLanguage,
+                            'Version'           => $this->compatLevel,
+                            'WarningLevel'      => $this->warningLevel
                         );
+        if (!is_null($this->detailLevel)) {
+            $request['DetailLevel'] = $this->detailLevel;
+        }
+
         switch ($authType) {
             case Services_Ebay::AUTH_TYPE_TOKEN:
                 if (empty($this->token)) {
                     throw new Services_Ebay_Auth_Exception('No authentication token set.');
                 }
-                $request['RequestToken'] = $this->token;
+                $request['RequesterCredentials']['eBayAuthToken'] = $this->token;
                 break;
             case Services_Ebay::AUTH_TYPE_USER:
                 if (empty($this->requestUserId) || empty($this->requestPassword)) {
                     throw new Services_Ebay_Auth_Exception('No authentication data (username and password) set.');
                 }
-                $request['RequestUserId']   = $this->requestUserId;
-                $request['RequestPassword'] = $this->requestPassword;
+                $request['RequesterCredentials']['Username']   = $this->requestUserId;
+                $request['RequesterCredentials']['Password']   = $this->requestPassword;
                 break;
             case Services_Ebay::AUTH_TYPE_NONE:
                 if (empty($this->requestUserId)) {
                     throw new Services_Ebay_Auth_Exception('No username has been set.');
                 }
-                $request['RequestUserId']   = $this->requestUserId;
+                $request['RequesterCredentials']['Username']   = $this->requestUserId;
                 break;
         }
 
         $request = array_merge($request, $params);
 
         $this->ser->serialize($request, $this->serializerOptions);
-        
+
         return $this->ser->getSerializedData();
     }
 
@@ -407,11 +424,11 @@ class Services_Ebay_Session
             $params['ErrorLanguage'] = $this->errorLanguage;
         }
 
-        $body    = $this->buildRequestBody($verb, $params, $authType);
-
-        if (!isset($params['DetailLevel'])) {
-            $params['DetailLevel'] = $this->detailLevel;
+        if (!isset($params['WarningLevel']) && !is_null($this->warningLevel)) {
+            $params['WarningLevel'] = $this->warningLevel;
         }
+
+        $body    = $this->buildRequestBody($verb, $params, $authType);
         
         $headers = array(
                             'X-EBAY-API-SESSION-CERTIFICATE' => sprintf( '%s;%s;%s', $this->devId, $this->appId, $this->certId ),      // Required. Used to authenticate the function call. Use this format, where DevId is the same as the value of the X-EBAY-API-DEV-NAME header, AppId is the same as the value of the X-EBAY-API-APP-NAME header, and CertId  is the same as the value of the X-EBAY-API-CERT-NAME header: DevId;AppId;CertId
@@ -421,7 +438,6 @@ class Services_Ebay_Session
                             'X-EBAY-API-CERT-NAME'           => $this->certId,                                                      // Required. Certificate ID, as registered with the Developer's Program. This value should match the third value (CertId) in the X-EBAY-API-SESSION-CERTIFICATE header. Used to authenticate the function call.
                             'X-EBAY-API-CALL-NAME'           => $verb,                                                              // Required. Name of the function being called, for example: 'GetItem' (without the quotation marks). This must match the information passed in the Verb input argument for each function.
                             'X-EBAY-API-SITEID'              => $this->siteId,                                                      // Required. eBay site an item is listed on or that a user is registered on, depending on the purpose of the function call. This must match the information passed in the SiteId input argument for all functions.
-                            'X-EBAY-API-DETAIL-LEVEL'        => $params['DetailLevel'],                                             // Required. Controls amount or level of data returned by the function call. May be zero if the function does not support varying detail levels. This must match the information passed in the DetailLevel input argument for each function.
                             'Content-Type'                   => 'text/xml',                                                         // Required. Specifies the kind of data being transmitted. The value must be 'text/xml'. Sending any other value (e.g., 'application/x-www-form-urlencoded') may cause the call to fail.
                             'Content-Length'                 => strlen( $body )                                                     // Recommended. Specifies the size of the data (i.e., the length of the XML string) you are sending. This is used by eBay to determine how much data to read from the stream.
                         );
@@ -464,14 +480,26 @@ class Services_Ebay_Session
 
         $errors = array();
         
-        if (isset($result['Errors'])) {
-            if (isset($result['Errors']['Error'])) {
-                foreach ($result['Errors']['Error'] as $error) {
+        if (isset($result['Ack']) && $result['Ack'] == 'Failure') {
+            if (isset($result['Errors'])) {
+                if (isset($result['Errors'][0])) {
+                    foreach ($result['Errors'] as $error) {
+                        $tmp = new Services_Ebay_Error($error);
+
+                        // last errors
+                        array_push($errors, $tmp);
+
+                        // all errors
+                        array_push($this->errors, $tmp);
+                    }
+                } else {
+                    $error = array();
+                    foreach ($result['Errors'] as $key=>$value) {
+                        $error[$key] = $value;
+                    }
                     $tmp = new Services_Ebay_Error($error);
-                    // last errors
+
                     array_push($errors, $tmp);
-                    
-                    // all errors
                     array_push($this->errors, $tmp);
                 }
 
@@ -479,7 +507,7 @@ class Services_Ebay_Session
                 $message = '';
                 $severe  = array();
                 foreach ($errors as $error) {
-                	if ($error->getSeverityCode() == 2) {
+                	if ($error->getSeverityCode() == 'Warning') {
                 		continue;
                 	}
                 	$message .= $error->getLongMessage();
@@ -530,6 +558,17 @@ class Services_Ebay_Session
     public function setUnserializerOptions($opts = array())
     {
         $this->unserializerOptions = $opts;
+    }
+
+   /**
+    * set compatibility level if particular request needs
+    * another version of API instead of default one
+    *
+    * @param    int
+    */
+    public function setCompatLevel($compatLevel)
+    {
+        $this->compatLevel = $compatLevel;
     }
 }
 ?>

@@ -21,13 +21,13 @@ $ebay = new Services_Ebay($session);
 /**
  * get the user information
  */
-$user = $ebay->GetUser('agebook');
+$user = $ebay->GetUser('loislane-74');
 
 /**
  * access single properties
  */
 echo 'Display a the user ID: ';
-echo $user->UserId."<br>";
+echo $user->UserID."<br>";
 
 /**
  * get all properties
@@ -41,10 +41,10 @@ echo '</pre>';
  * get feedback summary
  */
 echo 'Get the feedback for the user';
-$summary = $user->getFeedback( Services_Ebay::FEEDBACK_BRIEF );
-echo "This user's score is ".$summary->Score."<br />";
+$summary = $user->getFeedback();
+echo "This user's score is ".$summary->FeedbackScore."<br />";
 
 echo '<pre>';
-print_r($summary->toArray());
+print_r($summary['FeedbackSummary']);
 echo '</pre>';
 ?>

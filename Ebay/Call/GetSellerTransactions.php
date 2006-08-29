@@ -18,16 +18,21 @@ class Services_Ebay_Call_GetSellerTransactions extends Services_Ebay_Call
     */
     protected $verb = 'GetSellerTransactions';
 
+    protected $args = array(
+                            'Pagination'    => array(
+                                                        'EntriesPerPage'=> 100,
+                                                        'PageNumber'    => 1
+                                                    )
+                        );
+
    /**
     * parameter map that is used, when scalar parameters are passed
     *
     * @var  array
     */
     protected $paramMap = array(
-                                 'LastModifiedFrom',
-                                 'LastModifiedTo',
-                                 'TransactionsPerPage',
-                                 'PageNumber'
+                                 'ModTimeFrom',
+                                 'ModTimeTo',
                                 );
    /**
     * make the API call
@@ -38,8 +43,12 @@ class Services_Ebay_Call_GetSellerTransactions extends Services_Ebay_Call
     public function call(Services_Ebay_Session $session)
     {
         $return = parent::call($session);
-        $result = Services_Ebay::loadModel('TransactionList', $return['GetSellerTransactionsResult'], $session);
-        return $result;
+        if (isset($result['TransactionArray'])) {
+            $result = Services_Ebay::loadModel('TransactionList', $return['TransactionArray'], $session);
+            return $result;
+        }
+
+        return false;
     }
 }
 ?>

@@ -18,7 +18,7 @@ $session->setToken($token);
 
 $ebay = new Services_Ebay($session);
 
-$cats = $ebay->GetCategories(12576);
+$cats = $ebay->GetCategories(57882);
 echo '<pre>';
 print_r($cats);
 echo '</pre>';
@@ -26,7 +26,7 @@ echo '</pre>';
 /**
  * change the overall Detail-Level
  */
-$session->setDetailLevel(1);
+$session->setDetailLevel('ReturnAll');
 
 $cats = $ebay->GetCategories(12576);
 echo '<pre>';

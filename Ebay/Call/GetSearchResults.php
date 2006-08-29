@@ -17,6 +17,14 @@ class Services_Ebay_Call_GetSearchResults extends Services_Ebay_Call
     */
     protected $verb = 'GetSearchResults';
 
+    protected $since = 425;
+
+    protected $args = array(
+                            'Pagination'     => array(
+                                                        'EntriesPerPage'=> 100
+                                                    )
+                        );
+
    /**
     * parameter map that is used, when scalar parameters are passed
     *
@@ -24,10 +32,8 @@ class Services_Ebay_Call_GetSearchResults extends Services_Ebay_Call
     */
     protected $paramMap = array(
                                  'Query',
-                                 'SearchInDescription',
-                                 'Skip',
-                                 'MaxResults',
-                                 'Category'
+                                 'SearchFlags',
+                                 'CategoryID'
                                 );
     
    /**
@@ -39,7 +45,7 @@ class Services_Ebay_Call_GetSearchResults extends Services_Ebay_Call
     public function call(Services_Ebay_Session $session)
     {
         $return = parent::call($session);
-        return Services_Ebay::loadModel('SearchResult', $return['Search'], $session);
+        return Services_Ebay::loadModel('SearchResult', $return, $session);
     }
 }
 ?>

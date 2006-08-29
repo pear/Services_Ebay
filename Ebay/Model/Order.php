@@ -16,9 +16,34 @@ class Services_Ebay_Model_Order extends Services_Ebay_Model
     public function __construct($props, $session = null)
     {
         parent::__construct($props, $session);
-        $this->properties['Transactions'] = array('Transaction' => array());
-        $this->properties['ShippingServiceOptions'] = array('ShippingServiceOption' => array());
-        $this->properties['PaymentTerms'] = array();
+        $this->properties['TransactionArray'] = array('Transaction' => array());
+        $this->properties['ShippingDetails']  = array(
+                                                        'ShippingServiceOptions'            => array(),
+                                                        'InternationalShippingServiceOption'=> array(),
+                                                        'SalesTax'                          => array()
+                                                     );
+    }
+
+   /**
+    * set a property
+    * (overriding the parent one)
+    *
+    * @prop     string  property name
+    * @prop     mixed   property value
+    */   
+    public function __set($prop, $value)
+    {
+        $shippingDetailsSubElements = array(
+                                            'ApplyShippingDiscount',
+                                            'InsuranceFee',
+                                            'InsuranceOption',
+                                            'ThirdPartyCheckout'
+                                        );
+        if (in_array($prop, $shippingDetailsSubElements)) {
+            $this->properties['ShippingDetails'][$prop] = $value;
+        } else {
+            $this->properties[$prop] = $value;
+        }
     }
     
    /**
@@ -30,11 +55,13 @@ class Services_Ebay_Model_Order extends Services_Ebay_Model
     public function AddTransaction($ItemId, $TransactionId)
     {
         $Transaction = array(
-                            'ItemId' => $ItemId,
-                            'TransactionId' => $TransactionId
+                            'Item'          => array(
+                                                      'ItemID' => $ItemId
+                                                    ),
+                            'TransactionID' => $TransactionId
                             );
                             
-        array_push($this->properties['Transactions']['Transaction'], $Transaction);
+        array_push($this->properties['TransactionArray']['Transaction'], $Transaction);
     }
 
    /**
@@ -43,29 +70,60 @@ class Services_Ebay_Model_Order extends Services_Ebay_Model
     * @param    string
     * @param    string
     */    
-    public function AddShippingServiceOption($ShippingService, $ShippingServiceCost, $ShippingServicePriority)
+    public function AddShippingServiceOption($ShippingInsuranceCost, $ShippingService, $ShippingServiceAdditionalCost,
+                                             $ShippingServiceCost, $ShippingServicePriority)
     {
         $Option = array(
-                            'ShippingService'         => $ShippingService,
-                            'ShippingServiceCost'     => $ShippingServiceCost,
-                            'ShippingServicePriority' => $ShippingServicePriority
-                            );
+                            'ShippingInsuranceCost'         => $ShippingInsuranceCost,
+                            'ShippingService'               => $ShippingService,
+                            'ShippingServiceAdditionalCost' => $ShippingServiceAdditionalCost,
+                            'ShippingServiceCost'           => $ShippingServiceCost,
+                            'ShippingServicePriority'       => $ShippingServicePriority
+                       );
                             
-        array_push($this->properties['ShippingServiceOptions']['ShippingServiceOption'], $Option);
+        array_push($this->properties['ShippingDetails']['ShippingServiceOptions'], $Option);
     }
 
    /**
-    * set the accepted payment terms
+    * Add International shipping service options
     *
     * @param    string
-    */    
-    public function AcceptPaymentTerms($methods)
+    * @param    string
+    * @param    string
+    * @param    int
+    * @param    string
+    */
+    public function AddInternationalShippingServiceOption($ShippingService, $ShippingServiceAdditionalCost,
+                                                          $ShippingServiceCost, $ShippingServicePriority,
+                                                          $ShipToLocation)
     {
-        $methods = func_get_args();
-        foreach ($methods as $method) {
-        	$this->properties['PaymentTerms'][$method] = 1;
-        }
+        $Options = array(
+                            'ShippingService'               => $ShippingService,
+                            'ShippingServiceAdditionalCost' => $ShippingServiceAdditionalCost,
+                            'ShippingServiceCost'           => $ShippingServiceCost,
+                            'ShippingServicePriority'       => $ShippingServicePriority,
+                            'ShipToLocation'                => $ShipToLocation
+                        );
+
+        array_push($this->properties['ShippingDetails']['InternationalShippingServiceOption'], $Options);
     }
-    
+
+   /**
+    * Add Sales tax options
+    *
+    * @param    float
+    * @param    string
+    * @param    boolean
+    */
+    public function AddSalesTax($SalesTaxPercent, $SalesTaxState, $ShippingIncludedInTax)
+    {
+        $Option = array(
+                            'SalesTaxPercent'       => $SalesTaxPercent,
+                            'SalesTaxState'         => $SalesTaxState,
+                            'ShippingIncludedInTax' => $ShippingIncludedInTax
+                        );
+
+        array_push($this->properties['ShippingDetails']['SalesTax'], $Option);
+    }
 }
 ?>

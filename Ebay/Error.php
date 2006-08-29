@@ -39,7 +39,6 @@ class Services_Ebay_Error
 {
     private $code = null;
     private $severityCode = null;
-    private $severity = null;
     private $shortMessage = null;
     private $longMessage = null;
 
@@ -50,14 +49,11 @@ class Services_Ebay_Error
     */
     public function __construct($data)
     {
-    	if (isset($data['Code'])) {
-    		$this->code = (integer)$data['Code'];
+    	if (isset($data['ErrorCode'])) {
+    		$this->code = (integer)$data['ErrorCode'];
     	}
     	if (isset($data['SeverityCode'])) {
-    		$this->severityCode = (integer)$data['SeverityCode'];
-    	}
-    	if (isset($data['Severity'])) {
-    		$this->severity = $data['Severity'];
+    		$this->severityCode = $data['SeverityCode'];
     	}
     	if (isset($data['ShortMessage'])) {
     		$this->shortMessage = $data['ShortMessage'];
@@ -88,16 +84,6 @@ class Services_Ebay_Error
     }
 
    /**
-    * return the severity as a string
-    *
-    * @return string
-    */
-    public function getSeverity()
-    {
-        return $this->severity;
-    }
-
-   /**
     * return the short message
     *
     * @return string
@@ -124,7 +110,7 @@ class Services_Ebay_Error
     */
     public function __toString()
     {
-        return sprintf("Services_Ebay %s: %s (%d)\n", $this->getSeverity(), $this->getLongMessage(), $this->getCode());
+        return sprintf("Services_Ebay %s: %s (%d)\n", $this->getSeverityCode(), $this->getLongMessage(), $this->getCode());
     }
 }
 ?>

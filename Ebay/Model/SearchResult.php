@@ -23,16 +23,16 @@ class Services_Ebay_Model_SearchResult extends Services_Ebay_Model implements It
     */
     public function __construct($props, $session = null)
     {
-        if (isset($props['Items'])) {
-            $items = $props['Items'];
-            unset($props['Items']);
-            if (isset($items['Item'][0])) {
-                $items = $items['Item'];
+        if (isset($props['SearchResultItemArray']['SearchResultItem'])) {
+            $items = $props['SearchResultItemArray']['SearchResultItem'];
+            unset($props['SearchResultItemArray']['SearchResultItem']);
+            if (isset($items[0])) {
+                $items = $items;
             } else {
-                $items = array($items['Item']);
+                $items = array($items);
             }
             foreach ($items as $tmp) {
-                array_push($this->items, Services_Ebay::loadModel('Item', $tmp, $session));
+                array_push($this->items, Services_Ebay::loadModel('Item', $tmp['Item'], $session));
             }
         }
         parent::__construct($props, $session);

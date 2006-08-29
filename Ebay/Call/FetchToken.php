@@ -25,7 +25,7 @@ class Services_Ebay_Call_FetchToken extends Services_Ebay_Call
     *
     * @var  int
     */
-    protected $authType = Services_Ebay::AUTH_TYPE_NONE;
+    protected $authType = Services_Ebay::AUTH_TYPE_USER;
 
     /**
     * parameter map that is used, when scalar parameters are passed
@@ -33,7 +33,7 @@ class Services_Ebay_Call_FetchToken extends Services_Ebay_Call
     * @var  array
     */
     protected $paramMap = array(
-                                 'SecretId'
+                                 'SecretID'
                                 );
  
  
@@ -46,7 +46,7 @@ class Services_Ebay_Call_FetchToken extends Services_Ebay_Call
     public function call(Services_Ebay_Session $session)
     {
         $return = parent::call($session);
-        return $return['FetchTokenResult'];
+        return $return['FetchTokenResponse']['eBayAuthToken'];
     }
 }
 ?>

@@ -10,8 +10,7 @@
  */
 error_reporting(E_ALL);
 require_once '../Ebay.php';
-//require_once '../Ebay/Cache.php';
-require_once 'luckec_conf_tgc-webber.php';
+require_once 'config.php';
 
 $session = Services_Ebay::getSession($devId, $appId, $certId);
 

@@ -24,9 +24,8 @@ class Services_Ebay_Call_GetAllBidders extends Services_Ebay_Call
     * @var  array
     */
     protected $paramMap = array(
-                                 'ItemId',
-                                 'SecondChanceEnabledOnly',
-                                 'ViewAllBidders'
+                                 'ItemID',
+                                 'CallMode'
                                 );
    /**
     * make the API call
@@ -37,7 +36,7 @@ class Services_Ebay_Call_GetAllBidders extends Services_Ebay_Call
     public function call(Services_Ebay_Session $session)
     {
         $return = parent::call($session);
-        return $return['GetAllBiddersResult'];
+        return $return['BidArray'];
     }
 }
 ?>

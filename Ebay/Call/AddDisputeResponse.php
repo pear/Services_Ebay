@@ -30,8 +30,8 @@ class Services_Ebay_Call_AddDisputeResponse extends Services_Ebay_Call
     * @var  array
     */
     protected $paramMap = array(
-                                 'DisputeId',
-                                 'UpiDisputeActivityId',
+                                 'DisputeID',
+                                 'DisputeActivity',
                                  'MessageText'
                                 );
     
@@ -44,7 +44,7 @@ class Services_Ebay_Call_AddDisputeResponse extends Services_Ebay_Call
     public function call(Services_Ebay_Session $session)
     {
         $return = parent::call($session);
-        if ($return['CallStatus'] === 'Success') {
+        if ($return['Ack'] === 'Success') {
         	return true;
         }
         return false;

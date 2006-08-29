@@ -23,9 +23,11 @@ class Services_Ebay_Call_GetFeedback extends Services_Ebay_Call
     * @var  array
     */
     protected $args = array(
-                            'DetailLevel'  => Services_Ebay::FEEDBACK_VERBOSE,
-                            'StartingPage' => 1,
-                            'ItemsPerPage' => 25 
+                            'DetailLevel'   => Services_Ebay::FEEDBACK_VERBOSE,
+                            'Pagination'    => array(
+                                                        'PageNumber' => 1,
+                                                        'EntriesPerPage' => 25
+                                                    ) 
                         );
 
    /**
@@ -34,7 +36,7 @@ class Services_Ebay_Call_GetFeedback extends Services_Ebay_Call
     * @var  array
     */
     protected $paramMap = array(
-                                 'UserId',
+                                 'UserID',
                                  'DetailLevel',
                                  'StartingPage',
                                  'ItemsPerPage'
@@ -50,7 +52,7 @@ class Services_Ebay_Call_GetFeedback extends Services_Ebay_Call
     public function call(Services_Ebay_Session $session)
     {
         $return = parent::call($session);
-        $feedback = Services_Ebay::loadModel('Feedback', $return['Feedback'], $session);
+        $feedback = Services_Ebay::loadModel('Feedback', $return, $session);
         return $feedback;
     }
 }

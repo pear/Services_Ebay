@@ -40,7 +40,7 @@ class Services_Ebay_Call_GetReturnUrl extends Services_Ebay_Call
     public function call(Services_Ebay_Session $session)
     {
         $return = parent::call($session);
-        return $return['Entries']['Entry'];
+        return $return;
     }
 }
 ?>

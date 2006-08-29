@@ -23,9 +23,9 @@ class Services_Ebay_Call_GetBidderList extends Services_Ebay_Call
     * @var  array
     */
     protected $args = array(
-                            'UserId'       => null,
-                            'Active'       => 1,
-                            'DetailLevel'  => 32
+                            'UserID'                => null,
+                            'ActiveItemsOnly'       => 'true',
+                            'DetailLevel'           => 'ReturnAll'
                         );
    /**
     * parameter map that is used, when scalar parameters are passed
@@ -33,10 +33,9 @@ class Services_Ebay_Call_GetBidderList extends Services_Ebay_Call
     * @var  array
     */
     protected $paramMap = array(
-                                 'UserId',
-                                 'Active',
+                                 'UserID',
+                                 'ActiveItemsOnly',
                                  'DetailLevel',
-                                 'Days',
                                  'EndTimeFrom',
                                  'EndTimeTo'
                                 );
@@ -50,7 +49,7 @@ class Services_Ebay_Call_GetBidderList extends Services_Ebay_Call
     public function call(Services_Ebay_Session $session)
     {
         $return = parent::call($session);
-        return Services_Ebay::loadModel('ItemList', $return['BidderList'], $session);
+        return Services_Ebay::loadModel('ItemList', $return['BidItemArray'], $session);
     }
 }
 ?>

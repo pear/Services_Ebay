@@ -21,7 +21,7 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
     *
     * @var string
     */
-    protected $primaryKey = 'Id';
+    protected $primaryKey = 'ItemID';
 
     /**
     * create new item
@@ -31,11 +31,14 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
     public function __construct($props, $session = null)
     {
         if (is_array($props) && isset($props['Seller'])) {
-            if (isset($props['Seller']['User']) && is_array($props['Seller']['User'])) {
-                $props['Seller'] = Services_Ebay::loadModel('User', $props['Seller']['User'], $session);
-            }
+            $props['Seller'] = Services_Ebay::loadModel('User', $props['Seller'], $session);
         }
         parent::__construct($props, $session);
+    }
+
+    public function __set($prop, $value)
+    {
+        $this->properties['Item'][$prop] = $value;
     }
 
    /**
@@ -115,9 +118,9 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
     public function __toString()
     {
         if (isset($this->properties['Title'])) {
-            return $this->properties['Title'] . ' (# '.$this->properties['Id'].')';
+            return $this->properties['Title'] . ' (# '.$this->properties['ItemID'].')';
         }
-        return '# '.$this->properties['Id'];
+        return '# '.$this->properties['ItemID'];
     }
 
    /**
@@ -138,8 +141,8 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
     public function Get($DetailLevel = null, $DescFormat = 0)
     {
         $args = array(
-                        'Id'         => $this->properties['Id'],
-                        'DescFormat' => $DescFormat
+                        'ItemID'        => $this->properties['Item']['Id'],
+                        'DescFormat'    => $DescFormat
                     );
         if (!is_null($DetailLevel)) {
             $args['DetailLevel'] = $DetailLevel;
@@ -165,7 +168,7 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
     public function GetCrossPromotions($PromotionMethod = 'CrossSell', $PromotionViewMode = null)
     {
         $args = array(
-                        'ItemId'          => $this->properties['Id'],
+                        'ItemID'          => $this->properties['ItemID'],
                         'PromotionMethod' => $PromotionMethod
                     );
         if (!is_null($PromotionViewMode)) {
@@ -188,7 +191,7 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
     public function AddToDescription($Description)
     {
         $args = array(
-                        'ItemId'          => $this->properties['Id'],
+                        'ItemID'          => $this->properties['ItemID'],
                         'Description'     => $Description
                     );
         $call = Services_Ebay::loadAPICall('AddToItemDescription');
@@ -207,7 +210,7 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
     public function End($EndCode)
     {
         $args = array(
-                        'ItemId'  => $this->properties['Id'],
+                        'ItemID'  => $this->properties['ItemID'],
                         'EndCode' => $EndCode
                     );
         $call = Services_Ebay::loadAPICall('EndItem');
@@ -225,7 +228,7 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
     */
     public function Add()
     {
-        if (isset($this->properties['ItemId']) && !is_null($this->properties['ItemId'])) {
+        if (isset($this->properties['ItemID']) && !is_null($this->properties['ItemID'])) {
         	throw new Services_Ebay_Exception('This item already has an ItemId and thus cannot be added.');
         }
         $call = Services_Ebay::loadAPICall('AddItem', array($this));
@@ -244,7 +247,7 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
     public function Relist()
     {
         $args = array(
-                        'ItemId'  => $this->properties['Id']
+                        'ItemID'  => $this->properties['ItemID']
                     );
         $call = Services_Ebay::loadAPICall('RelistItem');
         $call->setArgs($args);
@@ -272,13 +275,12 @@ class Services_Ebay_Model_Item extends Services_Ebay_Model
     * @return   object Services_Ebay_Model_Item
     * @see      Services_Ebay_Call_AddSecondChanceItem
     */
-    public function AddSecondChance($RecipientBidderUserId, $Duration = 3, $CopyEmailToSeller = 0, $BuyItNowPrice = null)
+    public function AddSecondChance($RecipientBidderUserId, $Duration = 'Days_3', $BuyItNowPrice = null)
     {
         $args = array(
-                        'OriginalItemId'        => $this->properties['Id'],
-                        'RecipientBidderUserId' => $RecipientBidderUserId,
+                        'OriginalItemID'        => $this->properties['ItemID'],
+                        'RecipientBidderUserID' => $RecipientBidderUserId,
                         'Duration'              => $Duration,
-                        'CopyEmailToSeller'     => $CopyEmailToSeller
                     );
         if ($BuyItNowPrice !== null) {
         	$args['BuyItNowPrice'] = $BuyItNowPrice;

@@ -24,8 +24,8 @@ class Services_Ebay_Call_GetPromotionRules extends Services_Ebay_Call
     */
     protected $paramMap = array(
                                  'PromotionMethod',
-                                 'ItemId',
-                                 'StoreCatId'
+                                 'ItemID',
+                                 'StoreCategoryID'
                                 );
  
    /**
@@ -36,10 +36,9 @@ class Services_Ebay_Call_GetPromotionRules extends Services_Ebay_Call
     */
     public function call(Services_Ebay_Session $session)
     {
-        $this->args = array('Context' => $this->args);
         $return = parent::call($session);
-        if (!empty($return['PromotionRules'])) {
-            return $return['PromotionRules'];	
+        if (!empty($return['PromotionRuleArray'])) {
+            return $return['PromotionRuleArray'];	
         }
         return array();
     }

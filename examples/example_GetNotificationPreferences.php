@@ -18,7 +18,7 @@ $session->setToken($token);
 
 $ebay = new Services_Ebay($session);
 
-$prefs = $ebay->GetNotificationPreferences('Application');
+$prefs = $ebay->GetNotificationPreferences('User');
 
 echo '<pre>';
 print_r($prefs);

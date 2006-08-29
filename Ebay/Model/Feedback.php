@@ -29,11 +29,11 @@ class Services_Ebay_Model_Feedback extends Services_Ebay_Model implements Iterat
     */
     public function __construct($feedback, $session = null)
     {
-        if (isset($feedback['FeedbackDetail'])) {
-            foreach ($feedback['FeedbackDetail']['FeedbackDetailItem'] as $tmp) {
+        if (isset($feedback['FeedbackDetailArray'])) {
+            foreach ($feedback['FeedbackDetailArray'] as $tmp) {
                 array_push($this->items, Services_Ebay::loadModel('FeedbackEntry', $tmp, $session));
             }
-        	unset($feedback['FeedbackDetail']);
+        	unset($feedback['FeedbackDetailArray']);
         }
         parent::__construct($feedback);
     }

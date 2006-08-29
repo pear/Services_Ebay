@@ -31,7 +31,7 @@ class Services_Ebay_Call_GetCrossPromotions extends Services_Ebay_Call
     * @var  array
     */
     protected $paramMap = array(
-                                 'ItemId',
+                                 'ItemID',
                                  'PromotionMethod',
                                  'PromotionViewMode'
                                 );
@@ -43,20 +43,8 @@ class Services_Ebay_Call_GetCrossPromotions extends Services_Ebay_Call
     */
     public function call(Services_Ebay_Session $session)
     {
-        $bak = $this->args;
-        $this->args['Context'] = array();
-        foreach ($this->paramMap as $param) {
-            if (!isset($this->args[$param])) {
-                continue;
-            }
-            $this->args['Context'][$param] = $this->args[$param];
-            unset( $this->args[$param] );
-        }
-        
         $return = parent::call($session);
-        $this->args = $bak;
-
-        return $return['CrossPromotions'];
+        return $return['CrossPromotion'];
     }
 }
 ?>

@@ -20,16 +20,18 @@ $ebay = new Services_Ebay($session);
 
 $order = Services_Ebay::loadModel('Order');
 
-$order->Currency = 1;
-$order->CreatedBy = 2;
+$order->CreatingUserRole = 'Buyer';
+$order->PaymentMethods = 'None';
 $order->Total = '60.0';
+$order->ApplyShippingDiscount = 'true';
+$order->InsuranceFee = '02.0';
+$order->InsuranceOption = 'NotOffered';
 
 $order->AddTransaction('4501333765', 0);
 $order->AddTransaction('4501336808', 0);
-$order->AddShippingServiceOption(1, '40.0', 1);
-
-$order->AcceptPaymentTerms('CCAccepted', 'PaymentOther');
-$order->AcceptPaymentTerms('PayPalAccepted', 'VisaMaster');
+$order->AddShippingServiceOption('12.12', 1, '40.0', '1.00', 1);
+$order->AddInternationalShippingServiceOption(2376, 1, '40.0', 1, 'US');
+$order->AddSalesTax('1.03', '1', 'true');
 
 $result = $ebay->AddOrder($order);
 ?>

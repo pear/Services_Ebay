@@ -23,8 +23,8 @@ class Services_Ebay_Call_GetUser extends Services_Ebay_Call
     * @var  array
     */
     protected $paramMap = array(
-                                 'UserId',
-                                 'ItemId'
+                                 'UserID',
+                                 'ItemID'
                                 );
    /**
     * make the API call

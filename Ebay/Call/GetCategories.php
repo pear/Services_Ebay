@@ -24,6 +24,7 @@ class Services_Ebay_Call_GetCategories extends Services_Ebay_Call
     */
     protected $paramMap = array(
                                  'CategoryParent',
+                                 'CategorySiteID',
                                  'ViewAllNodes',
                                  'LevelLimit'
                                 );
@@ -37,7 +38,7 @@ class Services_Ebay_Call_GetCategories extends Services_Ebay_Call
     public function call(Services_Ebay_Session $session)
     {
         $return = parent::call($session);
-        return $return['Categories'];
+        return $return['CategoryArray'];
     }
 }
 ?>

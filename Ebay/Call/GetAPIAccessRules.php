@@ -26,7 +26,7 @@ class Services_Ebay_Call_GetAPIAccessRules extends Services_Ebay_Call
     public function call(Services_Ebay_Session $session)
     {
         $return = parent::call($session);
-        return $return['APIAccessRules']['APIAccessRule'];
+        return $return['ApiAccessRule'];
     }
 }
 ?>

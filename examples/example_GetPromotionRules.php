@@ -17,7 +17,7 @@ $session->setToken($token);
 
 $ebay = new Services_Ebay($session);
 
-$rules = $ebay->GetPromotionRules('UpSell', '4502066038');
+$rules = $ebay->GetPromotionRules('UpSell', 110002463992);
 
 echo '<pre>';
 print_r($rules);

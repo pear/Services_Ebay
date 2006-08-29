@@ -23,8 +23,8 @@ class Services_Ebay_Call_GetProductFinder extends Services_Ebay_Call
     * @var  array
     */
     protected $paramMap = array(
-                                 'ProductFinderId',
-                                 'Version'
+                                 'ProductFinderID',
+                                 'AttributeSystemVersion'
                                 );
 
    /**
@@ -33,7 +33,7 @@ class Services_Ebay_Call_GetProductFinder extends Services_Ebay_Call
     * @var  array
     */
     protected $args = array(
-                            'DetailLevel' => 1
+                            'DetailLevel' => 'ReturnAll'
                         );
 
    /**
@@ -53,15 +53,6 @@ class Services_Ebay_Call_GetProductFinder extends Services_Ebay_Call
     */
     public function call(Services_Ebay_Session $session)
     {
-        if (isset($this->args['ProductFinderId'])) {
-            $ids = $this->args['ProductFinderId'];
-            unset($this->args['ProductFinderId']);
-            if (!is_array($ids)) {
-            	$ids = array($ids);
-            }
-        	$this->args['ProductFinderIds']['ProductFinderId'] = $ids;
-        }
-        
         $xml = parent::call($session, false);
         $dom = DOMDocument::loadXML($xml);
 

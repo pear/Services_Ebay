@@ -23,10 +23,9 @@ class Services_Ebay_Call_AddSecondChanceItem extends Services_Ebay_Call
     * @var  array
     */
     protected $paramMap = array(
-                                 'OriginalItemId',
-                                 'RecipientBidderUserId',
+                                 'ItemID',
+                                 'RecipientBidderUserID',
                                  'Duration',
-                                 'CopyEmailToSeller',
                                  'BuyItNowPrice'
                                 );
     
@@ -39,7 +38,9 @@ class Services_Ebay_Call_AddSecondChanceItem extends Services_Ebay_Call
     public function call(Services_Ebay_Session $session)
     {
         $return = parent::call($session);
-        return Services_Ebay::loadModel('Item', $return['Item'], $session);
+        if ($return['Ack'] == 'Success') {
+            return $return['Fees']['Fee']['Name'];
+        }
     }
 }
 ?>

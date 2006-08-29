@@ -22,7 +22,7 @@ class Services_Ebay_Call_AddDispute extends Services_Ebay_Call
     *
     * @var  integer
     */
-    protected $since = 361;
+    protected $since = 445;
     
    /**
     * parameter map that is used, when scalar parameters are passed
@@ -30,8 +30,8 @@ class Services_Ebay_Call_AddDispute extends Services_Ebay_Call
     * @var  array
     */
     protected $paramMap = array(
-                                 'ItemId',
-                                 'TransactionId',
+                                 'ItemID',
+                                 'TransactionID',
                                  'DisputeReason',
                                  'DisputeExplanation'
                                 );
@@ -45,8 +45,8 @@ class Services_Ebay_Call_AddDispute extends Services_Ebay_Call
     public function call(Services_Ebay_Session $session)
     {
         $return = parent::call($session);
-        if ($return['CallStatus'] === 'Success') {
-        	return $return['DisputeId'];
+        if ($return['Ack'] === 'Success') {
+        	return $return['DisputeID'];
         }
         return false;
     }

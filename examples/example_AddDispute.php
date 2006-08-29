@@ -18,7 +18,7 @@ $session->setToken($token);
 
 $ebay = new Services_Ebay($session);
 
-$disputeId = $dispute = $ebay->AddDispute('4501333179', '0', 2, 5);
+$disputeId = $dispute = $ebay->AddDispute('110001152130', '0', 'BuyerHasNotPaid', 'BuyerHasNotResponded');
 
 echo 'DistputeId: '.$disputeId;
 ?>

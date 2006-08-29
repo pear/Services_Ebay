@@ -19,7 +19,7 @@ $session->setToken($token);
 $ebay = new Services_Ebay($session);
 
 
-$details = $ebay->GeteBayDetails();
+$details = $ebay->GeteBayDetails('CountryDetails');
 echo '<pre>';
 print_r($details);
 echo '</pre>';
@@ -28,7 +28,7 @@ echo '</pre>';
 // get the shipping services for Germany
 $session->setSiteId(Services_Ebay::SITEID_DE);
 
-$details = $ebay->GeteBayDetails('ShippingService');
+$details = $ebay->GeteBayDetails('CurrencyDetails');
 echo '<pre>';
 print_r($details);
 echo '</pre>';

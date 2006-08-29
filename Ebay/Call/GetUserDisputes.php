@@ -31,7 +31,9 @@ class Services_Ebay_Call_GetUserDisputes extends Services_Ebay_Call
     * @var  array
     */
     protected $args = array(
-                            'PageNumber' => '1'
+                            'Pagination' => array(
+                                                    'PageNumber' => '1'
+                                                )
                         );
    /**
     * parameter map that is used, when scalar parameters are passed
@@ -39,10 +41,8 @@ class Services_Ebay_Call_GetUserDisputes extends Services_Ebay_Call
     * @var  array
     */
     protected $paramMap = array(
-                                 'DisputeFilter',
+                                 'DisputeFilterType',
                                  'DisputeSortType',
-                                 'SortOrder',
-                                 'PageNumber'
                                 );
     
    /**
@@ -54,7 +54,7 @@ class Services_Ebay_Call_GetUserDisputes extends Services_Ebay_Call
     public function call(Services_Ebay_Session $session)
     {
         $return = parent::call($session);
-        return Services_Ebay::loadModel('DisputeList', $return['UserDisputes'], $session);
+        return Services_Ebay::loadModel('DisputeList', $return, $session);
     }
 }
 ?>

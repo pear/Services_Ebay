@@ -24,7 +24,7 @@ class Services_Ebay_Call_GetDescriptionTemplates extends Services_Ebay_Call
     * @var  array
     */
     protected $paramMap = array(
-                                 'DateModified'
+                                 'LastModifiedTime'
                                 );
    /**
     * make the API call
@@ -35,7 +35,7 @@ class Services_Ebay_Call_GetDescriptionTemplates extends Services_Ebay_Call
     public function call(Services_Ebay_Session $session)
     {
         $return = parent::call($session);
-        return $return['DescriptionTemplates'];
+        return $return['DescriptionTemplate'];
     }
 }
 ?>

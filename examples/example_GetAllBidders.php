@@ -18,7 +18,7 @@ $session->setToken($token);
 
 $ebay = new Services_Ebay($session);
 
-$bidders = $ebay->GetAllBidders(4501306898);
+$bidders = $ebay->GetAllBidders(4501306898, 'ViewAll');
 
 echo '<pre>';
 print_r($bidders);

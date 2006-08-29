@@ -111,6 +111,9 @@ abstract class Services_Ebay_Call
     {
         $session->setSerializerOptions($this->serializerOptions);
         $session->setUnserializerOptions($this->unserializerOptions);
+        if (!is_null($this->since)) {
+            $session->setCompatLevel($this->since);
+        }
         $return = $session->sendRequest($this->verb, $this->args, $this->authType, $parseResult);
         return $return;
     }

@@ -18,7 +18,7 @@ $session->setToken($token);
 
 $ebay = new Services_Ebay($session);
 
-$transactions = $ebay->GetItemTransactions('4501333179', '2004-08-24 00:00:00', '2004-08-30 00:00:00');
+$transactions = $ebay->GetItemTransactions('4501333179', '2004-08-24 00:00:00', '2004-08-30 00:00:00', 1,2);
 
 echo 'Transactions overview:<br />';
 echo '<pre>';

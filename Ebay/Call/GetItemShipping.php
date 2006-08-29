@@ -32,8 +32,8 @@ class Services_Ebay_Call_GetItemShipping extends Services_Ebay_Call
     * @var  array
     */
     protected $paramMap = array(
-                                 'ItemId',
-                                 'ShipToZipCode',
+                                 'ItemID',
+                                 'DestinationPostalCode',
                                  'QuantitySold'
                                 );
     
@@ -47,17 +47,15 @@ class Services_Ebay_Call_GetItemShipping extends Services_Ebay_Call
     {
         $return = parent::call($session);
         
-        if (isset($return['ShippingRate']['ShippingServiceOptions']['ShippingServiceOption'][0])) {
-            $return['ShippingRate']['ShippingServiceOptions'] = $return['ShippingRate']['ShippingServiceOptions']['ShippingServiceOption'];
-            unset($return['ShippingRate']['ShippingServiceOptions']['ShippingServiceOption']);
+        if (isset($return['ShippingDetails']['ShippingServiceOptions'][0])) {
+            $return['ShippingDetails']['ShippingServiceOptions'] = $return['ShippingDetails']['ShippingServiceOptions'];
+            unset($return['ShippingDetails']['ShippingServiceOptions']);
         } else {
-            $return['ShippingRate']['ShippingServiceOptions'] = array( $return['ShippingRate']['ShippingServiceOptions']['ShippingServiceOption'] );
-            unset($return['ShippingRate']['ShippingServiceOptions']['ShippingServiceOption']);
+            $return['ShippingDetails']['ShippingServiceOptions'] = array( $return['ShippingDetails']['ShippingServiceOptions'] );
+            unset($return['ShippingRate']['ShippingServiceOptions']);
         }
         
-        
-        
-        return $return['ShippingRate'];
+        return $return['ShippingDetails'];
     }
 }
 ?>

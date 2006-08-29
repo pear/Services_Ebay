@@ -56,8 +56,8 @@ class Services_Ebay_Call_AddOrder extends Services_Ebay_Call
     public function call(Services_Ebay_Session $session)
     {
         $return = parent::call($session);
-        if (isset($return['Order']['OrderId'])) {
-        	return $return['Order']['OrderId'];
+        if (isset($return['OrderID'])) {
+        	return $return['OrderID'];
         }
         return false;
     }

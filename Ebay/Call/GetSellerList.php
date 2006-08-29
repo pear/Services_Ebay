@@ -25,8 +25,12 @@ class Services_Ebay_Call_GetSellerList extends Services_Ebay_Call
     * @var  array
     */
     protected $args = array(
-                            'UserId'       => null,
-                            'DetailLevel'  => 16
+                            'UserID'        => null,
+                            'DetailLevel'   => 'ReturnAll',
+                            'Pagination'    => array(
+                                                        'PageNumber'    => 1,
+                                                        'EntriesPerPage'=> 100
+                                                    )
                         );
    /**
     * parameter map that is used, when scalar parameters are passed
@@ -34,8 +38,8 @@ class Services_Ebay_Call_GetSellerList extends Services_Ebay_Call
     * @var  array
     */
     protected $paramMap = array(
-                                 'UserId',
-                                 'ItemsPerPage',
+                                 'UserID',
+                                 'EntriesPerPage',
                                  'PageNumber',
                                  'Sort',
                                 );
@@ -49,7 +53,7 @@ class Services_Ebay_Call_GetSellerList extends Services_Ebay_Call
     public function call(Services_Ebay_Session $session)
     {
         $return = parent::call($session);
-        return Services_Ebay::loadModel('ItemList', $return['SellerList'], $session);
+        return Services_Ebay::loadModel('ItemList', $return, $session);
     }
 }
 ?>

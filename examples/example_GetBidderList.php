@@ -37,7 +37,7 @@ echo '<br /><br />';
 $user = $ebay->GetUser('loislane-74');
 
 echo 'Getting Bidder List on User object:<br />';
-$list2 = $user->GetBidderList();
+$list2 = $user->GetBidderList('true', 'ReturnAll', '2005-01-01', '2006-01-01');
 foreach ($list2 as $item) {
     echo $item;
     echo '<br />';

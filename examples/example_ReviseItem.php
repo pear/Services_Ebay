@@ -16,7 +16,7 @@ $session = Services_Ebay::getSession($devId, $appId, $certId);
 $session->setToken($token);
 $ebay = new Services_Ebay($session);
 
-$item = Services_Ebay::loadModel('Item', '4501336830', $session);
+$item = Services_Ebay::loadModel('Item', '110002442025', $session);
 $item->Get();
 
 $item->Title = 'Supergirl\'s bra';

@@ -23,12 +23,9 @@ class Services_Ebay_Call_GetAccount extends Services_Ebay_Call
     * @var  array
     */
     protected $paramMap = array(
-                                 'AccountPageType',
-                                 'Period',
+                                 'AccountHistorySelection',
                                  'BeginDate',
                                  'EndDate',
-                                 'PageNumber',
-                                 'Currency'
                                 );
     
    /**
@@ -40,7 +37,7 @@ class Services_Ebay_Call_GetAccount extends Services_Ebay_Call
     public function call(Services_Ebay_Session $session)
     {
         $return = parent::call($session);
-        return Services_Ebay::loadModel('Account', $return['Account'], $session);
+        return Services_Ebay::loadModel('Account', $return['AccountEntries'], $session);
     }
 }
 ?>

@@ -22,15 +22,16 @@ class Services_Ebay_Model_Dispute extends Services_Ebay_Model implements Iterato
     */
     public function __construct($props, $session = null)
     {
-        if (isset($props['Messages'])) {
-            $messages = $props['Messages'];
-            unset($props['Messages']);
-            if (isset($messages['Message'][0])) {
-                $this->messages = $messages['Message'];
+        if (!empty($props)) {
+            if (isset($props[0])) {
+                foreach ($props as $tmp) {
+                    $this->messages[] = $tmp['DisputeMessage']['MessageText'];
+                }
             } else {
-                $this->messages = array($messages['Message']);
+                $this->messages = array($messages['DisputeMessage']['MessageText']);
             }
         }
+
         parent::__construct($props, $session);
     }
     

@@ -17,7 +17,7 @@ $session->setToken($token);
 $ebay = new Services_Ebay($session);
 
 $item   = $ebay->GetItem(4501336808);
-$result = $item->End(1);
+$result = $item->End('LostOrBroken');
 
 echo '<pre>';
 print_r($result);

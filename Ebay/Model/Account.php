@@ -23,9 +23,9 @@ class Services_Ebay_Model_Account extends Services_Ebay_Model implements Iterato
     */
     public function __construct($props, $session = null)
     {
-        if (isset($props['Entry'])) {
-            $entries = $props['Entry'];
-            unset($props['Entry']);
+        if (isset($props['AccountEntry'])) {
+            $entries = $props['AccountEntry'];
+            unset($props['AccountEntry']);
             if (isset($entries[0])) {
                 $this->entries = $entries;
             } else {

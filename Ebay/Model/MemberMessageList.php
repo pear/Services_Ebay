@@ -44,18 +44,17 @@ class Services_Ebay_Model_MemberMessageList extends Services_Ebay_Model implemen
     */
     public function __construct($messages, $session = null)
     {
-        $this->moreItems = (boolean)$messages['MoreItems'];
-        $this->pages = (integer)$messages['TotalNumberOfPages'];
-        $this->entries = (integer)$messages['TotalNumberOfEntries'];
-        
-        if (isset($messages['MemberMessages']['MemberMessage'])) {
-            if (!isset($messages['MemberMessages']['MemberMessage'][0])) {
-                $messages['MemberMessages']['MemberMessage'] = array($messages['MemberMessages']['MemberMessage']);
+        $this->moreItems = $messages['HasMoreItems'] == 'false' ? false : true;
+        $this->pages = (integer)$messages['PaginationResult']['TotalNumberOfPages'];
+        $this->entries = (integer)$messages['PaginationResult']['TotalNumberOfEntries'];
+        if (isset($messages['MemberMessage'])) {
+            if (!isset($messages['MemberMessage'][0])) {
+                $messages['MemberMessage'] = array($messages['MemberMessage']);
             }
-            foreach ($messages['MemberMessages']['MemberMessage'] as $tmp) {
+            foreach ($messages['MemberMessage'] as $tmp) {
                 array_push($this->messages, Services_Ebay::loadModel('MemberMessage', $tmp, $session));
             }
-        	unset($messages['MemberMessages']);
+            unset($messages['MemberMessage']);
         }
         parent::__construct($messages);
     }

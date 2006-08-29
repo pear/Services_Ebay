@@ -20,7 +20,7 @@ class Services_Ebay_Model_User extends Services_Ebay_Model
     *
     * @var string
     */
-    protected $primaryKey = 'UserId';
+    protected $primaryKey = 'UserID';
 
     /**
     * get the feedback for the user
@@ -33,10 +33,12 @@ class Services_Ebay_Model_User extends Services_Ebay_Model
     public function GetFeedback($DetailLevel = Services_Ebay::FEEDBACK_BRIEF, $StartingPage = 1, $ItemsPerPage = 25)
     {
         $args = array(
-                       'UserId'       => $this->properties['UserId'],
-                       'StartingPage' => $StartingPage,
-                       'ItemsPerPage' => $ItemsPerPage,
-                       'DetailLevel'  => $DetailLevel
+                       'UserID'       => $this->properties['UserID'],
+                       'Pagination'   => array( 
+                                                'StartingPage' => $StartingPage,
+                                                'EntriesPerPage' => $ItemsPerPage
+                                              ),
+                       'DetailLevel'  => 'ReturnAll'
                     );
         $call = Services_Ebay::loadAPICall('GetFeedback');
         $call->setArgs($args);
@@ -68,15 +70,14 @@ class Services_Ebay_Model_User extends Services_Ebay_Model
     *
     * @link     http://developer.ebay.com/DevZone/docs/API_Doc/Functions/GetBidderList/GetBidderList.htm
     */
-    public function GetBidderList($Active = 1, $DetailLevel = 32, $Days = null, $EndTimeFrom = null, $EndTimeTo = null)
+    public function GetBidderList($Active = true, $DetailLevel = 'ReturnAll', $EndTimeFrom = null, $EndTimeTo = null)
     {
         $args = array(
-                       'UserId'       => $this->properties['UserId'],
-                       'Active'       => $Active,
-                       'DetailLevel'  => 32,
-                       'Days'         => $Days,
-                       'EndTimeFrom'  => $EndTimeFrom,
-                       'EndTimeTo'    => $EndTimeTo
+                       'UserID'             => $this->properties['UserID'],
+                       'ActiveItemsOnly'    => $Active,
+                       'DetailLevel'        => 'ReturnAll',
+                       'EndTimeFrom'        => $EndTimeFrom,
+                       'EndTimeTo'          => $EndTimeTo
                     );
         $call = Services_Ebay::loadAPICall('GetBidderList');
         $call->setArgs($args);

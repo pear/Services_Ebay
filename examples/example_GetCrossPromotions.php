@@ -18,13 +18,13 @@ $session->setToken($token);
 
 $ebay = new Services_Ebay($session);
 
-$promo = $ebay->GetCrossPromotions(4501296414);
+$promo = $ebay->GetCrossPromotions(110002463992);
 
 echo	"<pre>";
 print_r($promo);
 echo	"</pre>";
 
-$item = $ebay->GetItem(4501296414);
+$item = $ebay->GetItem(110002463992);
 
 echo	"<pre>";
 print_r($item->GetCrossPromotions());

@@ -21,7 +21,7 @@ $ebay = new Services_Ebay($session);
 /**
  * get the user information
  */
-$list = $ebay->GetSellerList(array('UserId'=>'superman-74', 'DetailLevel' => 96, 'ItemsPerPage' => 10, 'PageNumber' => 1, 'StartTimeFrom' => '2003-11-01 00:00:00', 'StartTimeTo' => '2004-12-01 00:00:00'));
+$list = $ebay->GetSellerList(array('UserID'=>'superman-74', 'DetailLevel' => 'ReturnAll', 'Pagination' => array('EntriesPerPage' => 140, 'PageNumber' => 1), 'StartTimeFrom' => '2003-11-01 00:00:00', 'StartTimeTo' => '2004-12-01 00:00:00'));
 
 $items = array();
 foreach ($list as $item) {
@@ -29,25 +29,4 @@ foreach ($list as $item) {
 	print_r($item->toArray());
 	echo '</pre>';
 }
-
-
-echo	'<pre>';
-print_r($list->toArray());
-echo	'</pre>';
-
-echo 'Items:<br />';
-foreach ($list as $item) {
-    echo $item;
-    echo '<br />';
-}
-
-echo	'<pre>';
-print_r($item->toArray());
-echo	'</pre>';
-
-$item->Get();
-
-echo	'<pre>';
-print_r($item->toArray());
-echo	'</pre>';
 ?>

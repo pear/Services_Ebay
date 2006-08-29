@@ -30,7 +30,7 @@ class Services_Ebay_Call_GetRuName extends Services_Ebay_Call
     * @var  array
     */
     protected $paramMap = array(
-                                'UseCaseId'
+                                'ClientUseCase'
                                 );
    /**
     * make the API call

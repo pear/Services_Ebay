@@ -16,7 +16,7 @@ $session = Services_Ebay::getSession($devId, $appId, $certId);
 $session->setToken($token);
 $ebay = new Services_Ebay($session);
 
-$item   = $ebay->GetItem(4501333179);
+$item   = $ebay->GetItem(6280834492);
 $result = $item->AddToDescription('He rarely ever used it.');
 
 if ($result === true) {

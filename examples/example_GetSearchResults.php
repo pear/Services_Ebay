@@ -18,7 +18,7 @@ $session->setToken($token);
 
 $ebay = new Services_Ebay($session);
 
-$result = $ebay->GetSearchResults('super');
+$result = $ebay->GetSearchResults('NoteBook');
 
 echo 'General information about the search result:<br />';
 echo '<pre>';

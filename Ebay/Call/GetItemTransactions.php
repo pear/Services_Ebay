@@ -24,9 +24,9 @@ class Services_Ebay_Call_GetItemTransactions extends Services_Ebay_Call
     * @var  array
     */
     protected $paramMap = array(
-                                 'ItemId',
-                                 'LastModifiedFrom',
-                                 'LastModifiedTo',
+                                 'ItemID',
+                                 'ModTimeFrom',
+                                 'ModTimeTo',
                                  'TransactionsPerPage',
                                  'PageNumber'
                                 );
@@ -38,8 +38,22 @@ class Services_Ebay_Call_GetItemTransactions extends Services_Ebay_Call
     */
     public function call(Services_Ebay_Session $session)
     {
+        $bak = $this->args;
+        $this->args['PaginationType'] = array();
+        foreach ($this->paramMap as $param) {
+            if ($param == 'TransactionsPerPage' || $param == 'PageNumber') {
+                if (!isset($this->args[$param])) {
+                    continue;
+                }
+                $this->args['PaginationType'][$param] = $this->args[$param];
+                unset( $this->args[$param] );
+            }
+        }
+
         $return = parent::call($session);
-        $result = Services_Ebay::loadModel('TransactionList', $return['GetItemTransactionsResult'], $session);
+        $result = Services_Ebay::loadModel('TransactionList', $return, $session);
+
+        $this->args = $bak;
         return $result;
     }
 }

@@ -23,7 +23,6 @@ echo $RuName.'<br />';
 
 $result = $ebay->SetReturnURL($RuName, 'add', 'https://foo.de/accept/', 'https://foo.de/reject');
 echo 'Setting Return URL...';
-var_dump($result);
 
 $result = $ebay->GetReturnURL();
 echo '<pre>';

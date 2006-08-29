@@ -26,7 +26,7 @@ class Services_Ebay_Call_GetCategory2CS extends Services_Ebay_Call
     * @var  array
     */
     protected $paramMap = array(
-                                 'CategoryId',
+                                 'CategoryID',
                                 );
     
    /**
@@ -35,12 +35,8 @@ class Services_Ebay_Call_GetCategory2CS extends Services_Ebay_Call
     * @var  array
     */
     protected $args = array(
-                            'DetailLevel' => 1
+                            'DetailLevel' => 'ReturnAll'
                         );
-
-    protected $unserializerOptions = array(
-                                            'keyAttribute' => array('Category' => 'id')
-                                        );
 
    /**
     * make the API call
@@ -51,7 +47,7 @@ class Services_Ebay_Call_GetCategory2CS extends Services_Ebay_Call
     public function call(Services_Ebay_Session $session)
     {
         $return = parent::call($session);
-        return $return['Category2CS'];
+        return $return['MappedCategoryArray'];
     }
 }
 ?>

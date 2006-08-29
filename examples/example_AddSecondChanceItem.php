@@ -18,7 +18,7 @@ $session->setToken($token);
 
 $ebay = new Services_Ebay($session);
 
-$item = $ebay->AddSecondChanceItem('4501333765', 'loislane-74', 3);
+$item = $ebay->AddSecondChanceItem('4501333765', 'loislane-74', 'Days_3');
 
 echo '<pre>';
 print_r($item->toArray());
