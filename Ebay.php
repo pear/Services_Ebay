@@ -97,136 +97,129 @@ class Services_Ebay
     * authentication based on user id and password
     */
     const AUTH_TYPE_USER  = 2;
-    
+
+   /**
+    * GetUserDisputes():
+    * All disputes that involve me as buyer or seller.
+    */
+    const USER_DISPUTES_ALL = 'AllInvolvedDisputes';
+
+   /**
+    * GetUserDisputes():
+    * All disputes that involve me as buyer or seller and are awaiting my response.
+    */
+    const USER_DISPUTES_MY_RESPONSE = 'DisputesAwaitingMyResponse';
+
+   /**
+    * GetUserDisputes():
+    * All disputes that involve me as buyer or seller and are awaiting the other party's response.
+    */
+    const USER_DISPUTES_OTHER_RESPONSE = 'DisputesAwaitingOtherPartyResponse';
+
+   /**
+    * GetUserDisputes():
+    * All disputes that involve me as buyer or seller and are closed.
+    */
+    const USER_DISPUTES_CLOSED = 'AllInvolvedClosedDisputes';
+
+   /**
+    * GetUserDisputes():
+    * All disputes that involve me as buyer or seller and are eligible for a Final Value Fee credit, whether or not the credit has been granted.
+    */
+    const USER_DISPUTES_CREDIT_ELIGIBLE = 'EligibleForCredit';
+
+   /**
+    * GetUserDisputes():
+    * All Unpaid item disputes.
+    */
+    const USER_DISPUTES_UNPAIDS = 'UnpaidItemDisputes';
+
+   /**
+    * GetUserDisputes():
+    * All Item Not Received disputes.
+    */
+    const USER_DISPUTES_NODISPUTES = 'ItemNotReceivedDisputes';
+
+   /**
+    * GetUserDisputes():
+    * Sort by the time the dispute was created, in ascending order.
+    */
+    const USER_DISPUTES_SORT_TIME_ASC = 'DisputeCreatedTimeAscending';
+
+   /**
+    * GetUserDisputes():
+    * Sort by the time the dispute was created, in descending order.
+    */
+    const USER_DISPITES_SORT_TIME_DSC = 'DisputeCreatedTimeDescending';
+
+   /**
+    * GetUserDisputes():
+    * Sort by the dispute status, in ascending order.
+    */
+    const USER_DISPUTES_SORT_STATUS_ASC = 'DisputeStatusAscending';
+
+   /**
+    * GetUserDisputes():
+    * Sort by the dispute status, in descending order.
+    */
+    const USER_DISPUTES_SORT_STATUS_DSC = 'DisputeStatusDescending';
+
+   /**
+    * GetUserDisputes():
+    * Sort by whether the dispute is eligible for Final Value Fee credit, in ascending order. Ineligible disputes are listed before eligible disputes.
+    */
+    const USER_DISPUTES_SORT_ELIGIBILITY_ASC = 'DisputeCreditEligibilityAscending';
+
+   /**
+    * GetUserDisputes():
+    * Sort by whether the dispute is eleigible for Final Value Fee credit, in descending order. Eligible disputes are listed before i(ineligible disputes.
+    */
+    const USER_DISPUTES_SORT_ELIGIBILITY_DSC = 'DisputeCreditEligibilityDescending';
+
    /**
     * return only feedback summary
     */
-    const FEEDBACK_BRIEF   = 0;
+    const RESPONSE_BRIEF   = 'ReturnSummary';
 
    /**
     * return verbose feedback
     */
-    const FEEDBACK_VERBOSE = 1;
+    const RESPONSE_VERBOSE = 'ReturnAll';
 
    /**
-    * GetItemTransactions():
-    * Detail level 2 focuses on checkout detail (and status) data.
+    * Returns Description, plus the ListingDesigner node and some additional information if applicable
     */
-    const TRANSACTION_DETAIL_CHECKOUT = 2;
+    const RESPONSE_DESCRIPTION = 'ItemReturnDescription';
 
    /**
-    * GetItemTransactions():
-    * Detail level 4 focuses on retrieving user data for the buyer.
+    * Returns Item Specifics and Pre-filled Item Information, if applicable
     */
-    const TRANSACTION_DETAIL_BUYER = 4;
-    
-   /**
-    * GetItemTransactions():
-    * Detail level 8 focuses on the return of payment terms data.
-    */
-    const TRANSACTION_DETAIL_PAYMENTTERMS = 8;
-    
-   /**
-    * GetItemTransactions():
-    * Detail level 16 retrieves the user data for the seller.
-    */
-    const TRANSACTION_DETAIL_SELLER = 16;
+    const RESPONSE_ATTRIBUTES = 'ItemReturnCategories';
 
    /**
-    * GetItemTransactions():
-    * Detail level 32 retrieves checkout status and general auction data (like Title and QuantitySold).
+    * Returns message headers
     */
-    const TRANSACTION_DETAIL_PAYMENT_AUCTIONDATA = 32;
+    const RESPONSE_HEADERS = 'ReturnHeaders';
 
    /**
-    * GetItemTransactions():
-    * Detail level 64 focuses on retrieving end-of-auction data.
+    * Returns full message information
     */
-    const TRANSACTION_DETAIL_PAYMENT_ENDOFACTION = 64;
-
-   /**
-    * GetUserDisputes():
-    * 1 = See all disputes that involve me as seller or buyer.
-    */
-    const USER_DISPUTES_ALL = 1;
-
-   /**
-    * GetUserDisputes():
-    * 2 = See all disputes that are awaiting my response.
-    */
-    const USER_DISPUTES_MY_RESPONSE = 2;
-
-   /**
-    * GetUserDisputes():
-    * 3 = See all disputes that are awaiting the other party's response.
-    */
-    const USER_DISPUTES_OTHER_RESPONSE = 3;
-
-   /**
-    * GetUserDisputes():
-    * 4 = See all closed disputes that involve me.
-    */
-    const USER_DISPUTES_CLOSED = 4;
-
-   /**
-    * AddDisputeResponse():
-    * 11 = Seller wants to add information or respond to an email from the buyer.
-    */
-    const DISPUTE_RESPONSE_MESSAGE = 11;
-
-   /**
-    * AddDisputeResponse():
-    * 13 = Seller has completed the transaction or otherwise does not need to pursue the dispute any longer.
-    */
-    const DISPUTE_RESPONSE_COMPLETED = 13;
-
-   /**
-    * AddDisputeResponse():
-    * 14 = Seller has made an agreement with the buyer and requires a credit for FVF fees.
-    */
-    const DISPUTE_RESPONSE_AGREEMENT = 14;
-
-   /**
-    * AddDisputeResponse():
-    * 15 = Seller wants to end communication or stop waiting for the buyer.
-    */
-    const DISPUTE_RESPONSE_END = 15;
-
-   /**
-    * SellerReverseDispute():
-    * 7 = Came to agreement with buyer.
-    */
-    const DISPUTE_REVERSE_AGREEMENT = 7;
-
-   /**
-    * SellerReverseDispute():
-    * 9 = Buyer reimbursed auction fees.
-    */
-    const DISPUTE_REVERSE_REIMBURSED = 9;
-
-   /**
-    * SellerReverseDispute():
-    * 10 = Received payment.
-    */
-    const DISPUTE_REVERSE_RECEIVED = 10;
-
-   /**
-    * SellerReverseDispute():
-    * 11 = Other.
-    */
-    const DISPUTE_REVERSE_OTHER = 11;
+    const REPONSE_MESSAGES = 'ReturnMessages';
 
    /**
     * GetAccount():
-    * 0 = view by period or date/range
     */
-    const ACCOUNT_TYPE_PERIOD = 0;
+    const ACCOUNT_TYPE_PERIOD = 'LastInvoice';
 
    /**
     * GetAccount():
-    * 1 = view by invoice
     */
-    const ACCOUNT_TYPE_INVOICE = 1;
+    const ACCOUNT_TYPE_INVOICE = 'SpecifiedInvoice';
+
+   /*
+    * GetAccount():
+    */
+    const ACCOUNT_TYPE_SPECIFIED_DATES = 'BetweenSpecifiedDates';
 
    /**
     * SiteId USA

@@ -1,0 +1,62 @@
+Task                            Request     ResponseHandling    Model   Example
+-------------------------------------------------------------------------------
+AddDispute                      +           +                   N/A     +
+AddDisputeResponse              +           +                   N/A     +
+AddItem
+AddMemberMessage                ----------------- *DEPRECATED* -----------------
+AddOrder                        +           +                   +       + 
+AddSecondChanceItem             +           +                   +       +
+AddShipment                     ----------------- *DEPRECATED* -----------------
+AddToItemDescription            +           +                   +       +
+EndItem                         +           +                   +       + 
+FetchToken                      +           +                   N/A     +
+GetAPIAccessRules               +           +                   N/A     +
+GetAccount                      +           +                   +       +
+GetAllBidders                   +           +                   N/A     +
+GetBidderList                   +           +                   +       +
+GetCategories                   +           +                   N/A     +                   
+GetCategory2CS                  +           +                   N/A     +
+GetCategoryListings             +           +                   N/A     +
+GetCrossPromotions              +           +                   +       +
+GetDescriptionTemplates         +           +                   N/A     +
+GetDispute                      +           +                   +       +
+GetDomains                      ----------------- *DEPRECATED* -----------------
+GetFeedback                     +           +                   +       +
+GetHighBidders                  +           +                   N/A     +
+GetItem                         +           +                   +       +
+GetItemShipping                 +           +                   N/A     + 
+GetItemTransactions             +           +                   -
+GetLogoURL                      ----------------- *DEPRECATED* -----------------
+GetMemberMessages               +           +                   +       +
+GetMyeBay                       ----------------- *DEPRECATED* -----------------
+GetNotificationPreferences      +           +                   N/A     +
+GetOutageSchedules              ----------------- *DEPRECATED* -----------------
+GetPreferences                  ---- *DEPRECATED*  Check GetUserPreferences ----
+GetUserPreferences
+GetProductFinder
+GetProductFinderXSL
+GetPromotionRules               +           +                   N/A     +
+GetReturnURL                    +           +                   N/A     N/A
+GetRuName                       +           +                   N/A     +
+GetSearchResults                +           +                   +       +
+GetSellerList                   +           +                   +       +
+GetSellerTransactions           +           +                   +       
+GetShippingRates
+GetStoreDetails
+GetSuggestedCategories
+GetUser                         +           +                   +       +
+GetUserDisputes                 +           +                   +       +
+GetWatchList
+GeteBayDetails                  +           +                   N/A     +
+GeteBayOfficialTime             +           +                   N/A     +
+LeaveFeedback
+RelistItem
+ReviseCheckoutStatus
+ReviseItem
+SellerReverseDispute
+SetPreferences
+SetReturnURL
+SetSellerPaymentAddress
+ValidateTestUserRegistration
+VerifyAddItem
+VerifyAddSecondChanceItem
