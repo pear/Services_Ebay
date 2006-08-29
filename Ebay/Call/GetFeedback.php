@@ -37,9 +37,7 @@ class Services_Ebay_Call_GetFeedback extends Services_Ebay_Call
     */
     protected $paramMap = array(
                                  'UserID',
-                                 'DetailLevel',
-                                 'StartingPage',
-                                 'ItemsPerPage'
+                                 'DetailLevel'
                                 );
     
     

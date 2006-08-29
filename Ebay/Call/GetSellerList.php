@@ -40,8 +40,7 @@ class Services_Ebay_Call_GetSellerList extends Services_Ebay_Call
     protected $paramMap = array(
                                  'UserID',
                                  'EntriesPerPage',
-                                 'PageNumber',
-                                 'Sort',
+                                 'Sort'
                                 );
     
    /**
