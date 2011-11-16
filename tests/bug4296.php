@@ -9,7 +9,6 @@
  * @author      Stephan Schmidt
  */
 
-error_reporting(E_ALL);
 require_once '../Ebay.php';
 require_once '../examples/config-local.php';
 
