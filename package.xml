@@ -30,14 +30,14 @@ The Services_Ebay class provides a unified method to use all objects.</descripti
   <active>no</active>
  </lead>
  <date>2012-04-10</date>
- <time>03:51:07</time>
+ <time>03:52:06</time>
  <version>
   <release>0.13.0</release>
   <api>0.13.0</api>
  </version>
  <stability>
-  <release>stable</release>
-  <api>stable</api>
+  <release>beta</release>
+  <api>beta</api>
  </stability>
  <license uri="http://www.php.net/license">PHP License</license>
  <notes>
@@ -213,6 +213,7 @@ QA release
    <file baseinstalldir="/" md5sum="f7b594fb9a2e4685377816c13ec7f67d" name="tests/bug4296.php" role="test" />
    <file baseinstalldir="/" md5sum="25f2175edd215587cecdfee82d7f8bef" name="progress" role="data" />
    <file baseinstalldir="/" md5sum="7d8d6bf317740ed55c5538831e47fe30" name="README" role="data" />
+   <file baseinstalldir="/" md5sum="afc036988e888c53db1a289197f31b04" name="Services_Ebay-0.13.0.tgz" role="data" />
   </dir>
  </contents>
  <dependencies>
@@ -414,8 +415,8 @@ Upgrade to phpunit 3.6
     <api>0.13.0</api>
    </version>
    <stability>
-    <release>stable</release>
-    <api>stable</api>
+    <release>beta</release>
+    <api>beta</api>
    </stability>
    <date>2012-04-10</date>
    <license uri="http://www.php.net/license">PHP License</license>
