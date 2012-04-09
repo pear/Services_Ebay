@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.9.4" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+ <name>Services_Ebay</name>
+ <channel>pear.php.net</channel>
+ <summary>Interface to eBay&apos;s XML-API.</summary>
+ <description>Interface to eBay&apos;s XML-API. It provides objects that are able to communicate with eBay as well as models that help you working with the return values like User or Item models.
+The Services_Ebay class provides a unified method to use all objects.</description>
+ <lead>
+  <name>Stephan Schmidt</name>
+  <user>schst</user>
+  <email>schst@php.net</email>
+  <active>no</active>
+ </lead>
+ <lead>
+  <name>Adam Maccabee Trachtenberg</name>
+  <user>amt</user>
+  <email>amt@php.net</email>
+  <active>no</active>
+ </lead>
+ <lead>
+  <name>Carsten Lucke</name>
+  <user>luckec</user>
+  <email>luckec@php.net</email>
+  <active>no</active>
+ </lead>
+ <lead>
+  <name>Amir Mohammad Saied</name>
+  <user>amir</user>
+  <email>amir@php.net</email>
+  <active>no</active>
+ </lead>
+ <date>2012-04-10</date>
+ <time>03:51:07</time>
+ <version>
+  <release>0.13.0</release>
+  <api>0.13.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.php.net/license">PHP License</license>
+ <notes>
+QA release
+ </notes>
+ <contents>
+  <dir baseinstalldir="/" name="/">
+   <file baseinstalldir="/" md5sum="1d276d30ef245fc03ec52ce1cda08b13" name="docs/ideas.txt" role="doc" />
+   <file baseinstalldir="/" md5sum="aae9fdb335fd16297c682536af280906" name="docs/models.txt" role="doc" />
+   <file baseinstalldir="/" md5sum="2a0028397051ff4f386f6780e2bc1ce3" name="docs/todo.txt" role="doc" />
+   <file baseinstalldir="/" md5sum="d653ad11676e058f415590e01d74a3f3" name="examples/config.php" role="doc" />
+   <file baseinstalldir="/" md5sum="bbffbdf90d2173dae53b0b079c8f59b3" name="examples/example_AddDispute.php" role="doc" />
+   <file baseinstalldir="/" md5sum="f96406b4d34aad4b16c18b4b34fc6e93" name="examples/example_AddDisputeResponse.php" role="doc" />
+   <file baseinstalldir="/" md5sum="2bca4fb0417593ddb7a4517a79c6e12b" name="examples/example_AddItem.php" role="doc" />
+   <file baseinstalldir="/" md5sum="02e27b020dcf3c6034941684b38a4526" name="examples/example_AddMemberMessage.php" role="doc" />
+   <file baseinstalldir="/" md5sum="d212e45e530a1542fff7599acc24d6ba" name="examples/example_AddOrder.php" role="doc" />
+   <file baseinstalldir="/" md5sum="b6cf124ce8a60fc9a0fc6e28a7786f76" name="examples/example_AddSecondChanceItem.php" role="doc" />
+   <file baseinstalldir="/" md5sum="ca867209c33e59b460b9afd6433b5020" name="examples/example_AddShipment.php" role="doc" />
+   <file baseinstalldir="/" md5sum="6b300eb31424df7c82528ee725df1be1" name="examples/example_AddToItemDescription.php" role="doc" />
+   <file baseinstalldir="/" md5sum="04b910f239878d7ec6ffaa67a2ff2430" name="examples/example_EndItem.php" role="doc" />
+   <file baseinstalldir="/" md5sum="af389a0acfae467190b44c4298f60773" name="examples/example_features_cache.php" role="doc" />
+   <file baseinstalldir="/" md5sum="b8456197c6148bfeb5af064d715bc29d" name="examples/example_features_customModels.php" role="doc" />
+   <file baseinstalldir="/" md5sum="868c33cfa78d5c3b580816c60d526c70" name="examples/example_features_Debugging.php" role="doc" />
+   <file baseinstalldir="/" md5sum="92b50540fd9cacc1931530d7e831114f" name="examples/example_features_DescribingCalls.php" role="doc" />
+   <file baseinstalldir="/" md5sum="3f34117ed53d4217f0e997e28c46b9d8" name="examples/example_features_Exception.php" role="doc" />
+   <file baseinstalldir="/" md5sum="c55d753807a6c9af6e5d1f8cbadcb866" name="examples/example_features_introspection.php" role="doc" />
+   <file baseinstalldir="/" md5sum="de6b631baf638a2aec661599b1e127f3" name="examples/example_features_models.php" role="doc" />
+   <file baseinstalldir="/" md5sum="eda252de6e3244e21d69cb021f67a88d" name="examples/example_features_setErrorLanguage.php" role="doc" />
+   <file baseinstalldir="/" md5sum="87964b5536c224dba6ac1bf9f06da55a" name="examples/example_features_UsingModels.php" role="doc" />
+   <file baseinstalldir="/" md5sum="252b9b5b5c7730707caa5ae0946abb82" name="examples/example_features_UsingObjects.php" role="doc" />
+   <file baseinstalldir="/" md5sum="2d2543f43ed63642c50a22fdd1a13ffc" name="examples/example_FetchToken.php" role="doc" />
+   <file baseinstalldir="/" md5sum="f1fe655976aefe701b577383bbac34c6" name="examples/example_GetAccount.php" role="doc" />
+   <file baseinstalldir="/" md5sum="55b117f82a913d7f31018aee3bb339eb" name="examples/example_GetAllBidders.php" role="doc" />
+   <file baseinstalldir="/" md5sum="7a419816535e6cfd44478b195c1cf1ba" name="examples/example_GetAPIAccessRules.php" role="doc" />
+   <file baseinstalldir="/" md5sum="3353885e6431a891c4c3642b7e370875" name="examples/example_GetBidderList.php" role="doc" />
+   <file baseinstalldir="/" md5sum="eafe3b6b5c34fb5779977a34faeae3be" name="examples/example_GetCategories.php" role="doc" />
+   <file baseinstalldir="/" md5sum="4e20cacfb04c4064b971b4d76a5e1963" name="examples/example_GetCategory2Cs.php" role="doc" />
+   <file baseinstalldir="/" md5sum="c49fb80ccc8f34cf9cd53667a0490b3a" name="examples/example_GetCategoryListings.php" role="doc" />
+   <file baseinstalldir="/" md5sum="30e68a6e9db459e623b8ac08adb116ec" name="examples/example_GetCrossPromotions.php" role="doc" />
+   <file baseinstalldir="/" md5sum="cfaa0b13066c4c9164a5fa8bbca8e901" name="examples/example_GetDescriptionTemplates.php" role="doc" />
+   <file baseinstalldir="/" md5sum="a996574be3a0ba855d2286bb4379564a" name="examples/example_GetDispute.php" role="doc" />
+   <file baseinstalldir="/" md5sum="eebf2016489e998c03b6ba1f2b8fe614" name="examples/example_GetDomains.php" role="doc" />
+   <file baseinstalldir="/" md5sum="97d855314c9ed36cbcc209eaf44cd9a7" name="examples/example_GeteBayDetails.php" role="doc" />
+   <file baseinstalldir="/" md5sum="af45cd48b1e740428d69f70aa6f7a82d" name="examples/example_GeteBayOfficalTime.php" role="doc" />
+   <file baseinstalldir="/" md5sum="6a6d323fbf39b3d4845f824835ddb1f8" name="examples/example_GetFeedback.php" role="doc" />
+   <file baseinstalldir="/" md5sum="f49edcd5fb1a2a6b5dc2718a2ec8bde9" name="examples/example_GetHighBidders.php" role="doc" />
+   <file baseinstalldir="/" md5sum="8419589fd714fc51dc00314ff4a7e5c7" name="examples/example_GetItem.php" role="doc" />
+   <file baseinstalldir="/" md5sum="b16f92e06c0c394b5095d28e137d997a" name="examples/example_GetItemShipping.php" role="doc" />
+   <file baseinstalldir="/" md5sum="300bcfe21552eaf139cebf73df653c9f" name="examples/example_GetItemTransactions.php" role="doc" />
+   <file baseinstalldir="/" md5sum="2c0a64a5908f0653fa433ea69202712e" name="examples/example_GetLogoUrl.php" role="doc" />
+   <file baseinstalldir="/" md5sum="f68ba298a9a30673477283cf9eb02dca" name="examples/example_GetMemberMessages.php" role="doc" />
+   <file baseinstalldir="/" md5sum="db98472f8c0e4067be656f98a27537ba" name="examples/example_GetMyeBay.php" role="doc" />
+   <file baseinstalldir="/" md5sum="9e24f2b20e19f8e2844d82a16f009762" name="examples/example_GetNotificationPreferences.php" role="doc" />
+   <file baseinstalldir="/" md5sum="89b68d46998fd94132a96d2119a3932e" name="examples/example_GetOutageSchedules.php" role="doc" />
+   <file baseinstalldir="/" md5sum="979cbec296444f7b87ef289a9f0acbb1" name="examples/example_GetPreferences.php" role="doc" />
+   <file baseinstalldir="/" md5sum="8b53a7785ff8a8586c297280665c2183" name="examples/example_GetProductFinder.php" role="doc" />
+   <file baseinstalldir="/" md5sum="eb275279755aa9a26653ab39ef2ae2f3" name="examples/example_GetProductFinderXSL.php" role="doc" />
+   <file baseinstalldir="/" md5sum="92266b3ec8b46540a034e63255c93682" name="examples/example_GetPromotionRules.php" role="doc" />
+   <file baseinstalldir="/" md5sum="02121cd615ae30df0324953d7d8df41a" name="examples/example_GetRuName.php" role="doc" />
+   <file baseinstalldir="/" md5sum="b3f2c67d2fae622ac74bb89f9db04b50" name="examples/example_GetSearchResults.php" role="doc" />
+   <file baseinstalldir="/" md5sum="3ea84db145ddf55b5e9eeddb80b10577" name="examples/example_GetSellerList.php" role="doc" />
+   <file baseinstalldir="/" md5sum="a97024224979bf6eb562010d1797876d" name="examples/example_GetSellerTransactions.php" role="doc" />
+   <file baseinstalldir="/" md5sum="5a5fc517c83a05f2662a49b644a4fbdd" name="examples/example_GetShippingRates.php" role="doc" />
+   <file baseinstalldir="/" md5sum="0b932cfb06adb104c85f5efdbfa4f601" name="examples/example_GetStoreDetails.php" role="doc" />
+   <file baseinstalldir="/" md5sum="47328190cf9699ad4b2a1f244d869e00" name="examples/example_GetSuggestedCategories.php" role="doc" />
+   <file baseinstalldir="/" md5sum="a6f4f469dfb34bc326291071ceb1f322" name="examples/example_GetUser.php" role="doc" />
+   <file baseinstalldir="/" md5sum="de7151546c4d828aac4583d0a19bed9c" name="examples/example_GetUserDisputes.php" role="doc" />
+   <file baseinstalldir="/" md5sum="475f85082fe8d28eb34d5f4a18401166" name="examples/example_GetWatchList.php" role="doc" />
+   <file baseinstalldir="/" md5sum="ade1b700b89ff3b8dbbcc590c38b720c" name="examples/example_LeaveFeedback.php" role="doc" />
+   <file baseinstalldir="/" md5sum="81b83bbc5e87a8cce0d447e25e39afd2" name="examples/example_RelistItem.php" role="doc" />
+   <file baseinstalldir="/" md5sum="676815c23e0e66b917af0f79d10e58b4" name="examples/example_ReviseCheckoutStatus.php" role="doc" />
+   <file baseinstalldir="/" md5sum="7d1a39c43454f0c304928e3f18a8c65c" name="examples/example_ReviseItem.php" role="doc" />
+   <file baseinstalldir="/" md5sum="ff5fa5e0120e7261f205e2990a1e0129" name="examples/example_SellerReverseDispute.php" role="doc" />
+   <file baseinstalldir="/" md5sum="fc473d9713a89802a3187ef38c6ad288" name="examples/example_SetPreferences.php" role="doc" />
+   <file baseinstalldir="/" md5sum="39155c429617e5db6678ccb72a3bbe3d" name="examples/example_SetSellerPaymentAddress.php" role="doc" />
+   <file baseinstalldir="/" md5sum="bbc142765f1e71f6bf44f03d3f53871b" name="examples/example_ValidateTestUserRegistration.php" role="doc" />
+   <file baseinstalldir="/" md5sum="a0b962e802ee5c570c310ceccddf1729" name="examples/example_VerifyAddItem.php" role="doc" />
+   <file baseinstalldir="/" md5sum="3df2433d5e08b409c521495be2f74ff6" name="examples/product_finder.xsl" role="doc" />
+   <file baseinstalldir="/" md5sum="cd31535637e3bf890694667a4eec553a" name="examples/cache/readme.txt" role="doc" />
+   <file baseinstalldir="/" md5sum="001f70518da339c244a08ddc4f11cdc0" name="Services/Ebay.php" role="php" />
+   <file baseinstalldir="/" md5sum="c67817e9be5a1669b83001a21875ae1e" name="Services/Ebay/Cache.php" role="php" />
+   <file baseinstalldir="/" md5sum="c1111d9a5c2ea4d44b4af84e846e7931" name="Services/Ebay/Call.php" role="php" />
+   <file baseinstalldir="/" md5sum="98aa21f7d905ec0d213d2ac8ba1c7f55" name="Services/Ebay/Error.php" role="php" />
+   <file baseinstalldir="/" md5sum="764dc6436e68dde925377853e3588a81" name="Services/Ebay/Exception.php" role="php" />
+   <file baseinstalldir="/" md5sum="0d17375e5491d524be47ce7b5792a080" name="Services/Ebay/Model.php" role="php" />
+   <file baseinstalldir="/" md5sum="f3ff4569034f38237aa8d16ce565b3cc" name="Services/Ebay/Session.php" role="php" />
+   <file baseinstalldir="/" md5sum="fec9a6df082899092e488caf13c02bb7" name="Services/Ebay/Cache/Filesystem.php" role="php" />
+   <file baseinstalldir="/" md5sum="7b0e45061624db9c98646a29cafd3f6c" name="Services/Ebay/Cache/ExpiryCheck/Static.php" role="php" />
+   <file baseinstalldir="/" md5sum="392188b38d7d560d8c98b84cbc845323" name="Services/Ebay/Call/AddDispute.php" role="php" />
+   <file baseinstalldir="/" md5sum="db5cfb7740c3e41cc3fd6379782d45a0" name="Services/Ebay/Call/AddDisputeResponse.php" role="php" />
+   <file baseinstalldir="/" md5sum="2771d288497467300ee64b8335def575" name="Services/Ebay/Call/AddItem.php" role="php" />
+   <file baseinstalldir="/" md5sum="e8f03676da4615f76ae71653d6673e06" name="Services/Ebay/Call/AddMemberMessage.php" role="php" />
+   <file baseinstalldir="/" md5sum="f7b8c540612cfa37b52bab11c9789fbd" name="Services/Ebay/Call/AddOrder.php" role="php" />
+   <file baseinstalldir="/" md5sum="ced329cc2bc61ed8550f2637e3515bbd" name="Services/Ebay/Call/AddSecondChanceItem.php" role="php" />
+   <file baseinstalldir="/" md5sum="b5b26ca4f23e5d6a61dbde9d7fbe5101" name="Services/Ebay/Call/AddShipment.php" role="php" />
+   <file baseinstalldir="/" md5sum="6df23ed55fb631b3c6b9e620456e3bd9" name="Services/Ebay/Call/AddToItemDescription.php" role="php" />
+   <file baseinstalldir="/" md5sum="e20edbf61f402763b70d6d014940ba1a" name="Services/Ebay/Call/EndItem.php" role="php" />
+   <file baseinstalldir="/" md5sum="a7faa0ff63bc2feaf7c27188d641d912" name="Services/Ebay/Call/FetchToken.php" role="php" />
+   <file baseinstalldir="/" md5sum="37cbe3e6056312790740f5bb006b7e87" name="Services/Ebay/Call/GetAccount.php" role="php" />
+   <file baseinstalldir="/" md5sum="d8c6334df525f54743bbfa873cfaeeef" name="Services/Ebay/Call/GetAllBidders.php" role="php" />
+   <file baseinstalldir="/" md5sum="d0c94d07c79a9280f72e15f19c1078fe" name="Services/Ebay/Call/GetAPIAccessRules.php" role="php" />
+   <file baseinstalldir="/" md5sum="f07e52228bcf927be65e62748f43d251" name="Services/Ebay/Call/GetBidderList.php" role="php" />
+   <file baseinstalldir="/" md5sum="6f22736883b477ff2bdf15b5523d8c0f" name="Services/Ebay/Call/GetCategories.php" role="php" />
+   <file baseinstalldir="/" md5sum="5cedd7995e7b2b01644dbf5febfccde8" name="Services/Ebay/Call/GetCategory2CS.php" role="php" />
+   <file baseinstalldir="/" md5sum="7f259fbad066b76fbeebfcc8bd8fca9e" name="Services/Ebay/Call/GetCategoryListings.php" role="php" />
+   <file baseinstalldir="/" md5sum="0dfc13b3921e4e277e46a79b91c31908" name="Services/Ebay/Call/GetCrossPromotions.php" role="php" />
+   <file baseinstalldir="/" md5sum="2e56847bb074b90e292ab54727e8837a" name="Services/Ebay/Call/GetDescriptionTemplates.php" role="php" />
+   <file baseinstalldir="/" md5sum="1078480dafbb62d37a084f47091b8db2" name="Services/Ebay/Call/GetDispute.php" role="php" />
+   <file baseinstalldir="/" md5sum="20296f678f8a7256a1a8daea2ce9fc55" name="Services/Ebay/Call/GetDomains.php" role="php" />
+   <file baseinstalldir="/" md5sum="77811b030bcfaa800e466c396d1a89a6" name="Services/Ebay/Call/GeteBayDetails.php" role="php" />
+   <file baseinstalldir="/" md5sum="f6c844c96a81c2f760dc2e7f6be9c0b8" name="Services/Ebay/Call/GeteBayOfficialTime.php" role="php" />
+   <file baseinstalldir="/" md5sum="5b94fe25327f93bef4c360c1cf8b9c96" name="Services/Ebay/Call/GetFeedback.php" role="php" />
+   <file baseinstalldir="/" md5sum="5c608899b8aec23184dc23ffb1d5f56d" name="Services/Ebay/Call/GetHighBidders.php" role="php" />
+   <file baseinstalldir="/" md5sum="d4e2662d87539fcd4d78639081d39873" name="Services/Ebay/Call/GetItem.php" role="php" />
+   <file baseinstalldir="/" md5sum="8821dc259501b448e32ac8c9fd2ddfd3" name="Services/Ebay/Call/GetItemShipping.php" role="php" />
+   <file baseinstalldir="/" md5sum="5c100979a15d1d6a3432a4f49272a301" name="Services/Ebay/Call/GetItemTransactions.php" role="php" />
+   <file baseinstalldir="/" md5sum="fd739f1fc1efba38912009441cb27e2a" name="Services/Ebay/Call/GetLogoURL.php" role="php" />
+   <file baseinstalldir="/" md5sum="ef06fa5987563cc83af08d70587b3cf1" name="Services/Ebay/Call/GetMemberMessages.php" role="php" />
+   <file baseinstalldir="/" md5sum="fd1fed898d325220a9bc1858468d03e8" name="Services/Ebay/Call/GetMyeBay.php" role="php" />
+   <file baseinstalldir="/" md5sum="539686a8d6c4da658784732dd4138732" name="Services/Ebay/Call/GetNotificationPreferences.php" role="php" />
+   <file baseinstalldir="/" md5sum="4f7cac69ec05ffd77879c1ea110dea07" name="Services/Ebay/Call/GetOutageSchedules.php" role="php" />
+   <file baseinstalldir="/" md5sum="1e8ad86084dfe4352bf1b05c9b9f1f6a" name="Services/Ebay/Call/GetPreferences.php" role="php" />
+   <file baseinstalldir="/" md5sum="f0abaf2693c3484c5a87ebfc7ee80b17" name="Services/Ebay/Call/GetProductFinder.php" role="php" />
+   <file baseinstalldir="/" md5sum="1a659e0064d68d364cd0c7170c6934f6" name="Services/Ebay/Call/GetProductFinderXSL.php" role="php" />
+   <file baseinstalldir="/" md5sum="1f90801aa056e4a8ed44c8fe2f354e1d" name="Services/Ebay/Call/GetPromotionRules.php" role="php" />
+   <file baseinstalldir="/" md5sum="8e92f34aa5a4c41dfe040bfc84ddaa8d" name="Services/Ebay/Call/GetReturnURL.php" role="php" />
+   <file baseinstalldir="/" md5sum="8c18a857f7f963cc95dc5016d02e62f9" name="Services/Ebay/Call/GetRuName.php" role="php" />
+   <file baseinstalldir="/" md5sum="7486be8d762be2464f7f5ed3dfe37900" name="Services/Ebay/Call/GetSearchResults.php" role="php" />
+   <file baseinstalldir="/" md5sum="ca54e736a75b19f9f36628f489851817" name="Services/Ebay/Call/GetSellerList.php" role="php" />
+   <file baseinstalldir="/" md5sum="e160c29564a98fefaeadb8a7c03ef380" name="Services/Ebay/Call/GetSellerTransactions.php" role="php" />
+   <file baseinstalldir="/" md5sum="b29401e24795910e90a6f2cc45f6e486" name="Services/Ebay/Call/GetShippingRates.php" role="php" />
+   <file baseinstalldir="/" md5sum="918838a3c421ab5e69203570a0c3b468" name="Services/Ebay/Call/GetStoreDetails.php" role="php" />
+   <file baseinstalldir="/" md5sum="9cf11a092102b411a1af0fb2fef47fb2" name="Services/Ebay/Call/GetSuggestedCategories.php" role="php" />
+   <file baseinstalldir="/" md5sum="9274321b36c5a2c2970ff78c14e7e635" name="Services/Ebay/Call/GetUser.php" role="php" />
+   <file baseinstalldir="/" md5sum="55434cb5067835e8f0a3ca87a18d7436" name="Services/Ebay/Call/GetUserDisputes.php" role="php" />
+   <file baseinstalldir="/" md5sum="67657c2f0fc36ca52f61c8e3c1bd085f" name="Services/Ebay/Call/GetWatchList.php" role="php" />
+   <file baseinstalldir="/" md5sum="32f92f0c34c8798c30f2134bd1abf816" name="Services/Ebay/Call/LeaveFeedback.php" role="php" />
+   <file baseinstalldir="/" md5sum="ac15c7f69ff9d88cac62652dd14ff183" name="Services/Ebay/Call/RelistItem.php" role="php" />
+   <file baseinstalldir="/" md5sum="40e92550479592f251e9d61633ea396f" name="Services/Ebay/Call/ReviseCheckoutStatus.php" role="php" />
+   <file baseinstalldir="/" md5sum="ecf69dd465c299990f35caa8aabf01ef" name="Services/Ebay/Call/ReviseItem.php" role="php" />
+   <file baseinstalldir="/" md5sum="64c22eb53cb521c89e469888fd7c6704" name="Services/Ebay/Call/SellerReverseDispute.php" role="php" />
+   <file baseinstalldir="/" md5sum="5675b5c3b7398be87fbf041cd7206780" name="Services/Ebay/Call/SetPreferences.php" role="php" />
+   <file baseinstalldir="/" md5sum="0bb27349c29e7155057b74369f859eb9" name="Services/Ebay/Call/SetReturnURL.php" role="php" />
+   <file baseinstalldir="/" md5sum="fff5dd285253f31a57654e604c0b24f9" name="Services/Ebay/Call/SetSellerPaymentAddress.php" role="php" />
+   <file baseinstalldir="/" md5sum="cc53d603c0df32e2dbf0ffee6dab3c75" name="Services/Ebay/Call/ValidateTestUserRegistration.php" role="php" />
+   <file baseinstalldir="/" md5sum="8139512abccc8a84a7fa913b69098ae3" name="Services/Ebay/Call/VerifyAddItem.php" role="php" />
+   <file baseinstalldir="/" md5sum="779f4514bb716dd7fd070d097e4d1cb7" name="Services/Ebay/Call/VerifyAddSecondChanceItem.php" role="php" />
+   <file baseinstalldir="/" md5sum="a4b6b212ea8ea75cb849fb1caf53593e" name="Services/Ebay/Model/Account.php" role="php" />
+   <file baseinstalldir="/" md5sum="1c3691cfe73d67fae9d975495fc68b80" name="Services/Ebay/Model/Bid.php" role="php" />
+   <file baseinstalldir="/" md5sum="e7c31d99b47b7aef7f116e1ceb5e16cc" name="Services/Ebay/Model/BidList.php" role="php" />
+   <file baseinstalldir="/" md5sum="3265682f92647be1cd90ebd1bd614cd5" name="Services/Ebay/Model/Dispute.php" role="php" />
+   <file baseinstalldir="/" md5sum="d3b7c8a0639168b8964f06baf24859a9" name="Services/Ebay/Model/DisputeList.php" role="php" />
+   <file baseinstalldir="/" md5sum="f713281b9cff09268c1da8fd5b604b33" name="Services/Ebay/Model/Feedback.php" role="php" />
+   <file baseinstalldir="/" md5sum="39d706b0f6633bb96d244129666d13d1" name="Services/Ebay/Model/FeedbackEntry.php" role="php" />
+   <file baseinstalldir="/" md5sum="ffc55314a1df91db437403d5c18612d3" name="Services/Ebay/Model/Item.php" role="php" />
+   <file baseinstalldir="/" md5sum="285219bff5c6c7c44cfd22934b166db0" name="Services/Ebay/Model/ItemList.php" role="php" />
+   <file baseinstalldir="/" md5sum="e9000fa89ba282e463c285c72a124429" name="Services/Ebay/Model/MemberMessage.php" role="php" />
+   <file baseinstalldir="/" md5sum="b994eefe144eb16481a4f9f74441409a" name="Services/Ebay/Model/MemberMessageList.php" role="php" />
+   <file baseinstalldir="/" md5sum="7905718c3cf7b938894180283c39527b" name="Services/Ebay/Model/MyeBay.php" role="php" />
+   <file baseinstalldir="/" md5sum="1915b91f5676d1644796fb3971a02800" name="Services/Ebay/Model/Order.php" role="php" />
+   <file baseinstalldir="/" md5sum="d0b5703ca91aaacfe3703d8d758af158" name="Services/Ebay/Model/Preferences.php" role="php" />
+   <file baseinstalldir="/" md5sum="4865dd147215543354c8a00e59fab2a7" name="Services/Ebay/Model/ProductFinder.php" role="php" />
+   <file baseinstalldir="/" md5sum="fab097bf2ca6a1966e7d8cb3f67f5d20" name="Services/Ebay/Model/SearchResult.php" role="php" />
+   <file baseinstalldir="/" md5sum="b135baef7514d5362fd529fd85132e9c" name="Services/Ebay/Model/Shipment.php" role="php" />
+   <file baseinstalldir="/" md5sum="512010bde592afb4e3251d22d7f844f9" name="Services/Ebay/Model/Store.php" role="php" />
+   <file baseinstalldir="/" md5sum="3481f27b26c98583932c9fb8adb2d6e4" name="Services/Ebay/Model/Transaction.php" role="php" />
+   <file baseinstalldir="/" md5sum="bd6cd5ac626af7cfe0fca9fe43282f4d" name="Services/Ebay/Model/TransactionList.php" role="php" />
+   <file baseinstalldir="/" md5sum="4bccee45d915833474aadfadb1d11062" name="Services/Ebay/Model/User.php" role="php" />
+   <file baseinstalldir="/" md5sum="27ee8fafbf2132d926ff41069a0e1229" name="Services/Ebay/Transport/Curl.php" role="php" />
+   <file baseinstalldir="/" md5sum="d160894d7ab00c42e3a93cdc4ab100ba" name="Services/Ebay/Transport/HttpRequest.php" role="php" />
+   <file baseinstalldir="/" md5sum="f9b6879a9ade777deee04c4bcb5fb70f" name="Services/Ebay/Transport/Streams.php" role="php" />
+   <file baseinstalldir="/" md5sum="a270cc1c277fcd2c81cbde3e985063b4" name="tests/bug4181.php" role="test" />
+   <file baseinstalldir="/" md5sum="f7b594fb9a2e4685377816c13ec7f67d" name="tests/bug4296.php" role="test" />
+   <file baseinstalldir="/" md5sum="25f2175edd215587cecdfee82d7f8bef" name="progress" role="data" />
+   <file baseinstalldir="/" md5sum="7d8d6bf317740ed55c5538831e47fe30" name="README" role="data" />
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>4.1.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.0b1</min>
+   </pearinstaller>
+  </required>
+  <optional>
+   <package>
+    <name>PHPUnit</name>
+    <channel>pear.phpunit.de</channel>
+    <min>3.6.0</min>
+   </package>
+  </optional>
+ </dependencies>
+ <phprelease />
+ <changelog>
+  <release>
+   <version>
+    <release>0.1.0</release>
+    <api>0.1.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2004-05-16</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+Initial release
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.0</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2004-09-20</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+First stable release
+Fixed bug #1823 : The getHelp() method ignores user-defined header.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.1.0</release>
+    <api>1.1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2004-09-30</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+Implement feature request #2409: Parse args like &apos;-dt&apos;...
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.2.0</release>
+    <api>1.2.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2004-10-22</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+Implement feature request #2428: Passing parameters on the command line
+Implement feature request #2445: Allow user defined argument lists
+Implement fix for bug #2486: Notice in parseArgs
+More detailed help message. Shows optional/required arguments.
+New example file.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.2.1</release>
+    <api>1.2.1</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2004-11-18</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+Implement fix for bug #2677: Empty array for $arguments parameter (Bertrand Gugger)
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.3.0</release>
+    <api>1.3.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2005-05-13</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+Implement feature request #4091: New method: getValues() (Stephan Schmidt)
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.3.1</release>
+    <api>1.3.1</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2006-04-10</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+Fix for Bug #7132: Missing value for $_SERVER[&apos;SCRIPT_NAME&apos;]. If $SERVER[&apos;SCRIPT_NAME&apos;] not found, use $argv[0].
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.3.2</release>
+    <api>1.3.2</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2006-10-03</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+Fix for bug #8643: Providing strings as min/max values gives weird results (Benjamin Bittner)
+Fix for bug #8770: incorrect path to class resource in example2 (Laurent Laville)
+Implement request #8771: Improve help-usage output render with optional indentation (Laurent Laville)
+Implement request #8771: Improve col1 arguments alignment (Laurent Laville)
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.3.3</release>
+    <api>1.3.3</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2006-11-07</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+Fix for bug #9252: No error when required arguments are missing.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.3.4</release>
+    <api>1.3.4</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2010-02-14</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+Update to package2.xml
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.3.6</release>
+    <api>1.3.6</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2011-11-06</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+QA Release.
+Upgrade to phpunit 3.6
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.13.0</release>
+    <api>0.13.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2012-04-10</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+QA release
+   </notes>
+  </release>
+ </changelog>
+</package>
