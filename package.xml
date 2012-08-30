@@ -29,10 +29,10 @@ The Services_Ebay class provides a unified method to use all objects.</descripti
   <email>amir@php.net</email>
   <active>no</active>
  </lead>
- <date>2012-04-10</date>
- <time>03:52:06</time>
+ <date>2012-08-30</date>
+ <time>11:25:36</time>
  <version>
-  <release>0.13.0</release>
+  <release>0.13.1</release>
   <api>0.13.0</api>
  </version>
  <stability>
@@ -42,6 +42,7 @@ The Services_Ebay class provides a unified method to use all objects.</descripti
  <license uri="http://www.php.net/license">PHP License</license>
  <notes>
 QA release
+Redo package
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
@@ -213,7 +214,6 @@ QA release
    <file baseinstalldir="/" md5sum="f7b594fb9a2e4685377816c13ec7f67d" name="tests/bug4296.php" role="test" />
    <file baseinstalldir="/" md5sum="25f2175edd215587cecdfee82d7f8bef" name="progress" role="data" />
    <file baseinstalldir="/" md5sum="7d8d6bf317740ed55c5538831e47fe30" name="README" role="data" />
-   <file baseinstalldir="/" md5sum="afc036988e888c53db1a289197f31b04" name="Services_Ebay-0.13.0.tgz" role="data" />
   </dir>
  </contents>
  <dependencies>
@@ -422,6 +422,22 @@ Upgrade to phpunit 3.6
    <license uri="http://www.php.net/license">PHP License</license>
    <notes>
 QA release
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.13.1</release>
+    <api>0.13.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2012-08-30</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+QA release
+Redo package
    </notes>
   </release>
  </changelog>
