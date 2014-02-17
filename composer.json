@@ -1,0 +1,46 @@
+{
+    "authors": [
+        {
+            "email": "schst@php.net",
+            "name": "Stephan Schmidt",
+            "role": "Lead"
+        },
+        {
+            "email": "amt@php.net",
+            "name": "Adam Maccabee Trachtenberg",
+            "role": "Lead"
+        },
+        {
+            "email": "luckec@php.net",
+            "name": "Carsten Lucke",
+            "role": "Lead"
+        },
+        {
+            "email": "amir@php.net",
+            "name": "Amir Mohammad Saied",
+            "role": "Lead"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Services_Ebay": "./"
+        }
+    },
+    "description": "Interface to eBay's XML-API.",
+    "include-path": [
+        "./"
+    ],
+    "license": "PHP License",
+    "name": "pear/services_ebay",
+    "support": {
+        "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=Services_Ebay",
+        "source": "https://github.com/pear/Services_Ebay"
+    },
+    "type": "library",
+    "require": {
+        "pear/pear_exception": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    }
+}
